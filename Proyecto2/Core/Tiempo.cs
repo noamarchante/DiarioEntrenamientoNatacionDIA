@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Proyecto2.Core
@@ -8,7 +7,6 @@ namespace Proyecto2.Core
     {
         public int Minutos { get; set; }
         public int Segundos { get; set; }
-
 
         public Tiempo(int minutos,int segundos)
         {
@@ -24,15 +22,11 @@ namespace Proyecto2.Core
             }
         }
 
-
         public override String ToString()
         {
             StringBuilder str = new StringBuilder();
             str.Append("00:").Append(this.Minutos).Append(":").Append(this.Segundos).Append("\n");
-
-
             return str.ToString();
-
         }
     }
 }

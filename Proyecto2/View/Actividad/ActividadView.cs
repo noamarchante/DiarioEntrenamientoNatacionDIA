@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Proyecto2.View.Actividad
@@ -22,7 +23,7 @@ namespace Proyecto2.View.Actividad
         public Label MinutosLabel { get; set; }
         public Label TiempoLabel { get; set; }
 
-    
+        //CONSTRUYE CAMPO MINUTOS
         private Panel BuildMinutos()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -30,7 +31,6 @@ namespace Proyecto2.View.Actividad
             this.TiempoLabel = new Label();
             this.MinutosLabel = new Label();
             this.MinutosNumericUpDown = new NumericUpDown();
-
 
             // 
             // minutosLabel
@@ -44,6 +44,7 @@ namespace Proyecto2.View.Actividad
             this.MinutosLabel.TabIndex = 1;
             this.MinutosLabel.Text = "Minutos";
             this.MinutosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            
             // 
             // minutosNumericUpDown
             // 
@@ -51,7 +52,6 @@ namespace Proyecto2.View.Actividad
             this.MinutosNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinutosNumericUpDown.ForeColor = System.Drawing.SystemColors.InfoText;
             this.MinutosNumericUpDown.Dock = DockStyle.Left;
-         
             this.MinutosNumericUpDown.Name = "minutosNumericUpDown";
             this.MinutosNumericUpDown.Size = new System.Drawing.Size(74, 32);
             this.MinutosNumericUpDown.TabIndex = 0;
@@ -64,16 +64,18 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE CAMPO SEGUNDOS
         private Panel BuildSegundos()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
 
             this.SegundosLabel = new Label();
             this.SegundosNumericUpDown = new NumericUpDown();
+            
             // 
             // segundosLabel
             // 
-
             this.SegundosLabel.AutoSize = true;
             this.SegundosLabel.BackColor = System.Drawing.Color.Transparent;
             this.SegundosLabel.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -84,6 +86,7 @@ namespace Proyecto2.View.Actividad
             this.SegundosLabel.TabIndex = 3;
             this.SegundosLabel.Text = "Segundos";
             this.SegundosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            
             // 
             // segundosNumericUpDown
             // 
@@ -91,7 +94,6 @@ namespace Proyecto2.View.Actividad
             this.SegundosNumericUpDown.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SegundosNumericUpDown.ForeColor = System.Drawing.SystemColors.InfoText;
             this.SegundosNumericUpDown.Dock = DockStyle.Left;
-
             this.SegundosNumericUpDown.Name = "minutosNumericUpDown";
             this.SegundosNumericUpDown.Size = new System.Drawing.Size(74, 32);
             this.SegundosNumericUpDown.TabIndex = 0;
@@ -103,8 +105,9 @@ namespace Proyecto2.View.Actividad
             resultado.MaximumSize = new Size(int.MaxValue / 2, SegundosNumericUpDown.Height);
 
             return resultado;
-
         }
+
+        //CONSTRUYE CAMPO TIEMPO
         private Panel BuildTiempo()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -118,11 +121,12 @@ namespace Proyecto2.View.Actividad
             resultado.Controls.Add(segundos);
             resultado.Controls.Add(minutos);
 
-
             resultado.MaximumSize = new Size(int.MaxValue, segundos.Height);
 
             return resultado;
         }
+
+        //CONSTRUYE CAMPO DISTANCIA
         private Panel BuildDistancia()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -141,6 +145,7 @@ namespace Proyecto2.View.Actividad
             this.DistanciaLabel.Size = new System.Drawing.Size(123, 35);
             this.DistanciaLabel.TabIndex = 21;
             this.DistanciaLabel.Text = "Distancia";
+            
             // 
             // distanciaNumericUpDown
             // 
@@ -171,6 +176,8 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE CAMPO CIRCUITO
         private Panel BuildCircuito()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -189,6 +196,7 @@ namespace Proyecto2.View.Actividad
             this.CircuitoLabel.Size = new System.Drawing.Size(106, 35);
             this.CircuitoLabel.TabIndex = 9;
             this.CircuitoLabel.Text = "Circuito";
+            
             // 
             // circuitoComboBox
             // 
@@ -208,6 +216,8 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE EL CAMPO NOTA
         private Panel BuildNota()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -226,6 +236,7 @@ namespace Proyecto2.View.Actividad
             this.NotaLabel.Size = new System.Drawing.Size(72, 35);
             this.NotaLabel.TabIndex = 19;
             this.NotaLabel.Text = "Nota";
+           
             // 
             // notaTextBox
             // 
@@ -245,6 +256,8 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE EL CAMPO FECHA
         private Panel BuildFecha()
         {
 
@@ -264,6 +277,7 @@ namespace Proyecto2.View.Actividad
             this.FechaLabel.Size = new System.Drawing.Size(83, 35);
             this.FechaLabel.TabIndex = 15;
             this.FechaLabel.Text = "Fecha";
+            
             // 
             // fechaDateTimePicker
             // 
@@ -272,8 +286,8 @@ namespace Proyecto2.View.Actividad
             this.FechaDateTimePicker.Dock = DockStyle.Left;
             this.FechaDateTimePicker.Name = "fechaDateTimePicker";
             this.FechaDateTimePicker.Size = new System.Drawing.Size(391, 32);
+            this.FechaDateTimePicker.Value = DateTime.Now;
             this.FechaDateTimePicker.TabIndex = 14;
-            this.FechaDateTimePicker.Value = new System.DateTime(2020, 11, 24, 0, 0, 0, 0);
 
             resultado.Controls.Add(FechaDateTimePicker);
             resultado.Controls.Add(FechaLabel);
@@ -282,6 +296,8 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE EL BOTON INSERTAR
         private Panel BuildInsertar()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -299,13 +315,15 @@ namespace Proyecto2.View.Actividad
             this.InsertarButton.AutoSize = true;
             this.InsertarButton.UseVisualStyleBackColor = false;
             this.InsertarButton.Text = "INSERTAR";
-            this.InsertarButton.Click += new System.EventHandler(this.insertarActividadButton_Click);
+            this.InsertarButton.Click += new System.EventHandler(this.InsertarActividadButton_Click);
             resultado.Controls.Add(InsertarButton);
 
             resultado.MaximumSize = new Size(int.MaxValue / 2, InsertarButton.Height);
 
             return resultado;
         }
+
+        //CONSTRUYE EL BOTON VOLVER
         private Panel BuildVolver()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -323,7 +341,7 @@ namespace Proyecto2.View.Actividad
             this.VolverButton.AutoSize = true;
             this.VolverButton.UseVisualStyleBackColor = false;
             this.VolverButton.Text = "VOLVER";
-            this.VolverButton.Click += new System.EventHandler(this.volverButton_Click);
+            this.VolverButton.Click += new System.EventHandler(this.VolverButton_Click);
 
             resultado.Controls.Add(VolverButton);
 
@@ -331,6 +349,8 @@ namespace Proyecto2.View.Actividad
 
             return resultado;
         }
+
+        //CONSTRUYE LOS BOTONES
         private Panel BuildBotones()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
@@ -344,60 +364,50 @@ namespace Proyecto2.View.Actividad
             resultado.Controls.Add(insertar);
             resultado.Controls.Add(volver);
 
-
             resultado.MaximumSize = new Size(int.MaxValue, volver.Height);
 
             return resultado;
         }
+
+        //CONSTRUYE CAMPO VACIO
         private Panel BuildVacio()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
-
 
             resultado.MaximumSize = new Size(int.MaxValue,25);
 
             return resultado;
         }
+
+        //CONSTRUYE LA VENTANA DEL FORMULARIO
         public void Build()
         {
-            SuspendLayout();
 
             PanelPanel = new TableLayoutPanel { Dock = DockStyle.Fill };
+
+            var tiempo = BuildTiempo();
+            var distancia = BuildDistancia();
+            var circuito = BuildCircuito();
+            var nota = BuildNota();
+            var fecha = BuildFecha();
+            var botones = BuildBotones();
 
             PanelPanel.SuspendLayout();
 
             Controls.Add(PanelPanel);
 
             PanelPanel.Controls.Add(BuildVacio());
-
-            var tiempo = BuildTiempo();
             PanelPanel.Controls.Add(tiempo);
-
-            PanelPanel.Controls.Add(BuildVacio());
-
-            var distancia = BuildDistancia();
+            PanelPanel.Controls.Add(BuildVacio()); 
             PanelPanel.Controls.Add(distancia);
-
             PanelPanel.Controls.Add(BuildVacio());
-
-            var circuito = BuildCircuito();
             PanelPanel.Controls.Add(circuito);
-
             PanelPanel.Controls.Add(BuildVacio());
-
-            var nota = BuildNota();
             PanelPanel.Controls.Add(nota);
-
             PanelPanel.Controls.Add(BuildVacio());
-
-            var fecha = BuildFecha();
             PanelPanel.Controls.Add(fecha);
-
             PanelPanel.Controls.Add(BuildVacio());
-
-            var botones = BuildBotones();
             PanelPanel.Controls.Add(botones);
-
 
             PanelPanel.ResumeLayout(true);
 

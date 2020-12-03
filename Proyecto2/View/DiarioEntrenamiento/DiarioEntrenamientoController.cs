@@ -1,4 +1,5 @@
-﻿using Proyecto2.View.Actividad;
+﻿using Proyecto2.Core;
+using Proyecto2.View.Actividad;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -10,53 +11,70 @@ namespace Proyecto2.View.DiarioEntrenamiento
         {
             this.Build();
         }
+
+        //MENU AÑADIR ACTIVIDAD MUESTRA FORMULARIO
         private void MenuAnhidirActividadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ActividadView(this).Show();
         }
 
-        private void ActividadView_Load(object sender, EventArgs e)
+        public void ActividadView_Load()
         {
-            List<string[]> actividades = Program.actividades.getInfoActividadArray();
-            if (actividades.Count !=0)
+            List<string[]> actividades = Program.diarioEntrenamiento.ObtenerAtributosActividad();
+            if (actividades.Count != 0)
             {
                 for (int i = 0; i < actividades.Count; i++)
                 {
                     this.TablaActividadDataGridView.Rows.Add(actividades[i]);
                 }
             }
+
+            /* foreach (var actividad in ActividadView.actividades)
+        {
+            this.calMonthCalendar.AddBoldedDate(actividad.Fecha);
+
+        }
+        this.calMonthCalendar.UpdateBoldedDates();*/
         }
 
-        private void calendarioMonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        //BOTON ELIMINAR DE LA TABLA ACTIVIDAD ELIMINAR ACTIVIDAD DE DIA ENTRENAMIENTO EN DIARIO ENTRENAMIENTO
+        private void TablaActividadDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int i = 0;
+            var senderGrid = (DataGridView)sender;
 
-            DateTime actual = this.CalendarioMonthCalendar.SelectionStart;
-
-           /* foreach (var actividad in Program.)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+               e.RowIndex >= 0)
             {
-                i++;
-
-                if (actividad.Fecha.Date.Equals(actual.Date))
+                var comprobacionId = senderGrid.Rows[e.RowIndex].Cells[5].Value;
+                if (comprobacionId != null)
                 {
-                   // this.listaListBox.Items.Add("Actividad " + i + actividad.ToString());
-
+                    int id = Convert.ToInt32(comprobacionId.ToString());
+                    DateTime fecha = DateTime.Parse(senderGrid.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    KeyValuePair<DiaEntrenamiento, Medida> diaEntrenamiento = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeFecha(fecha);
+                    Program.diarioEntrenamiento.EliminarDia(diaEntrenamiento.Key);
+                    diaEntrenamiento.Key.EliminarActividad(id);
+                    Program.diarioEntrenamiento.AñadirDiaYMedida(diaEntrenamiento.Key, diaEntrenamiento.Value);
+                    senderGrid.Rows.RemoveAt(e.RowIndex);
                 }
-                else
-                {
-                    this.TablaActividadDataGridView.Rows.Clear();
-                }
-            }*/
-        }
-
-        private void CalendarioView_Load(object sender, EventArgs e)
-        {
-           /* foreach (var actividad in ActividadView.actividades)
-            {
-                this.calMonthCalendar.AddBoldedDate(actividad.Fecha);
-
             }
-            this.calMonthCalendar.UpdateBoldedDates();*/
+            Console.WriteLine(Program.diarioEntrenamiento.DiarioEntrenamientos.Count);
+        }
+
+        //FECHA SELECCIONADA EN CALENDARIO MUESTRA ACTIVIDADES MEDIDAS Y CIRCUITOS ASOCIADOS
+        private void CalendarioMonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            DateTime fechaSeleccionada = this.CalendarioMonthCalendar.SelectionStart;
+            List<string[]> atributosActividad = Program.diarioEntrenamiento.ObtenerAtributosActividad(fechaSeleccionada.Date);
+            this.TablaActividadDataGridView.Rows.Clear();
+            if (atributosActividad.Count != 0)
+            {
+                foreach (var actividad in atributosActividad)
+                {
+                    this.TablaActividadDataGridView.Rows.Add(actividad);
+                }
+            }
+            this.TablaActividadDataGridView.Update();
+            this.TablaActividadDataGridView.Refresh();
         }
     }
 }

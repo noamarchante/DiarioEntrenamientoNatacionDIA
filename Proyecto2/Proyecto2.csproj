@@ -47,8 +47,8 @@
     <Compile Include="Core\Actividad.cs" />
     <Compile Include="Core\Circuito.cs" />
     <Compile Include="Core\DiaEntrenamiento.cs" />
-    <Compile Include="Core\DiarioEntrenamientoPorDia.cs" />
-    <Compile Include="Core\Medidas.cs" />
+    <Compile Include="Core\DiarioEntrenamiento.cs" />
+    <Compile Include="Core\Medida.cs" />
     <Compile Include="Core\Tiempo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

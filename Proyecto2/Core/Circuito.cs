@@ -5,37 +5,17 @@ namespace Proyecto2.Core
     
     public class Circuito
     {
-        private double distancia;
-        private string lugar;
-        private string notas;
-        private string url;
+        public double Distancia { get; set; }
+        public string Lugar { get; set; }
+        public string Notas { get; set; }
+        public string Url { get; set; }
 
         public Circuito(double distancia, string lugar, string notas, string url)
         {
-            this.distancia = distancia;
-            this.lugar = lugar;
-            this.notas = notas;
-            this.url = url;
-        }
-
-        public double Distancia
-        {
-            get;
-        }
-
-        public string Lugar
-        {
-            get;
-        }
-
-        public string Notas
-        {
-            get;
-        }
-
-        public string Url
-        {
-            get;
+            this.Distancia = distancia;
+            this.Lugar = lugar;
+            this.Notas = notas;
+            this.Url = url;
         }
 
         public override string ToString()
