@@ -24,6 +24,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
         public DataGridView TablaActividadDataGridView { get; set; }
         public DataGridView TablaCircuitoDataGridView { get; set; }
         public DataGridView TablaMedidaDataGridView { get; set; }
+        public Button MostrarTodoButton { get; set; }
 
         //CONSTRUYE EL MENU SUPERIOR
         private MenuStrip BuildMenu()
@@ -65,7 +66,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuAnhadirActividadToolStripMenuItem.Name = "añadirActividadToolStripMenuItem";
             this.MenuAnhadirActividadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.MenuAnhadirActividadToolStripMenuItem.Text = "Añadir Actividad";
-            this.MenuAnhadirActividadToolStripMenuItem.Click += new System.EventHandler(this.MenuAnhidirActividadToolStripMenuItem_Click);
+            this.MenuAnhadirActividadToolStripMenuItem.Click += new System.EventHandler(this.MenuAnhadirActividadToolStripMenuItem_Click);
 
             // 
             // añadirCircuitoToolStripMenuItem
@@ -87,6 +88,8 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuGraficosToolStripMenuItem.Name = "graficosToolStripMenuItem";
             this.MenuGraficosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.MenuGraficosToolStripMenuItem.Text = "Gráficos";
+            this.MenuGraficosToolStripMenuItem.Click += new System.EventHandler(this.MenuGraficosToolStripMenuItem_Click);
+
 
             this.MenuPrincipalMenuStrip.ResumeLayout(false);
             this.MenuPrincipalMenuStrip.PerformLayout();
@@ -105,6 +108,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.CalendarioMonthCalendar = new MonthCalendar();
             this.OcupadoLabel = new Label();
             this.LibreLabel = new Label();
+            this.MostrarTodoButton = new Button();
 
             // calMonthCalendar
             // 
@@ -138,6 +142,25 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.LibreLabel.TabIndex = 2;
             this.LibreLabel.Text = "Día libre";
 
+            // 
+            // mostrarTodoButton
+            // 
+            this.MostrarTodoButton.BackColor = System.Drawing.Color.Transparent;
+            this.MostrarTodoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MostrarTodoButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MostrarTodoButton.Dock = DockStyle.Top;
+            this.MostrarTodoButton.Name = "MostrarTodoButton";
+            this.MostrarTodoButton.AutoSize = false;
+            this.MostrarTodoButton.MaximumSize = new Size(317, 50);
+            this.MostrarTodoButton.MinimumSize = this.MostrarTodoButton.MaximumSize;
+            this.MostrarTodoButton.UseVisualStyleBackColor = false;
+            this.MostrarTodoButton.Text = "MOSTRAR TODO";
+            this.MostrarTodoButton.Click += new System.EventHandler(this.MostrarTodoButton_Click);
+            
+            resultado.Controls.Add(MostrarTodoButton);
+            resultado.Controls.Add(BuildVacioFila());
+            resultado.Controls.Add(BuildVacioFila());
+            resultado.Controls.Add(BuildVacioFila());
             resultado.Controls.Add(LibreLabel);
             resultado.Controls.Add(OcupadoLabel);
             resultado.Controls.Add(CalendarioMonthCalendar);
@@ -185,9 +208,13 @@ namespace Proyecto2.View.DiarioEntrenamiento
             // TablaActividadDataGridView
             //
             this.TablaActividadDataGridView.ColumnCount = 6;
-            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(TablaActividadDataGridView.Font, FontStyle.Bold);
+            TablaActividadDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
+            TablaActividadDataGridView.BackgroundColor = Color.White;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Transparent;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaActividadDataGridView.Name = "tablaActividadDataGridView";
             TablaActividadDataGridView.Dock = DockStyle.Top;
             TablaActividadDataGridView.Size = new Size(1050, 200);
@@ -197,6 +224,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             TablaActividadDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             TablaActividadDataGridView.GridColor = Color.Black;
+            TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.LightGray;
             TablaActividadDataGridView.RowHeadersVisible = false;
             TablaActividadDataGridView.ReadOnly = true;
             TablaActividadDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -242,7 +270,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.TituloCircuitoLabel = new Label();
             
             //
-            //TituloActividadLabel
+            //TituloCircuitoLabel
             //
             this.TituloCircuitoLabel.AutoSize = true;
             this.TituloCircuitoLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -267,10 +295,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
             this.TablaCircuitoDataGridView = new DataGridView();
 
-            this.TablaCircuitoDataGridView.ColumnCount = 5;
-            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            this.TablaCircuitoDataGridView.ColumnCount = 4;
+            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(TablaActividadDataGridView.Font, FontStyle.Bold);
+            TablaCircuitoDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
+            TablaCircuitoDataGridView.BackgroundColor = Color.White;
+            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaCircuitoDataGridView.Name = "tablaActividadDataGridView";
             TablaCircuitoDataGridView.Dock = DockStyle.Left;
             TablaCircuitoDataGridView.Size = new Size(700, 200);
@@ -290,13 +320,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaCircuitoDataGridView.Columns[3].Name = "Url";
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
-                buttons.HeaderText = "Eliminar";
+                buttons.HeaderText = "";
                 buttons.Text = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode =
                     DataGridViewAutoSizeColumnMode.AllCells;
-                buttons.FlatStyle = FlatStyle.Standard;
-                buttons.CellTemplate.Style.BackColor = Color.Honeydew;
+                buttons.FlatStyle = FlatStyle.Flat;
+                buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
             TablaCircuitoDataGridView.Columns.Add(buttons);
@@ -344,10 +375,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
             this.TablaMedidaDataGridView = new DataGridView();
 
-            this.TablaMedidaDataGridView.ColumnCount = 5;
-            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            this.TablaMedidaDataGridView.ColumnCount = 4;
+            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(TablaActividadDataGridView.Font, FontStyle.Bold);
+            TablaMedidaDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
+            TablaMedidaDataGridView.BackgroundColor = Color.White;
+            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaMedidaDataGridView.Name = "tablaActividadDataGridView";
             TablaMedidaDataGridView.Dock = DockStyle.Left;
             TablaMedidaDataGridView.Size = new Size(900, 200);
@@ -367,13 +400,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaMedidaDataGridView.Columns[3].Name = "Fecha";
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
-                buttons.HeaderText = "Eliminar";
+                buttons.HeaderText = "";
                 buttons.Text = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode =
                     DataGridViewAutoSizeColumnMode.AllCells;
-                buttons.FlatStyle = FlatStyle.Standard;
-                buttons.CellTemplate.Style.BackColor = Color.Honeydew;
+                buttons.FlatStyle = FlatStyle.Flat;
+                buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
             TablaMedidaDataGridView.Columns.Add(buttons);
@@ -443,7 +477,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MaximumSize = new Size(1800, 1080);
             this.MinimumSize = MaximumSize;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ResumeLayout(false);
             Text = "DIARIO DE ENTRENAMIENTO";
             BackColor = Color.White;
             ResumeLayout(false);

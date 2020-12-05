@@ -117,6 +117,21 @@ namespace Proyecto2.Core
             return resultado;
         }
 
+        //DEVUELVE EL DIA DE ENTRENAMIENTO EN UN AÑO
+        public Dictionary<DiaEntrenamiento, Medida> ObtenerDiaEntrenamientoDesdeAnho(DateTime fecha)
+        {
+            
+            Dictionary<DiaEntrenamiento, Medida> resultado = new Dictionary<DiaEntrenamiento, Medida>();
+            foreach (var diaEntrenamiento in this.DiarioEntrenamientos)
+            {
+                if (diaEntrenamiento.Key.Fecha.Year.Equals(fecha.Year))
+                {
+                    resultado.Add(diaEntrenamiento.Key, diaEntrenamiento.Value);
+                }
+            }
+            return resultado;
+        }
+
         //OBTIENE LOS ATRIBUTOS DE ACTIVIDAD EN FORMA DE ARRAY
         public List<string[]> ObtenerAtributosActividad()
         {
@@ -125,7 +140,7 @@ namespace Proyecto2.Core
             foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
             {
                 foreach (var actividad in celda.Key.actividades) { 
-                    atributos.Add(new string[] {actividad.Distancia.ToString(),actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar, actividad.Id.ToString()});
+                    atributos.Add(new string[] {actividad.Distancia.ToString(),actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + "\n" + actividad.Circuito.Distancia + " m", actividad.Id.ToString()});
                 }
 
             }
@@ -142,7 +157,7 @@ namespace Proyecto2.Core
                 if (celda.Key.Fecha.Date.Equals(fecha)) {
                     foreach (var actividad in celda.Key.actividades)
                     {
-                        atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar, actividad.Id.ToString() });
+                        atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + "\n" + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
                     }
                 }
             }

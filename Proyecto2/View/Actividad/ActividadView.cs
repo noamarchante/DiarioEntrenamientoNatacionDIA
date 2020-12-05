@@ -312,7 +312,9 @@ namespace Proyecto2.View.Actividad
             this.InsertarButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertarButton.Dock = DockStyle.Bottom;
             this.InsertarButton.Name = "insertarActividadButton";
-            this.InsertarButton.AutoSize = true;
+            this.InsertarButton.AutoSize = false;
+            this.InsertarButton.MaximumSize = new Size(100, 50);
+            this.InsertarButton.MinimumSize = this.InsertarButton.MaximumSize;
             this.InsertarButton.UseVisualStyleBackColor = false;
             this.InsertarButton.Text = "INSERTAR";
             this.InsertarButton.Click += new System.EventHandler(this.InsertarActividadButton_Click);
@@ -338,7 +340,9 @@ namespace Proyecto2.View.Actividad
             this.VolverButton.Dock = DockStyle.Bottom;
             this.VolverButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VolverButton.Name = "volverButton";
-            this.VolverButton.AutoSize = true;
+            this.VolverButton.AutoSize = false;
+            this.VolverButton.MaximumSize = new Size(100, 50);
+            this.VolverButton.MinimumSize = this.VolverButton.MaximumSize;
             this.VolverButton.UseVisualStyleBackColor = false;
             this.VolverButton.Text = "VOLVER";
             this.VolverButton.Click += new System.EventHandler(this.VolverButton_Click);
@@ -358,11 +362,12 @@ namespace Proyecto2.View.Actividad
             Panel insertar = BuildInsertar();
             Panel volver = BuildVolver();
 
-            insertar.Dock = DockStyle.Left;
+            insertar.Dock = DockStyle.Right;
             volver.Dock = DockStyle.Right;
 
-            resultado.Controls.Add(insertar);
+            
             resultado.Controls.Add(volver);
+            resultado.Controls.Add(insertar);
 
             resultado.MaximumSize = new Size(int.MaxValue, volver.Height);
 

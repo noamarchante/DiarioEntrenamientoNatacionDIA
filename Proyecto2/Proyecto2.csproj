@@ -64,6 +64,15 @@
     <Compile Include="View\DiarioEntrenamiento\DiarioEntrenamientoView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\Graficos\Chart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Graficos\GraficoController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Graficos\GraficoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
