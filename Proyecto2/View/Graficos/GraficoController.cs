@@ -17,8 +17,12 @@ namespace Proyecto2.View.Graficos
         //CAMBIA LOS VALORES DEL GRAFICO DE ACTIVIDAD POR AÑO
         private void anhoActividadesDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
+
+            this.MinutoDistanciaChart.Invalidate();
             ValoresGraficoMinutoDistancia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoActividadesDateTimePicker.Value));
-            
+            this.MinutoDistanciaChart.Update();
+            this.MinutoDistanciaChart.Refresh();
+
         }
 
         //ESTABLECE LOS VALORES DEL GRAFICO MINUTOS DISTANCIA
@@ -40,10 +44,8 @@ namespace Proyecto2.View.Graficos
       
             this.MinutoDistanciaChart.Values2 = distanciaValores.ToArray();
 
-            this.MinutoDistanciaChart.Invalidate();
             this.MinutoDistanciaChart.Draw();
-            this.MinutoDistanciaChart.Update();
-            this.MinutoDistanciaChart.Refresh();
+           
 
         }
 

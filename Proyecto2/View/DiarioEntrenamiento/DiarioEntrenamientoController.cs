@@ -3,6 +3,7 @@ using Proyecto2.View.Actividad;
 using Proyecto2.View.Graficos;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 namespace Proyecto2.View.DiarioEntrenamiento
 {
@@ -51,6 +52,8 @@ namespace Proyecto2.View.DiarioEntrenamiento
         {
             this.TablaActividadDataGridView.Rows.Clear();
             ActividadView_Load();
+            this.MostrarTodoButton.Enabled = false;
+            this.MostrarTodoButton.Visible = false;
             this.TablaActividadDataGridView.Update();
             this.TablaActividadDataGridView.Refresh();
         }
@@ -73,11 +76,11 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     
                     Program.diarioEntrenamiento.EliminarDia(diaEntrenamiento.Key);
                     diaEntrenamiento.Key.EliminarActividad(id);
-                    if (diaEntrenamiento.Value != null || diaEntrenamiento.Key.actividades != null)
+                    senderGrid.Rows.RemoveAt(e.RowIndex);
+                    if (diaEntrenamiento.Value != null || diaEntrenamiento.Key.actividades.Count != 0)
                     {
                         Program.diarioEntrenamiento.AñadirDiaYMedida(diaEntrenamiento.Key, diaEntrenamiento.Value);
                     }
-                    senderGrid.Rows.RemoveAt(e.RowIndex);
                     
                     //comprobacion si quedan actividades ese dia y sigue en negrita
                     bool comprobacionMasActividadFecha = false;
@@ -110,8 +113,23 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     this.TablaActividadDataGridView.Rows.Add(actividad);
                 }
             }
+            this.MostrarTodoButton.Enabled = true;
+            this.MostrarTodoButton.Visible = true;
             this.TablaActividadDataGridView.Update();
             this.TablaActividadDataGridView.Refresh();
+        }
+
+        //FOTO EN BOTONES ELIMINAR TABLA ACTIVIDAD
+       private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+           
+            if (e.ColumnIndex >= 0 && senderGrid.Columns[e.ColumnIndex].Name == "Eliminar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.ContentBackground);
+                senderGrid.CreateGraphics().DrawImage(Image.FromFile(@"img\\eliminar.png"),e.CellBounds);
+                senderGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            }
         }
     }
 }
