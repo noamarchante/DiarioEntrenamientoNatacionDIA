@@ -16,7 +16,9 @@ namespace Proyecto2.View.Graficos
         public Panel IzquierdaSuperiorPanel { get; set; }
         public Panel DerechaSuperiorPanel { get; set; }
         public DateTimePicker AnhoActividadesDateTimePicker { get; set; }
+        public DateTimePicker AnhoMedidasDateTimePicker { get; set; }
         public Chart MinutoDistanciaChart { get; set; }
+        public Chart PesoCircunferenciaAbdominalChart { get; set; }
 
         //PANEL CON GRÁFICO MINUTOS-DISTANCIA MENSUAL EN ACTIVIDADES
         private Panel IzquierdaSuperiorBuild()
@@ -75,10 +77,12 @@ namespace Proyecto2.View.Graficos
             return IzquierdaSuperiorPanel;
         }
 
-        //PANEL CON GRÁFICO PESO-CIRCUNFERENCIA ABDOMINAL MENSAUL EN MEDIDAS 
+        //PANEL CON GRÁFICO PESO-CIRCUNFERENCIA_ABDOMINAL MENSUAL EN MEDIDAS 
         private Panel DerechaSuperiorBuild()
         {
             this.DerechaSuperiorPanel = new Panel();
+            this.PesoCircunferenciaAbdominalChart = new Chart(600, 340);
+            this.AnhoMedidasDateTimePicker = new DateTimePicker();
 
             // 
             // DerechoArriba
@@ -93,8 +97,47 @@ namespace Proyecto2.View.Graficos
             return DerechaSuperiorPanel;
         }
 
-        //CONSTRUYE LOS DOS PANELES SUPERIORES
-        private Panel SuperiorBuild()
+            //
+            // pesoCircunferenciaAbdominalChart
+            //
+            this.PesoCircunferenciaAbdominalChart.Dock = DockStyle.Top;
+            this.PesoCircunferenciaAbdominalChart.BackColor = Color.White;
+            this.PesoCircunferenciaAbdominalChart.LegendY = "Peso (Kg)";
+            this.PesoCircunferenciaAbdominalChart.LegendY2 = "CircunferenciaAbdominal (cms)";
+            this.PesoCircunferenciaAbdominalChart.LegendX = mes;
+      
+            // 
+            // fechaDateTimePicker
+            // 
+            this.AnhoMedidasDateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
+            this.AnhoMedidasDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnhoMedidasDateTimePicker.Dock = DockStyle.Top;
+            this.AnhoMedidasDateTimePicker.Name = "fechaDateTimePicker";
+            this.AnhoMedidasDateTimePicker.Size = new System.Drawing.Size(80, 20);
+            this.AnhoMedidasDateTimePicker.MaximumSize = new System.Drawing.Size(80, 20);
+            this.AnhoMedidasDateTimePicker.MinimumSize = this.AnhoActividadesDateTimePicker.MaximumSize;
+            this.AnhoMedidasDateTimePicker.Value = DateTime.Now;
+            this.AnhoMedidasDateTimePicker.Format = DateTimePickerFormat.Custom;
+            this.AnhoMedidasDateTimePicker.CustomFormat = "yyyy";
+            this.AnhoMedidasDateTimePicker.ShowUpDown = true;
+            this.AnhoMedidasDateTimePicker.TabIndex = 14;
+            this.AnhoMedidasDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
+            this.AnhoMedidasDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year+2000);
+            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.anhoMedidasDateTimePicker_ValueChanged);
+
+            
+            this.DerechaSuperiorPanel.Controls.Add(MinutoDistanciaChart);
+            this.DerechaSuperiorPanel.Controls.Add(AnhoActividadesDateTimePicker);
+
+            this.DerechaSuperiorPanel.Controls.Add(BuildVacioColumna());
+            this.DerechaSuperiorPanel.Controls.Add(BuildVacioFila());
+
+
+            return DerechaSuperiorPanel;
+        }
+
+    //CONSTRUYE LOS DOS PANELES SUPERIORES
+    private Panel SuperiorBuild()
         {
             this.SuperiorPanel = new Panel();
 
