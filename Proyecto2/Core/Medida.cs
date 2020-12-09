@@ -5,23 +5,33 @@ namespace Proyecto2.Core
 {
     public class Medida
     {
+        private DateTime Fecha { get; }
         private double Peso { get; set; }
-        private int Circunferencia { get; set; }
-        private String Notas { get; set;}
+        private double CircunferenciaAbdominal { get; set; }
+        private String Notas { get; set; }
 
-        public Medida(double peso, int circunferencia, String notas)
+        public Medida(double p, double cA, string n)
         {
-            this.Peso = peso;
-            this.Circunferencia = circunferencia;
-            this.Notas = notas;
+            this.Fecha = DateTime.Now;
+            this.Peso = p;
+            this.CircunferenciaAbdominal = cA;
+            this.Notas = n;
+        }
+
+        public Medida(DateTime f, double p, double cA, string n)
+        {
+            this.Fecha = f;
+            this.Peso = p;
+            this.CircunferenciaAbdominal = cA;
+            this.Notas = n;
         }
 
         public override String ToString()
         {
             StringBuilder str = new StringBuilder();
-            str.Append(this.Peso).Append(this.Circunferencia).Append(this.Notas);
+            str.Append(this.Fecha).Append(this.Peso).Append(this.CircunferenciaAbdominal).Append(this.Notas);
+
             return str.ToString();
         }
-
     }
 }

@@ -146,6 +146,23 @@ namespace Proyecto2.Core
             }
             return atributos;
         }
+        /*
+        //OBTIENE LOS ATRIBUTOS DE ACTIVIDAD EN FORMA DE ARRAY
+        public List<string[]> ObtenerAtributosMedida()
+        {
+            List<string[]> atributosMedida = new List<string[]>();
+
+            foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
+            {
+                foreach (var medida in celda.Key.medidas)
+                {
+                    atributosMedida.Add(new string[] { medida.Peso.ToString(), medida.CircunferenciaAbdominal.ToString(), medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
+                }
+
+            }
+            return atributosMedida;
+        }
+        */
 
         //OBTIENE LOS ATRIBUTOS EN FUNCION DE LA FECHA DEL DIA DE ENTRENAMIENTO
         public List<string[]> ObtenerAtributosActividad(DateTime fecha)
