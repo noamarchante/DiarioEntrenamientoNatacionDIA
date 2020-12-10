@@ -146,6 +146,25 @@ namespace Proyecto2.Core
             }
             return atributos;
         }
+        
+        //OBTIENE LOS ATRIBUTOS DE ACTIVIDAD EN FORMA DE ARRAY
+        public List<string[]> ObtenerAtributosMedida()
+        {
+            List<string[]> atributosMedida = new List<string[]>();
+
+            foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
+            {
+                Medida medida = celda.Value;
+
+                if (medida != null)
+                {
+                    atributosMedida.Add(new string[] { medida.Peso.ToString(), medida.CircunferenciaAbdominal.ToString(), medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
+                }
+
+            }
+            return atributosMedida;
+        }
+        
 
         //OBTIENE LOS ATRIBUTOS EN FUNCION DE LA FECHA DEL DIA DE ENTRENAMIENTO
         public List<string[]> ObtenerAtributosActividad(DateTime fecha)
@@ -154,11 +173,28 @@ namespace Proyecto2.Core
          
             foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
             {
-                if (celda.Key.Fecha.Date.Equals(fecha)) {
+                if (celda.Key.Fecha.Date.Equals(fecha.Date)) {
                     foreach (var actividad in celda.Key.actividades)
                     {
                         atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + "\n" + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
                     }
+                }
+            }
+            return atributos;
+        }
+
+        //OBTIENE LOS ATRIBUTOS EN FUNCION DE LA FECHA DE LA MEDIDA (VALUE)
+        public string[] ObtenerAtributosMedida(DateTime fecha)
+        {
+            string[] atributos = new string[4];
+            
+            foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
+            {
+                if (celda.Key.Fecha.Date.Equals(fecha.Date) && celda.Value != null)
+                {
+                    Medida medida = celda.Value;
+                    atributos = new string[] { medida.Peso.ToString(), medida.CircunferenciaAbdominal.ToString(), medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt")};
+                   
                 }
             }
             return atributos;
@@ -170,7 +206,7 @@ namespace Proyecto2.Core
             KeyValuePair<DiaEntrenamiento, Medida> diaEntrenamiento = new KeyValuePair<DiaEntrenamiento, Medida>();
             foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
             {
-                if (celda.Key.Fecha.ToString().Equals(fecha.ToString()))
+                if (celda.Key.Fecha.Date.ToString().Equals(fecha.Date.ToString()))
                 {
                     diaEntrenamiento = celda;
                 }

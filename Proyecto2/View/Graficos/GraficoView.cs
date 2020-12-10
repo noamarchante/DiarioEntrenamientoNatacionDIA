@@ -7,7 +7,7 @@ namespace Proyecto2.View.Graficos
 {
     public partial class GraficoView : Form
     {
-        private List<string> mes= new List<string>(){"ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SET", "OCT", "NOV", "DIC"};  
+        private List<string> mes = new List<string>() { "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SET", "OCT", "NOV", "DIC" };
         public Panel PadrePanel { get; set; }
         public Panel InferiorPanel { get; set; }
         public Panel DerechaInferiorPanel { get; set; }
@@ -17,12 +17,14 @@ namespace Proyecto2.View.Graficos
         public Panel DerechaSuperiorPanel { get; set; }
         public DateTimePicker AnhoActividadesDateTimePicker { get; set; }
         public Chart MinutoDistanciaChart { get; set; }
+        public Chart PesoCircunferenciaAbdominalChart { get; set; }
+        public DateTimePicker AnhoMedidasDateTimePicker { get; set; }
 
         //PANEL CON GRÁFICO MINUTOS-DISTANCIA MENSUAL EN ACTIVIDADES
         private Panel IzquierdaSuperiorBuild()
         {
             this.IzquierdaSuperiorPanel = new Panel();
-            this.MinutoDistanciaChart = new Chart(600,340);
+            this.MinutoDistanciaChart = new Chart(600, 340);
             this.AnhoActividadesDateTimePicker = new DateTimePicker();
 
             // 
@@ -44,7 +46,7 @@ namespace Proyecto2.View.Graficos
             this.MinutoDistanciaChart.LegendY = "Minutos";
             this.MinutoDistanciaChart.LegendY2 = "Distancia";
             this.MinutoDistanciaChart.LegendX = mes;
-      
+
             // 
             // fechaDateTimePicker
             // 
@@ -61,10 +63,10 @@ namespace Proyecto2.View.Graficos
             this.AnhoActividadesDateTimePicker.ShowUpDown = true;
             this.AnhoActividadesDateTimePicker.TabIndex = 14;
             this.AnhoActividadesDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
-            this.AnhoActividadesDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year+2000);
+            this.AnhoActividadesDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
             this.AnhoActividadesDateTimePicker.ValueChanged += new System.EventHandler(this.anhoActividadesDateTimePicker_ValueChanged);
 
-            
+
             this.IzquierdaSuperiorPanel.Controls.Add(MinutoDistanciaChart);
             this.IzquierdaSuperiorPanel.Controls.Add(AnhoActividadesDateTimePicker);
 
@@ -79,7 +81,8 @@ namespace Proyecto2.View.Graficos
         private Panel DerechaSuperiorBuild()
         {
             this.DerechaSuperiorPanel = new Panel();
-
+            this.PesoCircunferenciaAbdominalChart = new Chart(600, 340);
+            this.AnhoMedidasDateTimePicker = new DateTimePicker();
             // 
             // DerechoArriba
             // 
@@ -89,6 +92,41 @@ namespace Proyecto2.View.Graficos
             this.DerechaSuperiorPanel.Size = new System.Drawing.Size(633, 370);
             this.DerechaSuperiorPanel.TabIndex = 0;
             this.DerechaSuperiorPanel.BackColor = Color.White;
+
+            //
+            // pesoCircunferenciaAbdominalChart
+            //
+            this.PesoCircunferenciaAbdominalChart.Dock = DockStyle.Top;
+            this.PesoCircunferenciaAbdominalChart.BackColor = Color.White;
+            this.PesoCircunferenciaAbdominalChart.LegendY = "Peso (Kg)";
+            this.PesoCircunferenciaAbdominalChart.LegendY2 = "CircunferenciaAbdominal (cms)";
+            this.PesoCircunferenciaAbdominalChart.LegendX = mes;
+
+            // 
+            // fechaDateTimePicker
+            // 
+            this.AnhoMedidasDateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
+            this.AnhoMedidasDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnhoMedidasDateTimePicker.Dock = DockStyle.Top;
+            this.AnhoMedidasDateTimePicker.Name = "fechaDateTimePicker";
+            this.AnhoMedidasDateTimePicker.Size = new System.Drawing.Size(80, 20);
+            this.AnhoMedidasDateTimePicker.MaximumSize = new System.Drawing.Size(80, 20);
+            this.AnhoMedidasDateTimePicker.MinimumSize = this.AnhoActividadesDateTimePicker.MaximumSize;
+            this.AnhoMedidasDateTimePicker.Value = DateTime.Now;
+            this.AnhoMedidasDateTimePicker.Format = DateTimePickerFormat.Custom;
+            this.AnhoMedidasDateTimePicker.CustomFormat = "yyyy";
+            this.AnhoMedidasDateTimePicker.ShowUpDown = true;
+            this.AnhoMedidasDateTimePicker.TabIndex = 15;
+            this.AnhoMedidasDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
+            this.AnhoMedidasDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
+            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.anhoMedidasDateTimePicker_ValueChanged);
+
+
+            this.DerechaSuperiorPanel.Controls.Add(PesoCircunferenciaAbdominalChart);
+            this.DerechaSuperiorPanel.Controls.Add(AnhoMedidasDateTimePicker);
+
+            this.DerechaSuperiorPanel.Controls.Add(BuildVacioColumna());
+            this.DerechaSuperiorPanel.Controls.Add(BuildVacioFila());
 
             return DerechaSuperiorPanel;
         }
@@ -134,7 +172,7 @@ namespace Proyecto2.View.Graficos
             this.IzquierdaInferiorPanel.Name = "IzquierdaAbajo";
             this.IzquierdaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.IzquierdaInferiorPanel.TabIndex = 0;
-            this.IzquierdaInferiorPanel.BackColor = Color.White;
+            this.IzquierdaInferiorPanel.BackColor = Color.Yellow;
             return IzquierdaInferiorPanel;
 
         }
@@ -143,7 +181,7 @@ namespace Proyecto2.View.Graficos
         private Panel DerechaInferiorBuild()
         {
             this.DerechaInferiorPanel = new Panel();
-            
+
             // 
             // AbajoDerecha
             // 
@@ -152,7 +190,7 @@ namespace Proyecto2.View.Graficos
             this.DerechaInferiorPanel.Name = "AbajoDerecha";
             this.DerechaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.DerechaInferiorPanel.TabIndex = 1;
-            this.DerechaInferiorPanel.BackColor = Color.White;
+            this.DerechaInferiorPanel.BackColor = Color.Green;
 
             return DerechaInferiorPanel;
 
@@ -162,9 +200,9 @@ namespace Proyecto2.View.Graficos
         private Panel InferiorBuild()
         {
             this.InferiorPanel = new Panel();
-       
+
             this.InferiorPanel.SuspendLayout();
-   
+
             // 
             // inferior
             // 
@@ -179,7 +217,7 @@ namespace Proyecto2.View.Graficos
 
             this.InferiorPanel.Controls.Add(derechaInferior);
             this.InferiorPanel.Controls.Add(izquierdaInferior);
-  
+
             this.InferiorPanel.ResumeLayout(false);
             return InferiorPanel;
         }
@@ -210,7 +248,7 @@ namespace Proyecto2.View.Graficos
         {
 
             this.PadrePanel = new Panel();
-            
+
             PadrePanel.SuspendLayout();
             this.SuspendLayout();
             this.Controls.Add(this.PadrePanel);
@@ -221,7 +259,7 @@ namespace Proyecto2.View.Graficos
             this.PadrePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PadrePanel.Location = new System.Drawing.Point(0, 0);
             this.PadrePanel.Name = "padre";
-            this.PadrePanel.Size = new System.Drawing.Size(1206, 745);
+            this.PadrePanel.Size = new System.Drawing.Size(1266, 740);
             this.PadrePanel.TabIndex = 0;
 
             var superior = SuperiorBuild();
@@ -234,7 +272,7 @@ namespace Proyecto2.View.Graficos
             this.Icon = new Icon(@"img\\icono.ico");
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 745);
+            this.ClientSize = new System.Drawing.Size(1266, 740);
             this.Name = "Graficos";
             this.Text = "GRÁFICOS";
             this.ResumeLayout(false);

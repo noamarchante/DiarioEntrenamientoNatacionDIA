@@ -76,6 +76,12 @@
     <Compile Include="View\Graficos\GraficoView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\Medidas\MedidaController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Medidas\MedidaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

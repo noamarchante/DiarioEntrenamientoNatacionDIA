@@ -14,3 +14,11 @@ C:\Users\noama\Desktop\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cac
 C:\Users\noama\Desktop\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
 C:\Users\noama\Desktop\Proyecto2\obj\Debug\Proyecto2.exe
 C:\Users\noama\Desktop\Proyecto2\obj\Debug\Proyecto2.pdb
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.csprojAssemblyReference.cache
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.exe
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.pdb
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\bin\Debug\Proyecto2.exe
+C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\bin\Debug\Proyecto2.pdb

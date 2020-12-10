@@ -4,38 +4,38 @@ using System.Windows.Forms;
 
 namespace Proyecto2.View.DiarioEntrenamiento
 {
-    public partial class DiarioEntrenamientoView: Form
+    public partial class DiarioEntrenamientoView : Form
     {
         public MenuStrip MenuPrincipalMenuStrip { get; set; }
         public ToolStripMenuItem MenuOpcionesToolStripMenuItem { get; set; }
         public ToolStripMenuItem MenuAnhadirActividadToolStripMenuItem { get; set; }
         public ToolStripMenuItem MenuAnhadirCircuitoToolStripMenuItem { get; set; }
-        public ToolStripMenuItem MenuAnhadirMedidaToolStripMenuItem { get; set; }
+        public ToolStripMenuItem MenuAnhadirMedidasToolStripMenuItem { get; set; }
         public ToolStripMenuItem MenuGraficosToolStripMenuItem { get; set; }
         public Panel PanelPanel { get; set; }
         public Label LibreLabel { get; set; }
         public Label OcupadoLabel { get; set; }
         public Label TituloActividadLabel { get; set; }
         public Label TituloCircuitoLabel { get; set; }
-        public Label TituloMedidaLabel { get; set; }
+        public Label TituloMedidasLabel { get; set; }
         public Button EliminarActividadButton { get; set; }
         public Button EliminarCircuitoButton { get; set; }
-        public Button EliminarMedidaButton { get; set; }
+        public Button EliminarMedidasButton { get; set; }
         public MonthCalendar CalendarioMonthCalendar { get; set; }
         public DataGridView TablaActividadDataGridView { get; set; }
         public DataGridView TablaCircuitoDataGridView { get; set; }
-        public DataGridView TablaMedidaDataGridView { get; set; }
+        public DataGridView TablaMedidasDataGridView { get; set; }
         public Button MostrarTodoButton { get; set; }
 
         //CONSTRUYE EL MENU SUPERIOR
         private MenuStrip BuildMenu()
         {
-             MenuPrincipalMenuStrip = new MenuStrip();
-             MenuOpcionesToolStripMenuItem = new ToolStripMenuItem();
-             MenuAnhadirActividadToolStripMenuItem = new ToolStripMenuItem();
-             MenuAnhadirCircuitoToolStripMenuItem = new ToolStripMenuItem();
-             MenuAnhadirMedidaToolStripMenuItem = new ToolStripMenuItem();
-             MenuGraficosToolStripMenuItem = new ToolStripMenuItem();
+            MenuPrincipalMenuStrip = new MenuStrip();
+            MenuOpcionesToolStripMenuItem = new ToolStripMenuItem();
+            MenuAnhadirActividadToolStripMenuItem = new ToolStripMenuItem();
+            MenuAnhadirCircuitoToolStripMenuItem = new ToolStripMenuItem();
+            MenuAnhadirMedidasToolStripMenuItem = new ToolStripMenuItem();
+            MenuGraficosToolStripMenuItem = new ToolStripMenuItem();
 
             //
             //Menu principal
@@ -56,7 +56,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuOpcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuAnhadirCircuitoToolStripMenuItem,
             this.MenuAnhadirActividadToolStripMenuItem,
-            this.MenuAnhadirMedidaToolStripMenuItem});
+            this.MenuAnhadirMedidasToolStripMenuItem});
             this.MenuOpcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
             this.MenuOpcionesToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.MenuOpcionesToolStripMenuItem.Text = "Formularios";
@@ -67,7 +67,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuGraficosToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.MenuGraficosToolStripMenuItem.Text = "Gráficos";
             this.MenuGraficosToolStripMenuItem.Click += new System.EventHandler(this.MenuGraficosToolStripMenuItem_Click);
-
 
             // 
             // añadirActividadToolStripMenuItem
@@ -83,13 +82,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuAnhadirCircuitoToolStripMenuItem.Name = "añadirCircuitoToolStripMenuItem";
             this.MenuAnhadirCircuitoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.MenuAnhadirCircuitoToolStripMenuItem.Text = "Añadir Circuito";
-            
+
             // 
-            // añadirMedidaToolStripMenuItem
+            // añadirMedidasToolStripMenuItem
             // 
-            this.MenuAnhadirMedidaToolStripMenuItem.Name = "añadirMedidaToolStripMenuItem";
-            this.MenuAnhadirMedidaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.MenuAnhadirMedidaToolStripMenuItem.Text = "Añadir Medida";
+            this.MenuAnhadirMedidasToolStripMenuItem.Name = "añadirMedidasToolStripMenuItem";
+            this.MenuAnhadirMedidasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.MenuAnhadirMedidasToolStripMenuItem.Text = "Añadir Medidas";
+            this.MenuAnhadirMedidasToolStripMenuItem.Click += new System.EventHandler(this.MenuAnhadirMedidasToolStripMenuItem_Click);
 
             this.MenuPrincipalMenuStrip.ResumeLayout(false);
             this.MenuPrincipalMenuStrip.PerformLayout();
@@ -104,7 +104,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             resultado.Name = "calendario";
             resultado.Size = new System.Drawing.Size(400, 719);
             resultado.TabIndex = 0;
-            
+
             this.CalendarioMonthCalendar = new MonthCalendar();
             this.OcupadoLabel = new Label();
             this.LibreLabel = new Label();
@@ -130,7 +130,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.OcupadoLabel.Size = new System.Drawing.Size(154, 24);
             this.OcupadoLabel.TabIndex = 1;
             this.OcupadoLabel.Text = "Día con actividad";
-            
+
             // 
             // libreLabel
             // 
@@ -161,7 +161,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MostrarTodoButton.BackgroundImage = Image.FromFile(@"img\\cancelar.png");
             this.MostrarTodoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.MostrarTodoButton.Click += new System.EventHandler(this.MostrarTodoButton_Click);
-            
+
             resultado.Controls.Add(MostrarTodoButton);
             resultado.Controls.Add(BuildVacioFila());
             resultado.Controls.Add(BuildVacioFila());
@@ -182,7 +182,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             resultado.TabIndex = 0;
 
             this.TituloActividadLabel = new Label();
-            
+
             //
             //TituloActividadLabel
             //
@@ -261,7 +261,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.Columns.Add(buttons);
 
             this.TablaActividadDataGridView.CellContentClick += new DataGridViewCellEventHandler(this.TablaActividadDataGridView_CellContentClick);
-            TablaActividadDataGridView.SelectionMode =DataGridViewSelectionMode.FullRowSelect;
+            TablaActividadDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaActividadDataGridView.MultiSelect = false;
             resultado.Controls.Add(TablaActividadDataGridView);
 
@@ -277,7 +277,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             resultado.TabIndex = 0;
 
             this.TituloCircuitoLabel = new Label();
-            
+
             //
             //TituloCircuitoLabel
             //
@@ -341,6 +341,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     DataGridViewAutoSizeColumnMode.AllCells;
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
@@ -354,69 +355,69 @@ namespace Proyecto2.View.DiarioEntrenamiento
             return resultado;
         }
 
-        //CONSTRUYE TITULO TABLA MEDIDA
-        private Panel BuildTituloMedida()
+        //CONSTRUYE TITULO TABLA MEDIDAS
+        private Panel BuildTituloMedidas()
         {
             var resultado = new Panel { Dock = DockStyle.Top };
-            resultado.Name = "tituloMedida";
+            resultado.Name = "tituloMedidas";
             resultado.Size = new System.Drawing.Size(1200, 40);
             resultado.TabIndex = 0;
 
-            this.TituloMedidaLabel = new Label();
-            
+            this.TituloMedidasLabel = new Label();
+
             //
             //TituloActividadLabel
             //
-            this.TituloMedidaLabel.AutoSize = true;
-            this.TituloMedidaLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TituloMedidaLabel.Dock = DockStyle.Top;
-            this.TituloMedidaLabel.Name = "tituloMedidaLabel";
-            this.TituloMedidaLabel.Size = new System.Drawing.Size(154, 24);
-            this.TituloMedidaLabel.TabIndex = 1;
-            this.TituloMedidaLabel.Text = "MEDIDAS";
+            this.TituloMedidasLabel.AutoSize = true;
+            this.TituloMedidasLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TituloMedidasLabel.Dock = DockStyle.Top;
+            this.TituloMedidasLabel.Name = "tituloMedidasLabel";
+            this.TituloMedidasLabel.Size = new System.Drawing.Size(154, 24);
+            this.TituloMedidasLabel.TabIndex = 1;
+            this.TituloMedidasLabel.Text = "MEDIDAS";
 
-            resultado.Controls.Add(TituloMedidaLabel);
+            resultado.Controls.Add(TituloMedidasLabel);
 
             return resultado;
         }
 
-        //CONSTRUYE TABLA MEDIDA
-        private FlowLayoutPanel BuildTablaMedida()
+        //CONSTRUYE TABLA MEDIDAS
+        private FlowLayoutPanel BuildTablaMedidas()
         {
             var resultado = new FlowLayoutPanel { Dock = DockStyle.Top };
             resultado.Name = "panelTablaActividades";
             resultado.Size = new System.Drawing.Size(1200, 230);
             resultado.TabIndex = 1;
 
-            this.TablaMedidaDataGridView = new DataGridView();
+            this.TablaMedidasDataGridView = new DataGridView();
 
-            this.TablaMedidaDataGridView.ColumnCount = 4;
-            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            TablaMedidaDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
-            TablaMedidaDataGridView.BackgroundColor = Color.White;
-            TablaMedidaDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            TablaMedidaDataGridView.Name = "tablaActividadDataGridView";
-            TablaMedidaDataGridView.Dock = DockStyle.Left;
-            TablaMedidaDataGridView.Size = new Size(900, 200);
-            TablaMedidaDataGridView.MaximumSize = TablaActividadDataGridView.Size;
-            TablaMedidaDataGridView.MinimumSize = TablaActividadDataGridView.Size;
-            TablaMedidaDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            TablaMedidaDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            TablaMedidaDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            TablaMedidaDataGridView.GridColor = Color.Black;
-            TablaMedidaDataGridView.RowHeadersVisible = false;
-            TablaMedidaDataGridView.ReadOnly = true;
-            TablaMedidaDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            TablaMedidaDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
-            TablaMedidaDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
+            this.TablaMedidasDataGridView.ColumnCount = 4;
+            TablaMedidasDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            TablaMedidasDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            TablaMedidasDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
+            TablaMedidasDataGridView.BackgroundColor = Color.White;
+            TablaMedidasDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TablaMedidasDataGridView.Name = "tablaActividadDataGridView";
+            TablaMedidasDataGridView.Dock = DockStyle.Left;
+            TablaMedidasDataGridView.Size = new Size(900, 200);
+            TablaMedidasDataGridView.MaximumSize = TablaActividadDataGridView.Size;
+            TablaMedidasDataGridView.MinimumSize = TablaActividadDataGridView.Size;
+            TablaMedidasDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            TablaMedidasDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            TablaMedidasDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            TablaMedidasDataGridView.GridColor = Color.Black;
+            TablaMedidasDataGridView.RowHeadersVisible = false;
+            TablaMedidasDataGridView.ReadOnly = true;
+            TablaMedidasDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            TablaMedidasDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
+            TablaMedidasDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
 
-            TablaMedidaDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TablaMedidasDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-            TablaMedidaDataGridView.Columns[0].Name = "Peso";
-            TablaMedidaDataGridView.Columns[1].Name = "Circunferencia abdominal";
-            TablaMedidaDataGridView.Columns[2].Name = "Notas";
-            TablaMedidaDataGridView.Columns[3].Name = "Fecha";
+            TablaMedidasDataGridView.Columns[0].Name = "Peso";
+            TablaMedidasDataGridView.Columns[1].Name = "Circunferencia abdominal";
+            TablaMedidasDataGridView.Columns[2].Name = "Notas";
+            TablaMedidasDataGridView.Columns[3].Name = "Fecha";
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
                 buttons.HeaderText = "";
@@ -427,16 +428,18 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     DataGridViewAutoSizeColumnMode.AllCells;
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
-            TablaMedidaDataGridView.CellPainting += new DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
-            TablaMedidaDataGridView.Columns.Add(buttons);
+            TablaMedidasDataGridView.CellPainting += new DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
+            TablaMedidasDataGridView.Columns.Add(buttons);
 
-            TablaMedidaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            TablaMedidaDataGridView.MultiSelect = false;
+            this.TablaMedidasDataGridView.CellContentClick += new DataGridViewCellEventHandler(this.TablaMedidaDataGridView_CellContentClick);
+            TablaMedidasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            TablaMedidasDataGridView.MultiSelect = false;
 
-            resultado.Controls.Add(TablaMedidaDataGridView);
+            resultado.Controls.Add(TablaMedidasDataGridView);
 
             return resultado;
         }
@@ -444,7 +447,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
         //CONSTRUYE COLUMNA VACIA
         private Panel BuildVacioColumna()
         {
-            var resultado = new Panel { Dock = DockStyle.Left};
+            var resultado = new Panel { Dock = DockStyle.Left };
             resultado.Name = "vacioColumna";
             resultado.Size = new System.Drawing.Size(20, 719);
             resultado.TabIndex = 0;
@@ -476,14 +479,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
             var calendario = BuildCalendario();
             var tituloCircuito = BuildTituloCircuito();
             var tablaCircuito = BuildTablaCircuito();
-            var tituloMedida = BuildTituloMedida();
-            var tablaMedida = BuildTablaMedida();
+            var tituloMedidas = BuildTituloMedidas();
+            var tablaMedidas = BuildTablaMedidas();
             var menu = BuildMenu();
 
-            
+
             PanelPanel.Controls.Add(BuildVacioFila());
-            PanelPanel.Controls.Add(tablaMedida);
-            PanelPanel.Controls.Add(tituloMedida);
+            PanelPanel.Controls.Add(tablaMedidas);
+            PanelPanel.Controls.Add(tituloMedidas);
             PanelPanel.Controls.Add(BuildVacioFila());
             PanelPanel.Controls.Add(tablaCircuito);
             PanelPanel.Controls.Add(tituloCircuito);
@@ -493,12 +496,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
             PanelPanel.Controls.Add(calendario);
             PanelPanel.Controls.Add(BuildVacioColumna());
             PanelPanel.Controls.Add(menu);
-            
+
             PanelPanel.ResumeLayout(true);
 
 
             this.Icon = new Icon(@"img\\icono.ico");
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F,20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.MaximumSize = new Size(1800, 1080);
             this.MinimumSize = MaximumSize;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

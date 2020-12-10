@@ -8,13 +8,13 @@ namespace Proyecto2.View.Actividad
     public partial class ActividadView : Form
     {
         public DiaEntrenamiento diaEntrenamiento;
-        public DiarioEntrenamientoView diarioEntrenamiento;
+        public DiarioEntrenamientoView diarioEntrenamientoView;
 
         public ActividadView(DiarioEntrenamientoView diarioEntrenamiento)
         {
             Build();
             diaEntrenamiento = new DiaEntrenamiento();
-            this.diarioEntrenamiento = diarioEntrenamiento;
+            this.diarioEntrenamientoView = diarioEntrenamiento;
         }
 
         /*private void ActividadView_Load(object sender, EventArgs e)
@@ -67,13 +67,15 @@ namespace Proyecto2.View.Actividad
                 }
                 else
                 {
+                    Console.WriteLine("Entro por el añadirDiaEntrenamiento del else");
                     Program.diarioEntrenamiento.AñadirDiaEntrenamiento(this.diaEntrenamiento);
                 }
             }
-            this.diarioEntrenamiento.TablaActividadDataGridView.Rows.Clear();
-            this.diarioEntrenamiento.ActividadView_Load();
-            this.diarioEntrenamiento.TablaActividadDataGridView.Update();
-            this.diarioEntrenamiento.TablaActividadDataGridView.Refresh();
+            this.diarioEntrenamientoView.TablaActividadDataGridView.Rows.Clear();
+            Console.WriteLine("Actividad " + Program.diarioEntrenamiento.ToString());
+            this.diarioEntrenamientoView.ActividadView_Load();
+            this.diarioEntrenamientoView.TablaActividadDataGridView.Update();
+            this.diarioEntrenamientoView.TablaActividadDataGridView.Refresh();
             this.Close();
             //}
         }
