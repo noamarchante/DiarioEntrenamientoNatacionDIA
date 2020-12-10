@@ -314,7 +314,7 @@ namespace Proyecto2.View.Circuito
             Text = "CIRCUITO";
             this.Icon = new Icon(@"img\\icono.ico");
             BackColor = Color.White;
-            Size = new Size(500, (distancia.Height + nota.Height + lugar.Height + url.Height + botones.Height) * 2 + 40);
+            Size = new Size(500, (distancia.Height + nota.Height + lugar.Height + url.Height + botones.Height)+250);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterParent;
             ResumeLayout(false);

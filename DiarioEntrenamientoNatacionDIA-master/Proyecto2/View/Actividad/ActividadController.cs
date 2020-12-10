@@ -18,65 +18,64 @@ namespace Proyecto2.View.Actividad
             this.diarioEntrenamiento = diarioEntrenamiento;
         }
 
-        /*private void ActividadView_Load(object sender, EventArgs e)
+        private void ActividadView_Load(object sender, EventArgs e)
         {
-            if (CircuitoView.circuitos.Count == 0)
+            if (Program.diarioEntrenamiento.circuitos.Count == 0)
             {
-                this.circuitoComboBox.Enabled = false;
+                this.CircuitoComboBox.Enabled = false;
             }
             else
             {
-                int i = 0;
-                foreach (var circuito in CircuitoView.circuitos)
+                foreach (var circuito in Program.diarioEntrenamiento.circuitos)
                 {
-                    i++;
-                    this.circuitoComboBox.Items.Add("Circuito " + i + "-" + circuito.Lugar);
+                this.CircuitoComboBox.Items.Add(circuito.Lugar + " - " + circuito.Distancia + " m");
+                    
                 }
-                this.circuitoComboBox.SelectedIndex = 0;
-                this.circuitoComboBox.FormattingEnabled = false;
-                this.fechaDateTimePicker.Value = DateTime.Today;
+                this.CircuitoComboBox.SelectedIndex = 0;
+                this.CircuitoComboBox.FormattingEnabled = false;
+                this.FechaDateTimePicker.Value = DateTime.Today;
             }
-        }*/
+        }
 
         //EL BOTON INSERTAR INSERTA UNA ACTIVIDAD
         private void InsertarActividadButton_Click(object sender, EventArgs e)
         {          
-            /* if (CircuitoView.circuitos.Count == 0)
+            if (Program.diarioEntrenamiento.circuitos.Count == 0)
              {
-                 this.insertarActividadButton.Enabled = false;
+                 this.InsertarButton.Enabled = false;
              }
              else
-             {*/
-            Tiempo tiempo = new Tiempo((int)this.MinutosNumericUpDown.Value, (int)this.SegundosNumericUpDown.Value);
-            diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
-            if (Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(diaEntrenamiento.Fecha).Key == null)
-            {
-                diaEntrenamiento.AñadirActividad(new Core.Actividad(diaEntrenamiento.actividades.Count,tiempo, (Double)this.DistanciaNumericUpDown.Value, /*CircuitoView.circuitos[this.circuitoComboBox.SelectedIndex]*/new Core.Circuito((double)3,"","",""), this.NotaTextBox.Text));
+             {
+                Tiempo tiempo = new Tiempo((int)this.MinutosNumericUpDown.Value, (int)this.SegundosNumericUpDown.Value);
                 diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
-                Program.diarioEntrenamiento.AñadirDiaEntrenamiento(diaEntrenamiento);
-            }
-            else
-            {
-                var diaEntrenamientoSeleccionado = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(this.diaEntrenamiento.Fecha);
-                Program.diarioEntrenamiento.EliminarDia(diaEntrenamientoSeleccionado.Key);
-                this.diaEntrenamiento = diaEntrenamientoSeleccionado.Key;
-                this.diaEntrenamiento.AñadirActividad(new Core.Actividad(this.diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, /*CircuitoView.circuitos[this.circuitoComboBox.SelectedIndex]*/new Core.Circuito((double)3, "", "", ""), this.NotaTextBox.Text));
-                this.diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
-                if(diaEntrenamientoSeleccionado.Value != null)
+                if (Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(diaEntrenamiento.Fecha).Key == null)
                 {
-                    Program.diarioEntrenamiento.AñadirDiaYMedida(this.diaEntrenamiento, diaEntrenamientoSeleccionado.Value);
+                    diaEntrenamiento.AñadirActividad(new Core.Actividad(diaEntrenamiento.actividades.Count,tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
+                    diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
+                    Program.diarioEntrenamiento.AñadirDiaEntrenamiento(diaEntrenamiento);
                 }
                 else
                 {
-                    Program.diarioEntrenamiento.AñadirDiaEntrenamiento(this.diaEntrenamiento);
+                    var diaEntrenamientoSeleccionado = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(this.diaEntrenamiento.Fecha);
+                    Program.diarioEntrenamiento.EliminarDia(diaEntrenamientoSeleccionado.Key);
+                    this.diaEntrenamiento = diaEntrenamientoSeleccionado.Key;
+                    this.diaEntrenamiento.AñadirActividad(new Core.Actividad(this.diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
+                    this.diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
+                    if(diaEntrenamientoSeleccionado.Value != null)
+                    {
+                        Program.diarioEntrenamiento.AñadirDiaYMedida(this.diaEntrenamiento, diaEntrenamientoSeleccionado.Value);
+                    }
+                    else
+                    {
+                        Program.diarioEntrenamiento.AñadirDiaEntrenamiento(this.diaEntrenamiento);
+                    }
                 }
-            }
-            this.diarioEntrenamiento.TablaActividadDataGridView.Rows.Clear();
-            this.diarioEntrenamiento.ActividadView_Load();
-            this.diarioEntrenamiento.TablaActividadDataGridView.Update();
-            this.diarioEntrenamiento.TablaActividadDataGridView.Refresh();
-            this.Close();
-            //}
+                this.diarioEntrenamiento.TablaActividadDataGridView.Rows.Clear();
+                this.diarioEntrenamiento.ActividadView_Load();
+                this.diarioEntrenamiento.TablaActividadDataGridView.Update();
+                this.diarioEntrenamiento.TablaActividadDataGridView.Refresh();
+                this.Close();
+             }
         }
 
         //EL BOTON VOLVER CIERRA LA VENTANA DEL FORMULARIO

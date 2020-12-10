@@ -247,7 +247,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
                 buttons.HeaderText = "";
-                //buttons.Text = "Eliminar";
                 buttons.Name = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -304,7 +303,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
             this.TablaCircuitoDataGridView = new DataGridView();
 
-            this.TablaCircuitoDataGridView.ColumnCount = 4;
+            this.TablaCircuitoDataGridView.ColumnCount = 5;
             TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Green;
             TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Red;
             TablaCircuitoDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
@@ -312,7 +311,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaCircuitoDataGridView.Name = "tablaCircuitoDataGridView";
             TablaCircuitoDataGridView.Dock = DockStyle.Left;
-            TablaCircuitoDataGridView.Size = new Size(700, 200);
+            TablaCircuitoDataGridView.Size = new Size(1050, 200);
             TablaCircuitoDataGridView.MaximumSize = TablaCircuitoDataGridView.Size;
             TablaCircuitoDataGridView.MinimumSize = TablaCircuitoDataGridView.Size;
             TablaCircuitoDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
@@ -331,12 +330,11 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaCircuitoDataGridView.Columns[1].Name = "Distancia";
             TablaCircuitoDataGridView.Columns[2].Name = "Notas";
             TablaCircuitoDataGridView.Columns[3].Name = "Url";
-      //      TablaCircuitoDataGridView.Columns[4].Name = "indice";
-      //      TablaCircuitoDataGridView.Columns[4].Visible = false;
+            TablaCircuitoDataGridView.Columns[4].Name = "indice";
+            TablaCircuitoDataGridView.Columns[4].Visible = false;
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
                 buttons.HeaderText = "";
-                //buttons.Text = "Eliminar";
                 buttons.Name = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode =
@@ -344,11 +342,13 @@ namespace Proyecto2.View.DiarioEntrenamiento
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                buttons.DisplayIndex = 4;
+                buttons.DisplayIndex = 5;
                 buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
             }
             TablaCircuitoDataGridView.CellPainting += new DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
             TablaCircuitoDataGridView.Columns.Add(buttons);
+            this.TablaCircuitoDataGridView.CellContentClick += new DataGridViewCellEventHandler(this.TablaCircuitoDataGridView_CellContentClick);
+
             TablaCircuitoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaCircuitoDataGridView.MultiSelect = false;
 

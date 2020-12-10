@@ -44,13 +44,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
                 }
             }
 
-            //marca en negrita los dias con actividad
-            foreach (var diario in Program.diarioEntrenamiento.DiarioEntrenamientos.Keys)
-            {
-                this.CalendarioMonthCalendar.AddBoldedDate(diario.Fecha);
-
-            }
-            this.CalendarioMonthCalendar.UpdateBoldedDates();
+            negritaCalendario();
         }
         public void CircuitoView_Load()
         {
@@ -70,11 +64,15 @@ namespace Proyecto2.View.DiarioEntrenamiento
         private void MostrarTodoButton_Click(object sender, EventArgs e)
         {
             this.TablaActividadDataGridView.Rows.Clear();
+            this.TablaCircuitoDataGridView.Rows.Clear();
             ActividadView_Load();
+            CircuitoView_Load();
             this.MostrarTodoButton.Enabled = false;
             this.MostrarTodoButton.Visible = false;
             this.TablaActividadDataGridView.Update();
             this.TablaActividadDataGridView.Refresh();
+            this.TablaCircuitoDataGridView.Update();
+            this.TablaCircuitoDataGridView.Refresh();
         }
 
         //BOTON ELIMINAR DE LA TABLA ACTIVIDAD ELIMINAR ACTIVIDAD DE DIA ENTRENAMIENTO EN DIARIO ENTRENAMIENTO
@@ -100,22 +98,85 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     {
                         Program.diarioEntrenamiento.AñadirDiaYMedida(diaEntrenamiento.Key, diaEntrenamiento.Value);
                     }
-                    
-                    //comprobacion si quedan actividades ese dia y sigue en negrita
-                    bool comprobacionMasActividadFecha = false;
-                    foreach (var diario in Program.diarioEntrenamiento.DiarioEntrenamientos.Keys)
-                    {
-                        if (diario.Fecha.Equals(fecha))
-                        {
-                            comprobacionMasActividadFecha = true;
-                        }
-                    }
-                        if (!comprobacionMasActividadFecha)
-                        {
-                            this.CalendarioMonthCalendar.RemoveBoldedDate(fecha);
-                            this.CalendarioMonthCalendar.UpdateBoldedDates();
-                        }
+
+                    borrarNegrita(fecha);
                 }
+            }
+        }
+
+
+        //BOTON ELIMINAR DE LA TABLA ACTIVIDAD ELIMINAR ACTIVIDAD DE DIA ENTRENAMIENTO EN DIARIO ENTRENAMIENTO
+        private void TablaCircuitoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+               e.RowIndex >= 0)
+            {
+                var comprobacionId = senderGrid.Rows[e.RowIndex].Cells[4].Value;
+                if (comprobacionId != null)
+                {
+                    int id = Convert.ToInt32(comprobacionId.ToString());
+                    bool comprobacionCircuito = false;
+                    foreach (var dia in Program.diarioEntrenamiento.DiarioEntrenamientos.Keys)
+                    {
+                        foreach (var actividad in dia.actividades)
+                        {
+                            if (actividad.Circuito.Id == id)
+                            {
+                                comprobacionCircuito = true;
+                            }
+                        }  
+                    }
+                    if (!comprobacionCircuito)
+                    {
+                        Core.Circuito circuitoSeleccionado = null;
+                        foreach (var circuito in Program.diarioEntrenamiento.circuitos)
+                        {
+                            if (circuito.Id.Equals(id))
+                            {
+                                circuitoSeleccionado = circuito;
+                            }
+                        }
+                        Program.diarioEntrenamiento.circuitos.Remove(circuitoSeleccionado);
+                        senderGrid.Rows.RemoveAt(e.RowIndex);
+
+                    }
+                }
+            }
+        }
+
+        private void negritaCalendario()
+        {
+            //marca en negrita los dias con diaEntrenamiento
+            foreach (var diario in Program.diarioEntrenamiento.DiarioEntrenamientos.Keys)
+            {
+                this.CalendarioMonthCalendar.AddBoldedDate(diario.Fecha.Date);
+
+            }
+            this.CalendarioMonthCalendar.UpdateBoldedDates();
+        }
+
+        private void borrarNegrita(DateTime fecha)
+        {
+            //comprobacion si quedan actividades ese dia y sigue en negrita
+            bool comprobacionMasActividadFecha = false;
+            bool comprobacionMedidasFecha = false;
+            foreach (var diario in Program.diarioEntrenamiento.DiarioEntrenamientos)
+            {
+                if (diario.Key.Fecha.Date.Equals(fecha.Date))
+                {
+                    comprobacionMasActividadFecha = true;
+                }
+                if (diario.Value != null)
+                {
+                    comprobacionMedidasFecha = true;
+                }
+            }
+            if (!comprobacionMasActividadFecha && !comprobacionMedidasFecha)
+            {
+                this.CalendarioMonthCalendar.RemoveBoldedDate(fecha);
+                this.CalendarioMonthCalendar.UpdateBoldedDates();
             }
         }
 
@@ -124,19 +185,40 @@ namespace Proyecto2.View.DiarioEntrenamiento
         {
             DateTime fechaSeleccionada = this.CalendarioMonthCalendar.SelectionStart;
             List<string[]> atributosActividad = Program.diarioEntrenamiento.ObtenerAtributosActividad(fechaSeleccionada.Date);
+            
             this.TablaActividadDataGridView.Rows.Clear();
+            this.TablaCircuitoDataGridView.Rows.Clear();
             if (atributosActividad.Count != 0)
             {
                 foreach (var actividad in atributosActividad)
                 {
                     this.TablaActividadDataGridView.Rows.Add(actividad);
+
+                }
+
+                var dia = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeFecha(fechaSeleccionada);
+                List<Core.Circuito> circuitosDia = new List<Core.Circuito>();
+                foreach (var actividad in dia.Key.actividades)
+                {
+                    circuitosDia.Add(actividad.Circuito);
+                }
+                List<string[]> atributosCircuito = Program.diarioEntrenamiento.ObtenerAtributosCircuito(circuitosDia);
+                if (atributosCircuito.Count != 0)
+                {
+                    foreach (var circuito in atributosCircuito)
+                    {
+                        this.TablaCircuitoDataGridView.Rows.Add(circuito);
+
+                    }
                 }
             }
             this.MostrarTodoButton.Enabled = true;
             this.MostrarTodoButton.Visible = true;
             this.TablaActividadDataGridView.Update();
             this.TablaActividadDataGridView.Refresh();
-        }
+                this.TablaCircuitoDataGridView.Update();
+                this.TablaCircuitoDataGridView.Refresh();
+            }
 
         //FOTO EN BOTONES ELIMINAR TABLA ACTIVIDAD
        private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

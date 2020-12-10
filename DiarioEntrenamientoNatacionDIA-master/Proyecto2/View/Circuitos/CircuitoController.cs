@@ -18,40 +18,13 @@ namespace Proyecto2.View.Circuito
             Build();
             circuito = new Core.Circuito();
             this.diarioEntrenamiento = diarioEntrenamiento;
-            //this.circuitoView = circuitoView;//
         }
-
-        /*private void ActividadView_Load(object sender, EventArgs e)
-        {
-            if (CircuitoView.circuitos.Count == 0)
-            {
-                this.circuitoComboBox.Enabled = false;
-            }
-            else
-            {
-                int i = 0;
-                foreach (var circuito in CircuitoView.circuitos)
-                {
-                    i++;
-                    this.circuitoComboBox.Items.Add("Circuito " + i + "-" + circuito.Lugar);
-                }
-                this.circuitoComboBox.SelectedIndex = 0;
-                this.circuitoComboBox.FormattingEnabled = false;
-                this.fechaDateTimePicker.Value = DateTime.Today;
-            }
-        }*/
 
         //EL BOTON INSERTAR INSERTA UNA ACTIVIDAD
         private void InsertarCircuitoButton_Click(object sender, EventArgs e)
         {
-            /* if (CircuitoView.circuitos.Count == 0)
-             {
-                 this.insertarActividadButton.Enabled = false;
-             }
-             else
-             {*/
 
-            circuito = new Core.Circuito((Double)this.DistanciaNumericUpDown.Value, this.LugarTextBox.Text, this.NotaTextBox.Text, this.UrlTextBox.Text);
+            circuito = new Core.Circuito(Program.diarioEntrenamiento.circuitos.Count,(Double)this.DistanciaNumericUpDown.Value, this.LugarTextBox.Text, this.NotaTextBox.Text, this.UrlTextBox.Text);
             Program.diarioEntrenamiento.AñadirCircuito(circuito);
             this.diarioEntrenamiento.TablaCircuitoDataGridView.Rows.Clear();
             this.diarioEntrenamiento.CircuitoView_Load();

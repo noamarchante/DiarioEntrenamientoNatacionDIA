@@ -155,7 +155,7 @@ namespace Proyecto2.Core
             foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
             {
                 foreach (var actividad in celda.Key.actividades) { 
-                    atributos.Add(new string[] {actividad.Distancia.ToString(),actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + "\n" + actividad.Circuito.Distancia + " m", actividad.Id.ToString()});
+                    atributos.Add(new string[] {actividad.Distancia.ToString(),actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " m", actividad.Id.ToString()});
                 }
 
             }
@@ -169,13 +169,27 @@ namespace Proyecto2.Core
 
             foreach (var circuito in this.circuitos)
             {
-                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString(), circuito.Notas.ToString(), circuito.Url.ToString() });
+                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString()+ " m", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString()});
 
             }
                 return atributos;
             
         }
-       
+
+        //OBTIENE LOS ATRIBUTOS DE CIRCUITO DE LO0S CIRCUITOS SELECCIONADOS
+        public List<string[]> ObtenerAtributosCircuito(List<Core.Circuito> circuitos)
+        {
+            List<string[]> atributos = new List<string[]>();
+
+            foreach (var circuito in circuitos)
+            {
+                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " m", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
+
+            }
+            return atributos;
+
+        }
+
         //OBTIENE LOS ATRIBUTOS EN FUNCION DE LA FECHA DEL DIA DE ENTRENAMIENTO
         public List<string[]> ObtenerAtributosActividad(DateTime fecha)
         {
@@ -186,7 +200,7 @@ namespace Proyecto2.Core
                 if (celda.Key.Fecha.Date.Equals(fecha)) {
                     foreach (var actividad in celda.Key.actividades)
                     {
-                        atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + "\n" + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
+                        atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
                     }
                 }
             }

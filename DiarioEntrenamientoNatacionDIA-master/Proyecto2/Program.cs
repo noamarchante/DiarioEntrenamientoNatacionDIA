@@ -8,7 +8,7 @@ namespace Proyecto2
     static class Program
     {
         public static DiarioEntrenamiento diarioEntrenamiento = new DiarioEntrenamiento();
-
+  
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
