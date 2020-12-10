@@ -6,7 +6,6 @@ namespace Proyecto2.Core
 {
     public class DiaEntrenamiento
     {
-        internal IEnumerable<object> medidas;
 
         public List<Actividad> actividades{get; set;}
         public DateTime Fecha { get; set; }

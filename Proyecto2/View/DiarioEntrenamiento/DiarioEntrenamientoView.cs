@@ -67,8 +67,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuGraficosToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.MenuGraficosToolStripMenuItem.Text = "Gráficos";
             this.MenuGraficosToolStripMenuItem.Click += new System.EventHandler(this.MenuGraficosToolStripMenuItem_Click);
-            this.MenuGraficosToolStripMenuItem.Click += new System.EventHandler(this.MenuGraficosToolStripMenuItem_ClickMedida);
-
 
             // 
             // añadirActividadToolStripMenuItem
@@ -343,6 +341,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     DataGridViewAutoSizeColumnMode.AllCells;
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
@@ -429,12 +428,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     DataGridViewAutoSizeColumnMode.AllCells;
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
+                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 buttons.DisplayIndex = 4;
             }
             TablaMedidasDataGridView.CellPainting += new DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
             TablaMedidasDataGridView.Columns.Add(buttons);
 
+            this.TablaMedidasDataGridView.CellContentClick += new DataGridViewCellEventHandler(this.TablaMedidaDataGridView_CellContentClick);
             TablaMedidasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaMedidasDataGridView.MultiSelect = false;
 

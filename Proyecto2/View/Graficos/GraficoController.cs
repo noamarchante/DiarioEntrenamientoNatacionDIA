@@ -104,15 +104,15 @@ namespace Proyecto2.View.Graficos
         private void anhoMedidasDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
 
-            this.PesoCircunferenciaAbdominalChart.Invalidate();
-            ValoresGraficoPesoCircunferenciaAbdominal(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
-            this.PesoCircunferenciaAbdominalChart.Update();
-            this.PesoCircunferenciaAbdominalChart.Refresh();
+            //this.PesoCircunferenciaAbdominalChart.Invalidate();
+            //ValoresGraficoPesoCircunferenciaAbdominal(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
+            //this.PesoCircunferenciaAbdominalChart.Update();
+            //this.PesoCircunferenciaAbdominalChart.Refresh();
 
         }
 
         //ESTABLECE LOS VALORES DEL GRAFICO PESO CIRCUNFERENCIA_ABDOMINAL
-        private void ValoresGraficoPesoCircunferenciaAbdominal(Dictionary<DiaEntrenamiento, Medida> diarioPorAño)
+       /* private void ValoresGraficoPesoCircunferenciaAbdominal(Dictionary<DiaEntrenamiento, Medida> diarioPorAño)
         {
             Dictionary<DiaEntrenamiento, Medida> diario = diarioPorAño;
             List<int> pesoValores = new List<int>();
@@ -133,10 +133,10 @@ namespace Proyecto2.View.Graficos
             this.PesoCircunferenciaAbdominalChart.Draw();
 
 
-        }
+        }*/
 
         //DEVUELVE LAS MEDIDAS DE UN MES
-        private List<Core.Medida> MedidasMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
+       /* private List<Core.Medida> MedidasMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
         {
             List<Core.Medida> medidas = new List<Core.Medida>();
             foreach (var dia in diario.Keys)
@@ -150,10 +150,10 @@ namespace Proyecto2.View.Graficos
                 }
             }
             return medidas;
-        }
+        }*/
 
         //DEVUELVE EL PESO EN UN MES DE MEDIDAS
-        private double PesoMes(List<Core.Medida> medidas)
+      /*  private double PesoMes(List<Core.Medida> medidas)
         {
             double peso = 0.00;
 
@@ -162,10 +162,10 @@ namespace Proyecto2.View.Graficos
                 peso += Convert.ToInt32(medida.Peso);
             }
             return peso;
-        }
+        }*/
 
         //DEVUELVE LA CIRCUNFERENCIA_ABDOMINAL EN UN MES DE MEDIDAS
-        private double CircunferenciaAbdominalMes(List<Core.Medida> medidas)
+       /* private double CircunferenciaAbdominalMes(List<Core.Medida> medidas)
         {
             double circunferenciaAbdominal = 0.00;
 
@@ -174,7 +174,7 @@ namespace Proyecto2.View.Graficos
                 circunferenciaAbdominal += Convert.ToInt32(medida.CircunferenciaAbdominal);
             }
             return circunferenciaAbdominal;
-        }
+        }*/
 
 
 

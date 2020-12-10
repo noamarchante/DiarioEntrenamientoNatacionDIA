@@ -5,31 +5,21 @@ namespace Proyecto2.Core
 {
     public class Medida
     {
-        private DateTime Fecha { get; }
-        private double Peso { get; set; }
-        private double CircunferenciaAbdominal { get; set; }
-        private String Notas { get; set; }
+        public double Peso { get; set; }
+        public double CircunferenciaAbdominal { get; set; }
+        public String Notas { get; set; }
 
-        public Medida(double p, double cA, string n)
+        public Medida(double peso, double circunferenciaAbdominal, string notas)
         {
-            this.Fecha = DateTime.Now;
-            this.Peso = p;
-            this.CircunferenciaAbdominal = cA;
-            this.Notas = n;
-        }
-
-        public Medida(DateTime f, double p, double cA, string n)
-        {
-            this.Fecha = f;
-            this.Peso = p;
-            this.CircunferenciaAbdominal = cA;
-            this.Notas = n;
+            this.Peso = peso;
+            this.CircunferenciaAbdominal = circunferenciaAbdominal;
+            this.Notas = notas;
         }
 
         public override String ToString()
         {
             StringBuilder str = new StringBuilder();
-            str.Append(this.Fecha).Append(this.Peso).Append(this.CircunferenciaAbdominal).Append(this.Notas);
+            str.Append(this.Peso).Append(this.CircunferenciaAbdominal).Append(this.Notas);
 
             return str.ToString();
         }
