@@ -82,6 +82,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MenuAnhadirCircuitoToolStripMenuItem.Name = "añadirCircuitoToolStripMenuItem";
             this.MenuAnhadirCircuitoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.MenuAnhadirCircuitoToolStripMenuItem.Text = "Añadir Circuito";
+            this.MenuAnhadirCircuitoToolStripMenuItem.Click += new System.EventHandler(this.MenuAnhadirCircuitoToolStripMenuItem_Click);
 
             // 
             // añadirMedidasToolStripMenuItem
@@ -304,17 +305,17 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
             this.TablaCircuitoDataGridView = new DataGridView();
 
-            this.TablaCircuitoDataGridView.ColumnCount = 4;
-            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            this.TablaCircuitoDataGridView.ColumnCount = 5;
+            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Green;
+            TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.Red;
             TablaCircuitoDataGridView.DefaultCellStyle.SelectionBackColor = Color.White;
             TablaCircuitoDataGridView.BackgroundColor = Color.White;
             TablaCircuitoDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            TablaCircuitoDataGridView.Name = "tablaActividadDataGridView";
+            TablaCircuitoDataGridView.Name = "tablaCircuitoDataGridView";
             TablaCircuitoDataGridView.Dock = DockStyle.Left;
-            TablaCircuitoDataGridView.Size = new Size(700, 200);
-            TablaCircuitoDataGridView.MaximumSize = TablaActividadDataGridView.Size;
-            TablaCircuitoDataGridView.MinimumSize = TablaActividadDataGridView.Size;
+            TablaCircuitoDataGridView.Size = new Size(1050, 200);
+            TablaCircuitoDataGridView.MaximumSize = TablaCircuitoDataGridView.Size;
+            TablaCircuitoDataGridView.MinimumSize = TablaCircuitoDataGridView.Size;
             TablaCircuitoDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             TablaCircuitoDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             TablaCircuitoDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
@@ -331,22 +332,25 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaCircuitoDataGridView.Columns[1].Name = "Distancia";
             TablaCircuitoDataGridView.Columns[2].Name = "Notas";
             TablaCircuitoDataGridView.Columns[3].Name = "Url";
+            TablaCircuitoDataGridView.Columns[4].Name = "indice";
+            TablaCircuitoDataGridView.Columns[4].Visible = false;
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
                 buttons.HeaderText = "";
-                //buttons.Text = "Eliminar";
                 buttons.Name = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode =
                     DataGridViewAutoSizeColumnMode.AllCells;
                 buttons.FlatStyle = FlatStyle.Flat;
                 buttons.CellTemplate.Style.BackColor = Color.Transparent;
-                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
                 buttons.CellTemplate.Style.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                buttons.DisplayIndex = 4;
+                buttons.DisplayIndex = 5;
+                buttons.CellTemplate.Style.SelectionBackColor = Color.Transparent;
             }
             TablaCircuitoDataGridView.CellPainting += new DataGridViewCellPaintingEventHandler(this.DataGridView_CellPainting);
             TablaCircuitoDataGridView.Columns.Add(buttons);
+            this.TablaCircuitoDataGridView.CellContentClick += new DataGridViewCellEventHandler(this.TablaCircuitoDataGridView_CellContentClick);
+
             TablaCircuitoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaCircuitoDataGridView.MultiSelect = false;
 

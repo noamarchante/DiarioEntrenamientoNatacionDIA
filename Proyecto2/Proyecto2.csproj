@@ -61,6 +61,12 @@
     <Compile Include="View\Actividad\ActividadView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\Circuitos\CircuitoController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Circuitos\CircuitoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\DiarioEntrenamiento\DiarioEntrenamientoController.cs">
       <SubType>Form</SubType>
     </Compile>

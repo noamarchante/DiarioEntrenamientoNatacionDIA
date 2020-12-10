@@ -203,7 +203,6 @@ namespace Proyecto2.View.Actividad
             this.CircuitoComboBox.BackColor = System.Drawing.Color.White;
             this.CircuitoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CircuitoComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CircuitoComboBox.FormattingEnabled = true;
             this.CircuitoComboBox.Dock = DockStyle.Left;
             this.CircuitoComboBox.Name = "circuitoComboBox";
             this.CircuitoComboBox.Size = new System.Drawing.Size(391, 32);
@@ -424,6 +423,7 @@ namespace Proyecto2.View.Actividad
 
             Text = "ACTIVIDAD";
             this.Icon = new Icon(@"img\\icono.ico");
+            this.Load += new System.EventHandler(this.ActividadView_Load);
             BackColor = Color.White;
             Size = new Size(500, (tiempo.Height + distancia.Height + circuito.Height + nota.Height + fecha.Height + botones.Height) * 2 + 40);
             FormBorderStyle = FormBorderStyle.FixedDialog;

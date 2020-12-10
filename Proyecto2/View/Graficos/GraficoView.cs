@@ -172,7 +172,7 @@ namespace Proyecto2.View.Graficos
             this.IzquierdaInferiorPanel.Name = "IzquierdaAbajo";
             this.IzquierdaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.IzquierdaInferiorPanel.TabIndex = 0;
-            this.IzquierdaInferiorPanel.BackColor = Color.Yellow;
+            this.IzquierdaInferiorPanel.BackColor = Color.White;
             return IzquierdaInferiorPanel;
 
         }
@@ -190,7 +190,7 @@ namespace Proyecto2.View.Graficos
             this.DerechaInferiorPanel.Name = "AbajoDerecha";
             this.DerechaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.DerechaInferiorPanel.TabIndex = 1;
-            this.DerechaInferiorPanel.BackColor = Color.Green;
+            this.DerechaInferiorPanel.BackColor = Color.White;
 
             return DerechaInferiorPanel;
 

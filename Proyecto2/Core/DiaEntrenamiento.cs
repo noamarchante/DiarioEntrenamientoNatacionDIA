@@ -30,6 +30,7 @@ namespace Proyecto2.Core
         {
             this.actividades.Add(c);
         }
+      
 
         //ELIMINAR ACTIVIDAD POR ACTIVIDAD
         public void EliminarActividad(Actividad c)

@@ -1,5 +1,6 @@
 ﻿using Proyecto2.Core;
 using Proyecto2.View.Actividad;
+using Proyecto2.View.Circuito;
 using Proyecto2.View.Graficos;
 using Proyecto2.View.Medidas;
 using System;
@@ -24,6 +25,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
         private void MenuGraficosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new GraficoView().Show();
+        }
+
+        //MENU AÑADIR CIRCUITO MUESTRA FORMULARIO
+        private void MenuAnhadirCircuitoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CircuitoView(this).Show();
         }
 
         //MENU AÑADIR MEDIDA MUESTRA FORMULARIO
@@ -64,6 +71,20 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
         }
 
+        public void CircuitoView_Load()
+        {
+            //muestra todos los circuitos en la tabla
+            List<string[]> circuitos = Program.diarioEntrenamiento.ObtenerAtributosCircuito();
+            if (circuitos.Count != 0)
+            {
+                for (int i = 0; i < circuitos.Count; i++)
+                {
+                    this.TablaCircuitoDataGridView.Rows.Add(circuitos[i]);
+                }
+            }
+
+        }
+
         private void negritaCalendario()
         {
             //marca en negrita los dias con diaEntrenamiento
@@ -80,17 +101,21 @@ namespace Proyecto2.View.DiarioEntrenamiento
         {
             this.TablaActividadDataGridView.Rows.Clear();
             ActividadView_Load();
-            this.MostrarTodoButton.Enabled = false;
-            this.MostrarTodoButton.Visible = false;
             this.TablaActividadDataGridView.Update();
             this.TablaActividadDataGridView.Refresh();
 
             this.TablaMedidasDataGridView.Rows.Clear();
             MedidaView_Load();
-            this.MostrarTodoButton.Enabled = false;
-            this.MostrarTodoButton.Visible = false;
             this.TablaMedidasDataGridView.Update();
             this.TablaMedidasDataGridView.Refresh();
+
+            this.TablaCircuitoDataGridView.Rows.Clear();
+            CircuitoView_Load();
+            this.TablaCircuitoDataGridView.Update();
+            this.TablaCircuitoDataGridView.Refresh();
+
+            this.MostrarTodoButton.Enabled = false;
+            this.MostrarTodoButton.Visible = false;
         }
 
         //BOTON ELIMINAR DE LA TABLA ACTIVIDAD ELIMINAR ACTIVIDAD DE DIA ENTRENAMIENTO EN DIARIO ENTRENAMIENTO
@@ -171,6 +196,47 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
+        //BOTON ELIMINAR DE LA TABLA CIRCUITO
+        private void TablaCircuitoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+               e.RowIndex >= 0)
+            {
+                var comprobacionId = senderGrid.Rows[e.RowIndex].Cells[4].Value;
+                if (comprobacionId != null)
+                {
+                    int id = Convert.ToInt32(comprobacionId.ToString());
+                    bool comprobacionCircuito = false;
+                    foreach (var dia in Program.diarioEntrenamiento.DiarioEntrenamientos.Keys)
+                    {
+                        foreach (var actividad in dia.actividades)
+                        {
+                            if (actividad.Circuito.Id == id)
+                            {
+                                comprobacionCircuito = true;
+                            }
+                        }
+                    }
+                    if (!comprobacionCircuito)
+                    {
+                        Core.Circuito circuitoSeleccionado = null;
+                        foreach (var circuito in Program.diarioEntrenamiento.circuitos)
+                        {
+                            if (circuito.Id.Equals(id))
+                            {
+                                circuitoSeleccionado = circuito;
+                            }
+                        }
+                        Program.diarioEntrenamiento.circuitos.Remove(circuitoSeleccionado);
+                        senderGrid.Rows.RemoveAt(e.RowIndex);
+
+                    }
+                }
+            }
+        }
+
         //FECHA SELECCIONADA EN CALENDARIO MUESTRA ACTIVIDADES MEDIDAS Y CIRCUITOS ASOCIADOS
         private void CalendarioMonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -179,23 +245,44 @@ namespace Proyecto2.View.DiarioEntrenamiento
             string[] atributosMedida = Program.diarioEntrenamiento.ObtenerAtributosMedida(fechaSeleccionada);
             this.TablaActividadDataGridView.Rows.Clear();
             this.TablaMedidasDataGridView.Rows.Clear();
+            this.TablaCircuitoDataGridView.Rows.Clear();
             if (atributosActividad.Count != 0)
             {
                 foreach (var actividad in atributosActividad)
                 {
                     this.TablaActividadDataGridView.Rows.Add(actividad);
                 }
-                this.TablaActividadDataGridView.Update();
-                this.TablaActividadDataGridView.Refresh();
+
+                var dia = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeFecha(fechaSeleccionada);
+                List<Core.Circuito> circuitosDia = new List<Core.Circuito>();
+                foreach (var actividad in dia.Key.actividades)
+                {
+                    circuitosDia.Add(actividad.Circuito);
+                }
+                List<string[]> atributosCircuito = Program.diarioEntrenamiento.ObtenerAtributosCircuito(circuitosDia);
+                if (atributosCircuito.Count != 0)
+                {
+                    foreach (var circuito in atributosCircuito)
+                    {
+                        this.TablaCircuitoDataGridView.Rows.Add(circuito);
+
+                    }
+                }
+              
             }
-            if (atributosMedida.Length != 0)
+            if (atributosMedida != null)
             {
                 this.TablaMedidasDataGridView.Rows.Add(atributosMedida);
-                this.TablaMedidasDataGridView.Update();
-                this.TablaMedidasDataGridView.Refresh();
+              
             }
             this.MostrarTodoButton.Enabled = true;
             this.MostrarTodoButton.Visible = true;
+            this.TablaActividadDataGridView.Update();
+            this.TablaActividadDataGridView.Refresh();
+            this.TablaCircuitoDataGridView.Update();
+            this.TablaCircuitoDataGridView.Refresh();
+            this.TablaMedidasDataGridView.Update();
+            this.TablaMedidasDataGridView.Refresh();
         }
 
         //FOTO EN BOTONES ELIMINAR TABLA ACTIVIDAD
