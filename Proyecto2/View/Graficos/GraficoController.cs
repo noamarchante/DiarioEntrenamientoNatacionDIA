@@ -1,6 +1,8 @@
 ﻿using Proyecto2.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Proyecto2.View.Graficos
@@ -100,81 +102,90 @@ namespace Proyecto2.View.Graficos
 
 
 
-        //CAMBIA LOS VALORES DEL GRAFICO DE MEDIDAS POR AÑO
-        private void anhoMedidasDateTimePicker_ValueChanged(Object sender, EventArgs e)
+   
+     //DEVUELVE EL PRIMER PESO DE CADA MES
+        private void AnualDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
+            List<double> valores = PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnualDateTimePicker.Value.Date));
+            this.GraficoPesoAnual.Invalidate();
+            
+            this.GraficoPesoAnual.Values3 = valores.ToArray();
+            this.GraficoPesoAnual.Draw2();
+            Console.WriteLine("fecha" + this.AnualDateTimePicker.Value);
+            this.TablaAnual.Rows.Clear();
+            this.TablaAnualView_Load(valores);
+            this.GraficoPesoAnual.Update();
+            this.GraficoPesoAnual.Refresh();
+            
+            this.TablaAnual.Update();
+            this.TablaAnual.Refresh();
 
-            //this.PesoCircunferenciaAbdominalChart.Invalidate();
-            //ValoresGraficoPesoCircunferenciaAbdominal(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
-            //this.PesoCircunferenciaAbdominalChart.Update();
-            //this.PesoCircunferenciaAbdominalChart.Refresh();
+        }
+        private List<double> PesoAnual(Dictionary<DiaEntrenamiento, Medida> diario)
+        {
+            List<double> peso= new List<double>();
+            Dictionary<DateTime, double> mesesguardados = new Dictionary<DateTime,double>();
+            List<Core.Medida>medidas= new List<Medida>();
+            for (int i = 0; i < meses.Length; i++)
+            {
+                medidas = PesoMes(diario,meses[i]); 
+                peso.Add(pesoValores(medidas));
+            }    
+            
+            return peso;
+        }
+        
+        private List<Core.Medida> PesoMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
+        {
+            List<Core.Medida> medidasmes = new List<Core.Medida>();
+            foreach (var dia in diario)
+            {
+                if (Convert.ToInt32(dia.Key.Fecha.Date.ToString("M tt")) == Convert.ToInt32(mes))
+                {
+                    medidasmes.Add(dia.Value);
+                }
+            }
+            return medidasmes;
+        }
+        private double pesoValores(List<Core.Medida> medidas)
+        {
+            double peso = 0;
+            bool comprobacion = false;
+
+            foreach (var medida in medidas)
+            {
+                if (medida != null) { 
+                comprobacion = true;
+                peso += medida.Peso;
+                }
+            }
+            if (comprobacion)
+            {
+                peso = peso / medidas.Count();
+            }
+            else
+            {
+                peso = 0;
+            }
+
+            return peso;
+        }
+        
+        public void TablaAnualView_Load(List<double>valores)
+        {
+            //muestra todas las actividades en la tabla
+            
+            if (valores.Count != 0)
+            {
+                for (int i = 0; i < meses.Count(); i++)
+                {
+                    String[] insert = new string[]{mes[i],valores[i].ToString()};
+                    TablaAnual.Rows.Add(insert);
+                }
+            }
 
         }
 
-        //ESTABLECE LOS VALORES DEL GRAFICO PESO CIRCUNFERENCIA_ABDOMINAL
-       /* private void ValoresGraficoPesoCircunferenciaAbdominal(Dictionary<DiaEntrenamiento, Medida> diarioPorAño)
-        {
-            Dictionary<DiaEntrenamiento, Medida> diario = diarioPorAño;
-            List<int> pesoValores = new List<int>();
-            List<int> circunferenciaAbdominalValores = new List<int>();
-            List<Core.Medida> medidas = new List<Core.Medida>();
-
-            for (int i = 0; i < meses.Length; i++)
-            {
-                medidas = MedidasMes(diario, meses[i]);
-                pesoValores.Add(MinutosMes(medidas));
-                circunferenciaAbdominalValores.Add(DistanciaMes(medidas));
-            }
-
-            this.PesoCircunferenciaAbdominalChart.Values = pesoValores.ToArray();
-
-            this.PesoCircunferenciaAbdominalChart.Values2 = circunferenciaAbdominalValores.ToArray();
-
-            this.PesoCircunferenciaAbdominalChart.Draw();
-
-
-        }*/
-
-        //DEVUELVE LAS MEDIDAS DE UN MES
-       /* private List<Core.Medida> MedidasMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
-        {
-            List<Core.Medida> medidas = new List<Core.Medida>();
-            foreach (var dia in diario.Keys)
-            {
-                if (Convert.ToInt32(dia.Fecha.Date.ToString("M tt")) == Convert.ToInt32(mes))
-                {
-                    foreach (var medida in dia.medidas)
-                    {
-                        medidas.Add(medida);
-                    }
-                }
-            }
-            return medidas;
-        }*/
-
-        //DEVUELVE EL PESO EN UN MES DE MEDIDAS
-      /*  private double PesoMes(List<Core.Medida> medidas)
-        {
-            double peso = 0.00;
-
-            foreach (var medida in medidas)
-            {
-                peso += Convert.ToInt32(medida.Peso);
-            }
-            return peso;
-        }*/
-
-        //DEVUELVE LA CIRCUNFERENCIA_ABDOMINAL EN UN MES DE MEDIDAS
-       /* private double CircunferenciaAbdominalMes(List<Core.Medida> medidas)
-        {
-            double circunferenciaAbdominal = 0.00;
-
-            foreach (var medida in medidas)
-            {
-                circunferenciaAbdominal += Convert.ToInt32(medida.CircunferenciaAbdominal);
-            }
-            return circunferenciaAbdominal;
-        }*/
 
 
 

@@ -1,8 +1,13 @@
 ﻿using Proyecto2.Core;
 using Proyecto2.View.DiarioEntrenamiento;
 using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
+internal static class NativeMethods
+{
+    [DllImport("kernel32.dll")]
+    internal static extern Boolean AllocConsole();
+}
 namespace Proyecto2
 {
     static class Program
@@ -18,6 +23,7 @@ namespace Proyecto2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DiarioEntrenamientoView());
+            NativeMethods.AllocConsole();
         }
     }
 }

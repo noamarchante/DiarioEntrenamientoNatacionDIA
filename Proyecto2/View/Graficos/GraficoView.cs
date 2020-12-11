@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using WForms = System.Windows.Forms;
+using Draw = System.Drawing;
+using System.Collections.Generic;
 
 namespace Proyecto2.View.Graficos
 {
@@ -19,6 +22,9 @@ namespace Proyecto2.View.Graficos
         public Chart MinutoDistanciaChart { get; set; }
         public Chart PesoCircunferenciaAbdominalChart { get; set; }
         public DateTimePicker AnhoMedidasDateTimePicker { get; set; }
+        public DateTimePicker AnualDateTimePicker { get; set; }
+        public Chart GraficoPesoAnual { get; set; }
+        public DataGridView TablaAnual { get; set; }
 
         //PANEL CON GRÁFICO MINUTOS-DISTANCIA MENSUAL EN ACTIVIDADES
         private Panel IzquierdaSuperiorBuild()
@@ -119,7 +125,7 @@ namespace Proyecto2.View.Graficos
             this.AnhoMedidasDateTimePicker.TabIndex = 15;
             this.AnhoMedidasDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
             this.AnhoMedidasDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
-            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.anhoMedidasDateTimePicker_ValueChanged);
+          
 
 
             this.DerechaSuperiorPanel.Controls.Add(PesoCircunferenciaAbdominalChart);
@@ -163,7 +169,8 @@ namespace Proyecto2.View.Graficos
         private Panel IzquierdaInferiorBuild()
         {
             this.IzquierdaInferiorPanel = new Panel();
-
+            this.AnualDateTimePicker= new DateTimePicker();
+            this.GraficoPesoAnual = new Chart(600,340);
             // 
             // IzquierdaAbajo
             // 
@@ -173,6 +180,41 @@ namespace Proyecto2.View.Graficos
             this.IzquierdaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.IzquierdaInferiorPanel.TabIndex = 0;
             this.IzquierdaInferiorPanel.BackColor = Color.White;
+            
+            //escoger año
+            this.AnualDateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
+            this.AnualDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnualDateTimePicker.Dock = DockStyle.Top;
+            this.AnualDateTimePicker.Name = "fechaDateTimePicker";
+            this.AnualDateTimePicker.Size = new System.Drawing.Size(80, 20);
+            this.AnualDateTimePicker.MaximumSize = new System.Drawing.Size(80, 20);
+            this.AnualDateTimePicker.MinimumSize = this.AnualDateTimePicker.MaximumSize;
+            this.AnualDateTimePicker.Value = DateTime.Now;
+            this.AnualDateTimePicker.Format = DateTimePickerFormat.Custom;
+            this.AnualDateTimePicker.CustomFormat = "yyyy";
+            this.AnualDateTimePicker.ShowUpDown = true;
+            this.AnualDateTimePicker.TabIndex = 14;
+            this.AnualDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
+            this.AnualDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
+            this.AnualDateTimePicker.ValueChanged += new System.EventHandler(this.AnualDateTimePicker_ValueChanged);
+            
+            //CONFIGURACION GRAFICO 
+            this.GraficoPesoAnual.Dock = DockStyle.Top;
+            this.GraficoPesoAnual.BackColor = Color.White;
+            this.GraficoPesoAnual.LegendY = "PESO";
+    
+            this.GraficoPesoAnual.LegendX = mes;
+            this.GraficoPesoAnual.LegendY2 = "";
+
+            
+            this.IzquierdaInferiorPanel.Controls.Add(GraficoPesoAnual);
+            this.IzquierdaInferiorPanel.Controls.Add(AnualDateTimePicker);
+
+            this.IzquierdaInferiorPanel.Controls.Add(BuildVacioColumna());
+            this.IzquierdaInferiorPanel.Controls.Add(BuildVacioFila());
+
+
+            
             return IzquierdaInferiorPanel;
 
         }
@@ -181,6 +223,7 @@ namespace Proyecto2.View.Graficos
         private Panel DerechaInferiorBuild()
         {
             this.DerechaInferiorPanel = new Panel();
+            this.TablaAnual=new DataGridView();
 
             // 
             // AbajoDerecha
@@ -191,10 +234,43 @@ namespace Proyecto2.View.Graficos
             this.DerechaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.DerechaInferiorPanel.TabIndex = 1;
             this.DerechaInferiorPanel.BackColor = Color.White;
+            
+            //configuracion de la tabla 
+            this.TablaAnual.ColumnCount = 2;
+            TablaAnual.ColumnHeadersDefaultCellStyle.BackColor = Color.Transparent;
+            TablaAnual.ColumnHeadersDefaultCellStyle.ForeColor = Color.Transparent;
+            TablaAnual.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            TablaAnual.BackgroundColor = Color.White;
+            TablaAnual.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Transparent;
+            TablaAnual.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
+            TablaAnual.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TablaAnual.Name = "tablaActividadDataGridView";
+            TablaAnual.Dock = DockStyle.Top;
+            TablaAnual.Size = new Size(600, 360);
+            TablaAnual.MaximumSize = TablaAnual.Size;
+            TablaAnual.MinimumSize = TablaAnual.Size;
+            TablaAnual.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            TablaAnual.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            TablaAnual.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            TablaAnual.GridColor = Color.Black;
+            TablaAnual.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
+            TablaAnual.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
+            TablaAnual.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TablaAnual.RowHeadersVisible = false;
+            TablaAnual.ReadOnly = true;
+            TablaAnual.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            TablaAnual.AutoGenerateColumns = false;
+            TablaAnual.Columns[0].Name = "Mes";
+            TablaAnual.Columns[1].Name = "MediaPeso";
+            
+            
+            DerechaInferiorPanel.Controls.Add(TablaAnual);
 
             return DerechaInferiorPanel;
 
         }
+
+
 
         //CONSTRUYE LOS PANELES INFERIORES
         private Panel InferiorBuild()

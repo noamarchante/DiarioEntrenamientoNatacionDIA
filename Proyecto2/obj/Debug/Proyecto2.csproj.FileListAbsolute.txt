@@ -22,3 +22,19 @@ C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\
 C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\obj\Debug\Proyecto2.pdb
 C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\bin\Debug\Proyecto2.exe
 C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\bin\Debug\Proyecto2.pdb
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.exe
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.pdb
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\bin\Debug\Proyecto2.exe
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\bin\Debug\Proyecto2.pdb
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csprojAssemblyReference.cache
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
+C:\Users\Usuario\RiderProjects\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
+C:\Users\noama\Downloads\Proyecto2\bin\Debug\Proyecto2.exe
+C:\Users\noama\Downloads\Proyecto2\bin\Debug\Proyecto2.pdb
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.csprojAssemblyReference.cache
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.exe
+C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.pdb

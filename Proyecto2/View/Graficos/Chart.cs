@@ -20,6 +20,7 @@ namespace Proyecto2.View.Graficos
 
             this.values = new List<int>();
             this.values2 = new List<int>();
+            this.values3 = new List<double>();
             this.Width = width;
             this.Height = height;
             this.FrameWidth = 50;
@@ -49,6 +50,17 @@ namespace Proyecto2.View.Graficos
             this.DrawAxis();
             this.DrawData();
             this.DrawData2();
+            this.DrawLegends();
+        }
+        public void Draw2()
+        {
+            this.grf.Clear(Color.White);
+            this.grf.DrawRectangle(
+                new Pen(this.BackColor),
+                new Rectangle(0, 0, this.Width, this.Height));
+            this.DrawAxis();
+
+            this.DrawData3();
             this.DrawLegends();
         }
 
@@ -172,6 +184,44 @@ namespace Proyecto2.View.Graficos
                 p = nextPoint;
             }
         }
+        void DrawData3()
+        {
+
+            int numValues = this.values3.Count;
+            var p = this.DataOrgPosition;
+            int xGap = this.GraphWidth / (numValues + 1);
+            int baseLine = this.DataOrgPosition.Y;
+
+            posicionval = new List<Point>();
+
+            this.NormalizeData3();
+            for (int i = 0; i < numValues; ++i)
+            {
+                string tag = this.values3[i].ToString();
+                int tagWidth = (int)this.grf.MeasureString(
+                    tag,
+                    this.DataFont).Width;
+                var nextPoint = new Point(
+                    p.X + xGap, baseLine - (int)this.normalizedData3[i]
+                );
+                
+                if (this.Type == ChartType.Bars)
+                {
+                    p = new Point(nextPoint.X, baseLine);
+                    
+                }
+         
+                posicionval.Add(p);
+                this.grf.DrawLine(this.DataPen, p, nextPoint);
+                this.grf.DrawString(tag,
+                    this.DataFont,
+                    this.DataPen.Brush,
+                    new Point(nextPoint.X - tagWidth,
+                        nextPoint.Y));
+                p = nextPoint;
+               
+            }
+        }
 
 
         void DrawAxis()
@@ -251,6 +301,25 @@ namespace Proyecto2.View.Graficos
 
             return;
         }
+        void NormalizeData3()
+        {
+            int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
+            double maxValue= this.values3.Max();
+
+            if(maxValue == 0)
+            {
+                maxValue = 1;
+            }
+            this.normalizedData3 = this.values3.ToArray();
+
+            for (int i = 0; i < this.normalizedData3.Length; ++i)
+            {
+                this.normalizedData3[i] =
+                    (this.values3[i] * maxHeight) / maxValue;
+            }
+
+            return;
+        }
 
         /// <summary>
         /// Gets or sets the values used as data.
@@ -283,6 +352,21 @@ namespace Proyecto2.View.Graficos
 
             }
         }
+        public IEnumerable<double> Values3
+        {
+            get
+            {
+                return this.values3.ToArray();
+            }
+            set
+            {
+                this.values3.Clear();
+                this.values3.AddRange(value);
+
+            }
+        }
+
+        
 
         /// <summary>
         /// Gets the framed origin.
@@ -453,8 +537,10 @@ namespace Proyecto2.View.Graficos
         Graphics grf;
         List<int> values;
         List<int> values2;
+        List<double> values3;
         int[] normalizedData;
         int[] normalizedData2;
+        double[] normalizedData3;
         List<Point> posicionval = new List<Point>();
     }
 }
