@@ -21,6 +21,7 @@ namespace Proyecto2.View.Graficos
             this.values = new List<int>();
             this.values2 = new List<int>();
             this.values3 = new List<double>();
+            this.values4 = new List<double>();
             this.Width = width;
             this.Height = height;
             this.FrameWidth = 50;
@@ -63,6 +64,18 @@ namespace Proyecto2.View.Graficos
             this.DrawData3();
             this.DrawLegends();
         }
+        public void Draw3()
+        {
+            this.grf.Clear(Color.White);
+            this.grf.DrawRectangle(
+                new Pen(this.BackColor),
+                new Rectangle(0, 0, this.Width, this.Height));
+            this.DrawAxis();
+
+            this.DrawData3();
+            this.DrawData4();
+            this.DrawLegends();
+        }
 
         private void DrawLegends()
         {
@@ -75,24 +88,24 @@ namespace Proyecto2.View.Graficos
             int legendXWidth = (int)this.grf.MeasureString(
                                                         this.LegendX[0],
                                                         this.LegendFont).Width;
-            
+
             int legendYHeight = (int)this.grf.MeasureString(
                                                         this.LegendY,
                                                         this.LegendFont,
                                                         new Size(this.Width,
                                                                   this.Height),
                                                        verticalDrawFmt).Height;
-           int i = 0;
-           
-           foreach (var posicion in posicionval)
-           {
+            int i = 0;
+
+            foreach (var posicion in posicionval)
+            {
                 this.grf.DrawString(
                            LegendX[i],
                            this.LegendFont,
                            this.LegendPen3.Brush,
                            new Point(posicion.X,
                                this.FramedEndPosition.Y + 10), verticalDrawFmt);
-            
+
                 i++;
             }
             this.grf.DrawString(
@@ -100,16 +113,16 @@ namespace Proyecto2.View.Graficos
                     this.LegendFont,
                     this.LegendPen.Brush,
                     new Point(
-                        (this.FramedOrgPosition.X - (this.FrameWidth / 2))+posicionval[11].X+7,
-                        ((this.Height - legendYHeight) / 2)-60));
-            
+                        (this.FramedOrgPosition.X - (this.FrameWidth / 2)) + posicionval[11].X + 7,
+                        ((this.Height - legendYHeight) / 2) - 60));
+
             this.grf.DrawString(
                     this.LegendY2,
                     this.LegendFont,
                     this.LegendPen2.Brush,
                     new Point(
-                        (this.FramedOrgPosition.X - (this.FrameWidth / 2))+ posicionval[11].X+7,
-                        ((this.Height - legendYHeight) / 2)-40));
+                        (this.FramedOrgPosition.X - (this.FrameWidth / 2)) + posicionval[11].X + 7,
+                        ((this.Height - legendYHeight) / 2) - 40));
         }
 
         void DrawData()
@@ -132,13 +145,13 @@ namespace Proyecto2.View.Graficos
                 var nextPoint = new Point(
                     p.X + xGap, baseLine - this.normalizedData[i]
                 );
-                
+
                 if (this.Type == ChartType.Bars)
                 {
                     p = new Point(nextPoint.X, baseLine);
-                    
+
                 }
-         
+
                 posicionval.Add(p);
                 this.grf.DrawLine(this.DataPen, p, nextPoint);
                 this.grf.DrawString(tag,
@@ -147,7 +160,7 @@ namespace Proyecto2.View.Graficos
                                      new Point(nextPoint.X - tagWidth,
                                                 nextPoint.Y));
                 p = nextPoint;
-               
+
             }
         }
 
@@ -204,13 +217,13 @@ namespace Proyecto2.View.Graficos
                 var nextPoint = new Point(
                     p.X + xGap, baseLine - (int)this.normalizedData3[i]
                 );
-                
+
                 if (this.Type == ChartType.Bars)
                 {
                     p = new Point(nextPoint.X, baseLine);
-                    
+
                 }
-         
+
                 posicionval.Add(p);
                 this.grf.DrawLine(this.DataPen, p, nextPoint);
                 this.grf.DrawString(tag,
@@ -219,14 +232,52 @@ namespace Proyecto2.View.Graficos
                     new Point(nextPoint.X - tagWidth,
                         nextPoint.Y));
                 p = nextPoint;
-               
+
+            }
+        }
+        void DrawData4()
+        {
+
+            int numValues = this.values4.Count;
+            var p = this.DataOrgPosition;
+            int xGap = this.GraphWidth / (numValues + 1);
+            int baseLine = this.DataOrgPosition.Y;
+
+            posicionval = new List<Point>();
+
+            this.NormalizeData4();
+            for (int i = 0; i < numValues; ++i)
+            {
+                string tag = this.values4[i].ToString();
+                int tagWidth = (int)this.grf.MeasureString(
+                    tag,
+                    this.DataFont).Width;
+                var nextPoint = new Point(
+                    p.X + xGap, baseLine - (int)this.normalizedData4[i]
+                );
+
+                if (this.Type == ChartType.Bars)
+                {
+                    p = new Point(nextPoint.X, baseLine);
+
+                }
+
+                posicionval.Add(p);
+                this.grf.DrawLine(this.DataPen2, p, nextPoint);
+                this.grf.DrawString(tag,
+                    this.DataFont,
+                    this.DataPen2.Brush,
+                    new Point(nextPoint.X - tagWidth,
+                        nextPoint.Y));
+                p = nextPoint;
+
             }
         }
 
 
         void DrawAxis()
         {
-         
+
             // Y axis
             this.grf.DrawLine(this.AxisPen,
                                this.FramedOrgPosition,
@@ -253,7 +304,7 @@ namespace Proyecto2.View.Graficos
         {
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
             int maxValue = this.values.Max();
-            if(maxValue == 0)
+            if (maxValue == 0)
             {
                 maxValue = 1;
             }
@@ -295,8 +346,8 @@ namespace Proyecto2.View.Graficos
 
             for (int i = 0; i < this.normalizedData2.Length; ++i)
             {
-                    this.normalizedData2[i] =
-                                        (this.values2[i] * maxHeight) / maxValue;
+                this.normalizedData2[i] =
+                                    (this.values2[i] * maxHeight) / maxValue;
             }
 
             return;
@@ -304,9 +355,9 @@ namespace Proyecto2.View.Graficos
         void NormalizeData3()
         {
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
-            double maxValue= this.values3.Max();
+            double maxValue = this.values3.Max();
 
-            if(maxValue == 0)
+            if (maxValue == 0)
             {
                 maxValue = 1;
             }
@@ -316,6 +367,25 @@ namespace Proyecto2.View.Graficos
             {
                 this.normalizedData3[i] =
                     (this.values3[i] * maxHeight) / maxValue;
+            }
+
+            return;
+        }
+        void NormalizeData4()
+        {
+            int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
+            double maxValue = this.values4.Max();
+
+            if (maxValue == 0)
+            {
+                maxValue = 1;
+            }
+            this.normalizedData4 = this.values4.ToArray();
+
+            for (int i = 0; i < this.normalizedData4.Length; ++i)
+            {
+                this.normalizedData3[i] =
+                    (this.values4[i] * maxHeight) / maxValue;
             }
 
             return;
@@ -335,7 +405,7 @@ namespace Proyecto2.View.Graficos
             {
                 this.values.Clear();
                 this.values.AddRange(value);
-      
+
             }
         }
 
@@ -365,8 +435,21 @@ namespace Proyecto2.View.Graficos
 
             }
         }
+        public IEnumerable<double> Values4
+        {
+            get
+            {
+                return this.values4.ToArray();
+            }
+            set
+            {
+                this.values4.Clear();
+                this.values4.AddRange(value);
 
-        
+            }
+        }
+
+
 
         /// <summary>
         /// Gets the framed origin.
@@ -381,7 +464,7 @@ namespace Proyecto2.View.Graficos
                 return new Point(
                     this.FramedOrgPosition.X + margin,
                     this.FramedEndPosition.Y - margin);
-           
+
             }
         }
 
@@ -538,9 +621,11 @@ namespace Proyecto2.View.Graficos
         List<int> values;
         List<int> values2;
         List<double> values3;
+        List<double> values4;
         int[] normalizedData;
         int[] normalizedData2;
         double[] normalizedData3;
+        double[] normalizedData4;
         List<Point> posicionval = new List<Point>();
     }
 }

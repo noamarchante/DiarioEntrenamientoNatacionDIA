@@ -125,7 +125,7 @@ namespace Proyecto2.View.Graficos
             this.AnhoMedidasDateTimePicker.TabIndex = 15;
             this.AnhoMedidasDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
             this.AnhoMedidasDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
-          
+            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.anhoMedidasDateTimePicker_ValueChanged);
 
 
             this.DerechaSuperiorPanel.Controls.Add(PesoCircunferenciaAbdominalChart);
@@ -169,8 +169,8 @@ namespace Proyecto2.View.Graficos
         private Panel IzquierdaInferiorBuild()
         {
             this.IzquierdaInferiorPanel = new Panel();
-            this.AnualDateTimePicker= new DateTimePicker();
-            this.GraficoPesoAnual = new Chart(600,340);
+            this.AnualDateTimePicker = new DateTimePicker();
+            this.GraficoPesoAnual = new Chart(600, 340);
             // 
             // IzquierdaAbajo
             // 
@@ -180,7 +180,7 @@ namespace Proyecto2.View.Graficos
             this.IzquierdaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.IzquierdaInferiorPanel.TabIndex = 0;
             this.IzquierdaInferiorPanel.BackColor = Color.White;
-            
+
             //escoger año
             this.AnualDateTimePicker.CalendarMonthBackground = System.Drawing.Color.White;
             this.AnualDateTimePicker.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -197,16 +197,16 @@ namespace Proyecto2.View.Graficos
             this.AnualDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
             this.AnualDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
             this.AnualDateTimePicker.ValueChanged += new System.EventHandler(this.AnualDateTimePicker_ValueChanged);
-            
+
             //CONFIGURACION GRAFICO 
             this.GraficoPesoAnual.Dock = DockStyle.Top;
             this.GraficoPesoAnual.BackColor = Color.White;
             this.GraficoPesoAnual.LegendY = "PESO";
-    
+
             this.GraficoPesoAnual.LegendX = mes;
             this.GraficoPesoAnual.LegendY2 = "";
 
-            
+
             this.IzquierdaInferiorPanel.Controls.Add(GraficoPesoAnual);
             this.IzquierdaInferiorPanel.Controls.Add(AnualDateTimePicker);
 
@@ -214,7 +214,7 @@ namespace Proyecto2.View.Graficos
             this.IzquierdaInferiorPanel.Controls.Add(BuildVacioFila());
 
 
-            
+
             return IzquierdaInferiorPanel;
 
         }
@@ -223,7 +223,7 @@ namespace Proyecto2.View.Graficos
         private Panel DerechaInferiorBuild()
         {
             this.DerechaInferiorPanel = new Panel();
-            this.TablaAnual=new DataGridView();
+            this.TablaAnual = new DataGridView();
 
             // 
             // AbajoDerecha
@@ -234,7 +234,7 @@ namespace Proyecto2.View.Graficos
             this.DerechaInferiorPanel.Size = new System.Drawing.Size(633, 370);
             this.DerechaInferiorPanel.TabIndex = 1;
             this.DerechaInferiorPanel.BackColor = Color.White;
-            
+
             //configuracion de la tabla 
             this.TablaAnual.ColumnCount = 2;
             TablaAnual.ColumnHeadersDefaultCellStyle.BackColor = Color.Transparent;
@@ -262,8 +262,8 @@ namespace Proyecto2.View.Graficos
             TablaAnual.AutoGenerateColumns = false;
             TablaAnual.Columns[0].Name = "Mes";
             TablaAnual.Columns[1].Name = "MediaPeso";
-            
-            
+
+
             DerechaInferiorPanel.Controls.Add(TablaAnual);
 
             return DerechaInferiorPanel;
