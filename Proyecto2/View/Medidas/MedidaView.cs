@@ -36,7 +36,7 @@ namespace Proyecto2.View.Medidas
             this.PesoLabel.Name = "pesoLabel";
             this.PesoLabel.Size = new System.Drawing.Size(123, 35);
             this.PesoLabel.TabIndex = 21;
-            this.PesoLabel.Text = "Peso";
+            this.PesoLabel.Text = "Peso (Kg)";
 
             // 
             // pesoNumericUpDown
@@ -87,7 +87,7 @@ namespace Proyecto2.View.Medidas
             this.CircunferenciaAbdominalLabel.Name = "circunferenciaAbdominalLabel";
             this.CircunferenciaAbdominalLabel.Size = new System.Drawing.Size(123, 35);
             this.CircunferenciaAbdominalLabel.TabIndex = 21;
-            this.CircunferenciaAbdominalLabel.Text = "Circunferencia Abdominal";
+            this.CircunferenciaAbdominalLabel.Text = "Circunferencia Abdominal (cm)";
 
             // 
             // circunferenciaAbdominalNumericUpDown

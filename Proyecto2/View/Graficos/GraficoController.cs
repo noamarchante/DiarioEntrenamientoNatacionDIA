@@ -286,15 +286,10 @@ namespace Proyecto2.View.Graficos
             {
                 for (int i = 0; i < meses.Count(); i++)
                 {
-                    String[] insert = new string[] { mesesLetras[i], valores[i].ToString() };
+                    String[] insert = new string[] { mesesLetras[i], valores[i].ToString() + " Kg" };
                     AnualDataGridView.Rows.Add(insert);
                 }
             }
-
         }
-
-
-
-
     }
 }

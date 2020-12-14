@@ -219,7 +219,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.DefaultCellStyle.SelectionBackColor = Color.Transparent;
             TablaActividadDataGridView.BackgroundColor = Color.White;
             TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Transparent;
-            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Transparent;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
             TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaActividadDataGridView.Name = "tablaActividadDataGridView";
             TablaActividadDataGridView.Dock = DockStyle.Top;
@@ -231,8 +231,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             TablaActividadDataGridView.GridColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
-            TablaActividadDataGridView.ForeColor = Color.Transparent;
-            TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Transparent;
+            TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaActividadDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaActividadDataGridView.RowHeadersVisible = false;

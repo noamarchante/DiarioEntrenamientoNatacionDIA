@@ -156,7 +156,7 @@ namespace Proyecto2.Core
             foreach (KeyValuePair<DiaEntrenamiento, Medida> celda in this.DiarioEntrenamientos)
             {
                 foreach (var actividad in celda.Key.actividades) {
-                    atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
+                    atributos.Add(new string[] { actividad.Distancia.ToString() + " Km", actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " Km", actividad.Id.ToString() });
                 }
 
             }
@@ -174,7 +174,7 @@ namespace Proyecto2.Core
 
                 if (medida != null)
                 {
-                    atributosMedida.Add(new string[] { medida.Peso.ToString(), medida.CircunferenciaAbdominal.ToString(), medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
+                    atributosMedida.Add(new string[] { medida.Peso.ToString()+ " Kg", medida.CircunferenciaAbdominal.ToString() + " cm", medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
                 }
 
             }
@@ -188,7 +188,7 @@ namespace Proyecto2.Core
 
             foreach (var circuito in this.circuitos)
             {
-                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " m", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
+                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " Km", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
 
             }
             return atributos;
@@ -202,7 +202,7 @@ namespace Proyecto2.Core
 
             foreach (var circuito in circuitos)
             {
-                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " m", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
+                atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " Km", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
 
             }
             return atributos;

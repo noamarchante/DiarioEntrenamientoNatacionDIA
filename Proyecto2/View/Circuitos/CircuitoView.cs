@@ -37,7 +37,7 @@ namespace Proyecto2.View.Circuito
             this.DistanciaLabel.Name = "distanciaLabel";
             this.DistanciaLabel.Size = new System.Drawing.Size(123, 35);
             this.DistanciaLabel.TabIndex = 21;
-            this.DistanciaLabel.Text = "Distancia";
+            this.DistanciaLabel.Text = "Distancia (Km)";
 
             // 
             // distanciaNumericUpDown
