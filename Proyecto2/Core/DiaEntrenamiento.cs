@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Proyecto2.Core
 {
@@ -72,6 +73,17 @@ namespace Proyecto2.Core
                 str.AppendLine(actividad.ToString());
             }
             return str.ToString();
+        }
+        
+        public XElement toXML()
+        {
+            XElement toRet = new XElement("Actividades");
+            foreach (var x in actividades)
+            {
+                toRet.Add(x.toXML());
+            }
+
+            return toRet;
         }
     }
 }

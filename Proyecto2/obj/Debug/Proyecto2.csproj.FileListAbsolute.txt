@@ -38,4 +38,11 @@ C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.c
 C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
 C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.exe
 C:\Users\noama\Downloads\Proyecto2\obj\Debug\Proyecto2.pdb
-C:\Users\noama\Documents\ESTUDIOS\INGENIERÍA INFORMÁTICA\4º CURSO\1º CUATRI\DIA\PRÁCTICA\PROYECTO\DiarioEntrenamientoNatacionDIA\Proyecto2\bin\Debug\Proyecto2.exe.config
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.exe
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.pdb
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\bin\Debug\Proyecto2.exe
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\bin\Debug\Proyecto2.pdb
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csprojAssemblyReference.cache
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
+C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache

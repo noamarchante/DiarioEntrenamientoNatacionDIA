@@ -156,7 +156,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MostrarTodoButton.FlatAppearance.BorderColor = Color.White;
             this.MostrarTodoButton.MinimumSize = this.MostrarTodoButton.MaximumSize;
             this.MostrarTodoButton.UseVisualStyleBackColor = false;
-            //this.MostrarTodoButton.Text = "MOSTRAR TODO";
             this.MostrarTodoButton.Enabled = false;
             this.MostrarTodoButton.Visible = false;
             this.MostrarTodoButton.BackgroundImage = Image.FromFile(@"img\\cancelar.png");
@@ -231,6 +230,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             TablaActividadDataGridView.GridColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
+            TablaActividadDataGridView.ForeColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaActividadDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -428,7 +428,6 @@ namespace Proyecto2.View.DiarioEntrenamiento
             DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
             {
                 buttons.HeaderText = "";
-                //buttons.Text = "Eliminar";
                 buttons.Name = "Eliminar";
                 buttons.UseColumnTextForButtonValue = true;
                 buttons.AutoSizeMode =
@@ -506,7 +505,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
 
             PanelPanel.ResumeLayout(true);
 
-
+            this.Load += new System.EventHandler(this.DiarioEntrenamientoView_Load);
             this.Icon = new Icon(@"img\\icono.ico");
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.MaximumSize = new Size(1800, 1080);

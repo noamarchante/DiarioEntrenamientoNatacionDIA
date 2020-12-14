@@ -20,11 +20,11 @@ namespace Proyecto2.View.Circuito
             this.diarioEntrenamiento = diarioEntrenamiento;
         }
 
-        //EL BOTON INSERTAR INSERTA UNA ACTIVIDAD
+        //EVENTO QUE INSERTA CIRCUITOS AL PULSAR EL BOTON INSERTAR
         private void InsertarCircuitoButton_Click(object sender, EventArgs e)
         {
 
-            circuito = new Core.Circuito(Program.diarioEntrenamiento.circuitos.Count,(Double)this.DistanciaNumericUpDown.Value, this.LugarTextBox.Text, this.NotaTextBox.Text, this.UrlTextBox.Text);
+            circuito = new Core.Circuito(Program.diarioEntrenamiento.Circuitos.Count,(Double)this.DistanciaNumericUpDown.Value, this.LugarTextBox.Text, this.NotaTextBox.Text, this.UrlTextBox.Text);
             Program.diarioEntrenamiento.AñadirCircuito(circuito);
             this.diarioEntrenamiento.TablaCircuitoDataGridView.Rows.Clear();
             this.diarioEntrenamiento.CircuitoView_Load();
@@ -34,7 +34,7 @@ namespace Proyecto2.View.Circuito
             
         }
 
-        //EL BOTON VOLVER CIERRA LA VENTANA DEL FORMULARIO
+        //EVENTO QUE CIERRA LA VENTANA AL PULSAR EL BOTON VOLVER
         private void VolverButton_Click(object sender, EventArgs e)
         {
             this.Close();

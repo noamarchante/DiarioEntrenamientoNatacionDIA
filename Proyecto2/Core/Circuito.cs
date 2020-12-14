@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace Proyecto2.Core
 {
@@ -32,6 +33,18 @@ namespace Proyecto2.Core
             str.AppendLine(Notas);
             str.AppendLine(Url);
             return str.ToString();
+        }
+        
+        public XElement toXML()
+        {
+            XElement toRet = new XElement("Circuito",
+                new XElement("Id",Id),
+                new XElement("Distancia",Distancia),
+                new XElement("Lugar",Lugar),
+                new XElement("Url",Url),
+                new XElement("Nota", Notas));
+
+            return toRet;
         }
     }
 }

@@ -16,10 +16,30 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.Build();
         }
 
-        //MENU AÑADIR ACTIVIDAD MUESTRA FORMULARIO
+        //EVENTO QUE CARGA LAS TABLAS AL INICIAR LA VENTANA
+        private void DiarioEntrenamientoView_Load(object sender, EventArgs e)
+        {
+            this.TablaActividadDataGridView.Rows.Clear();
+            ActividadView_Load();
+            this.TablaActividadDataGridView.Update();
+            this.TablaActividadDataGridView.Refresh();
+
+            this.TablaMedidasDataGridView.Rows.Clear();
+            MedidaView_Load();
+            this.TablaMedidasDataGridView.Update();
+            this.TablaMedidasDataGridView.Refresh();
+
+            this.TablaCircuitoDataGridView.Rows.Clear();
+            CircuitoView_Load();
+            this.TablaCircuitoDataGridView.Update();
+            this.TablaCircuitoDataGridView.Refresh();
+
+        }
+
+        //EVENTO QUE MUESTRA EL FORMULARIO DE ACTIVIDAD SI EXISTEN CIRCUITOS, AL PULSAR EL BOTON ACTIVIDAD DEL MENU
         private void MenuAnhadirActividadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.diarioEntrenamiento.circuitos.Count == 0)
+            if (Program.diarioEntrenamiento.Circuitos.Count == 0)
             {
                 Help.ShowPopup(this.PanelPanel, "Para añadir una actividad debe haber, por lo menos, un circuito", new Point(this.PanelPanel.Left+200, this.PanelPanel.Top+200));
             }
@@ -29,27 +49,27 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
+        //EVENTO QUE MUESTRA LA VENTANA DE GRAFICOS AL PULSAR EL BOTON GRAFICOS DEL MENU
         private void MenuGraficosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new GraficoView().Show();
         }
 
-        //MENU AÑADIR CIRCUITO MUESTRA FORMULARIO
+        //EVENTO QUE MUESTRA EL FORMULARIO DE CIRCUITOS AL PULSAR EL BOTON CIRCUITO DEL MENU
         private void MenuAnhadirCircuitoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new CircuitoView(this).Show();
         }
 
-        //MENU AÑADIR MEDIDA MUESTRA FORMULARIO
+        //EVENTO QUE MUESTRA EL FORMULARIO DE MEDIDAS AL PULSAR EL BOTON MEDIDAS DEL MENU
         private void MenuAnhadirMedidasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new MedidaView(this).Show();
         }
 
-        //CUANDO CARGA LA VENTANA MUESTRA LAS ACTIVIDADES LOS CIRCUITOS Y LAS MEDIDAS Y LAS FECHAS CON ACTIVIDADES O MEDIDAS EN NEGRITA 
+        //CARGA LAS ACTIVIDADES EN LA TABLA DE ACTIVIDADES Y PONE A NEGRITA LAS FECHAS DEL CALENDARIO CON ACTIVIDADES
         public void ActividadView_Load()
         {
-            //muestra todas las actividades en la tabla
             List<string[]> actividades = Program.diarioEntrenamiento.ObtenerAtributosActividad();
             if (actividades.Count != 0)
             {
@@ -58,13 +78,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     this.TablaActividadDataGridView.Rows.Add(actividades[i]);
                 }
             }
-
             negritaCalendario();
         }
 
+        //CARGA LAS MEDIDAS EN LA TABLA MEDIDAS Y PONE A NEGRITA LAS FECHAS DEL CALENDARIO CON MEDIDAS
         public void MedidaView_Load()
         {
-            //muestra todas las medidas en la tabla
             List<string[]> medida = Program.diarioEntrenamiento.ObtenerAtributosMedida();
             if (medida.Count != 0)
             {
@@ -73,14 +92,12 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     this.TablaMedidasDataGridView.Rows.Add(medida[i]);
                 }
             }
-
             negritaCalendario();
-
         }
 
+        //CARGA LOS CIRCUITOS EN LA TABLA CIRCUITOS
         public void CircuitoView_Load()
         {
-            //muestra todos los circuitos en la tabla
             List<string[]> circuitos = Program.diarioEntrenamiento.ObtenerAtributosCircuito();
             if (circuitos.Count != 0)
             {
@@ -89,9 +106,9 @@ namespace Proyecto2.View.DiarioEntrenamiento
                     this.TablaCircuitoDataGridView.Rows.Add(circuitos[i]);
                 }
             }
-
         }
 
+        //PONE A NEGRITA LAS FECHAS DEL CALENDARIO QUE ESTAN GUARDADAS EN EL DIARIO DE ENTRENAMIENTO
         private void negritaCalendario()
         {
             //marca en negrita los dias con diaEntrenamiento
@@ -103,7 +120,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.CalendarioMonthCalendar.UpdateBoldedDates();
         }
 
-        //BOTON MOSTRAR TODO QUITA LOS FILTROS A LA TABLA
+        //EVENTO QUE MUESTRA TODOS LOS DATOS DE LAS TABLAS AL PULSAR EL BOTON X (SE OCULTA UNA VEZ PULSADO)
         private void MostrarTodoButton_Click(object sender, EventArgs e)
         {
             this.TablaActividadDataGridView.Rows.Clear();
@@ -125,7 +142,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.MostrarTodoButton.Visible = false;
         }
 
-        //BOTON ELIMINAR DE LA TABLA ACTIVIDAD ELIMINAR ACTIVIDAD DE DIA ENTRENAMIENTO EN DIARIO ENTRENAMIENTO
+        //EVENTO QUE ELIMINA FILAS DE LA TABLA ACTIVIDAD AL PULSAR EL BOTON PAPELERA DE LA ULTIMA COLUMNA DE CADA FILA
         private void TablaActividadDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -153,9 +170,9 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
+        //ELIMINA LA NEGRITA DE LAS FECHAS DEL CALENDARIO QUE YA NO ESTAN EN EL DIARIO DE ENTRENAMIENTO
         private void borrarNegrita(DateTime fecha)
         {
-            //comprobacion si quedan actividades ese dia y sigue en negrita
             bool comprobacionMasActividadFecha = false;
             bool comprobacionMedidasFecha = false;
             foreach (var diario in Program.diarioEntrenamiento.DiarioEntrenamientos)
@@ -176,7 +193,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
-        //BOTON ELIMINAR DE LA TABLA MEDIDA 
+        //EVENTO QUE ELIMINA FILAS DE LA TABLA MEDIDAS AL PULSAR EL BOTON PAPELERA DE LA ULTIMA COLUMNA DE CADA FILA
         private void TablaMedidaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -203,7 +220,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
-        //BOTON ELIMINAR DE LA TABLA CIRCUITO
+        //EVENTO QUE ELIMINA FILAS DE LA TABLA CIRCUITO AL PULSAR EL BOTON PAPELERA DE LA ULTIMA COLUMNA DE CADA FILA SI EL CIRCUITO NO ESTA ASOCIADO CON NINGUNA ACTIVIDAD
         private void TablaCircuitoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -232,14 +249,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
                         }
                         else{
                         Core.Circuito circuitoSeleccionado = null;
-                        foreach (var circuito in Program.diarioEntrenamiento.circuitos)
+                        foreach (var circuito in Program.diarioEntrenamiento.Circuitos)
                         {
                             if (circuito.Id.Equals(id))
                             {
                                 circuitoSeleccionado = circuito;
                             }
                         }
-                        Program.diarioEntrenamiento.circuitos.Remove(circuitoSeleccionado);
+                        Program.diarioEntrenamiento.Circuitos.Remove(circuitoSeleccionado);
                         senderGrid.Rows.RemoveAt(e.RowIndex);
 
                     }
@@ -247,7 +264,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             }
         }
 
-        //FECHA SELECCIONADA EN CALENDARIO MUESTRA ACTIVIDADES MEDIDAS Y CIRCUITOS ASOCIADOS
+        //EVENTO QUE FILTRA LAS TABLAS SEGUN LOS ELEMENTOS DEL DIARIO DE ENTRENAMIENTOS EXISTENTES EN EL DIA SELECCIONADO
         private void CalendarioMonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
             DateTime fechaSeleccionada = this.CalendarioMonthCalendar.SelectionStart;
@@ -295,7 +312,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             this.TablaMedidasDataGridView.Refresh();
         }
 
-        //FOTO EN BOTONES ELIMINAR TABLA ACTIVIDAD
+        //EVENTO QUE CARGA LA IMAGEN PAPELERA EN LA ULTIMA COLUMNA DE CADA FILA DE LAS TABLAS
         private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             var senderGrid = (DataGridView)sender;

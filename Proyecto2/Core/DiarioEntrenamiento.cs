@@ -1,20 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml.Linq;
+using System.Linq;
+
 
 namespace Proyecto2.Core
 {
     public class DiarioEntrenamiento
     {
         public Dictionary<DiaEntrenamiento, Medida> DiarioEntrenamientos { get; set; }
-        public List<Core.Circuito> circuitos { get; set; }
+        public List<Core.Circuito> Circuitos { get; set; }
 
         public DiaEntrenamiento DiaEntrenamiento { get; set; }
 
         public DiarioEntrenamiento()
         {
             DiarioEntrenamientos = new Dictionary<DiaEntrenamiento, Medida>();
-            circuitos = new List<Circuito>();
+            Circuitos = new List<Circuito>();
         }
 
         public DiarioEntrenamiento(DiaEntrenamiento diaEntrenamiento, Medida medidas)
@@ -48,9 +52,9 @@ namespace Proyecto2.Core
         //AÑADE UN DIA DE ENTRENAMIENTO AL DIARIO DE ENTRENAMIENTOS
         public void AñadirCircuito(Circuito circuito)
         {
-            if (!this.circuitos.Contains(circuito))
+            if (!this.Circuitos.Contains(circuito))
             {
-                this.circuitos.Add(circuito);
+                this.Circuitos.Add(circuito);
             }
             else
             {
@@ -174,7 +178,7 @@ namespace Proyecto2.Core
 
                 if (medida != null)
                 {
-                    atributosMedida.Add(new string[] { medida.Peso.ToString()+ " Kg", medida.CircunferenciaAbdominal.ToString() + " cm", medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
+                    atributosMedida.Add(new string[] { medida.Peso.ToString() + " Kg", medida.CircunferenciaAbdominal.ToString() + " cms", medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt") });
                 }
 
             }
@@ -186,7 +190,7 @@ namespace Proyecto2.Core
         {
             List<string[]> atributos = new List<string[]>();
 
-            foreach (var circuito in this.circuitos)
+            foreach (var circuito in this.Circuitos)
             {
                 atributos.Add(new string[] { circuito.Lugar.ToString(), circuito.Distancia.ToString() + " Km", circuito.Notas.ToString(), circuito.Url.ToString(), circuito.Id.ToString() });
 
@@ -219,7 +223,7 @@ namespace Proyecto2.Core
                 if (celda.Key.Fecha.Date.Equals(fecha.Date)) {
                     foreach (var actividad in celda.Key.actividades)
                     {
-                        atributos.Add(new string[] { actividad.Distancia.ToString(), actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " m", actividad.Id.ToString() });
+                        atributos.Add(new string[] { actividad.Distancia.ToString() + " Km", actividad.Tiempo.ToString(), actividad.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt"), actividad.Circuito.Lugar + " - " + actividad.Circuito.Distancia + " Km", actividad.Id.ToString() });
                     }
                 }
             }
@@ -236,7 +240,7 @@ namespace Proyecto2.Core
                 if (celda.Key.Fecha.Date.Equals(fecha.Date) && celda.Value != null)
                 {
                     Medida medida = celda.Value;
-                    atributos = new string[] { medida.Peso.ToString(), medida.CircunferenciaAbdominal.ToString(), medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt")};
+                    atributos = new string[] { medida.Peso.ToString() + "Kg", medida.CircunferenciaAbdominal.ToString() + " cms", medida.Notas, celda.Key.Fecha.Date.ToString("dd-MM-yyyy tt")};
                    
                 }
             }
@@ -272,6 +276,111 @@ namespace Proyecto2.Core
                 } 
             }
             return str.ToString();
+        }
+        
+        public void crearXML(string nombreArchivo)
+        {
+            var raiz = new XElement("DiarioEntrenamiento");
+            
+            foreach (var x in DiarioEntrenamientos)
+            {
+                DateTime diaActual = x.Key.Fecha.Date;
+                raiz.Add(new XElement("Dia",
+                    new XElement("dia",diaActual.Day),
+                    new XElement("mes", diaActual.Month),
+                    new XElement("año", diaActual.Year)));
+
+                if (x.Key != null)
+                {
+                    raiz.Elements("Dia").Last().Add(x.Key.toXML());
+                }
+                
+                if (x.Value != null)
+                {
+                    raiz.Elements("Dia").Last().Add(x.Value.toXML());
+                }
+                else
+                {
+                    raiz.Elements("Dia").Last().Add(new XElement("Medida"));
+                }
+            }
+            raiz.Add(new XElement("Circuitos"));
+            foreach (var circ in Circuitos)
+            {
+                raiz.Element("Circuitos").Add(circ.toXML());
+            }
+            
+            raiz.Save(nombreArchivo);
+            
+        }
+        
+        public void cargarBaseUsandoXML(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                XElement leer = XElement.Load(nombreArchivo);
+                
+                foreach (var dia in leer.Elements("Dia"))
+                {
+
+                    DiaEntrenamiento diaEntrenam = new DiaEntrenamiento(
+                        (int) dia.Element("dia"),
+                        (int) dia.Element("mes"), (int) dia.Element("año"));
+
+                    foreach (var act in dia.Element("Actividades").Elements("Actividad"))
+                    {
+                        Tiempo tempAñadir = new Tiempo(
+                            int.Parse(act.Element("Tiempo").Element("Minutos").Value),
+                            int.Parse(act.Element("Tiempo").Element("Segundos").Value)
+                            );
+                        Circuito circAñadir = new Circuito(
+                            int.Parse(act.Element("Circuito").Element("Id").Value),
+                            double.Parse(act.Element("Circuito").Element("Distancia").Value),
+                            act.Element("Circuito").Element("Lugar").Value,
+                            act.Element("Circuito").Element("Url").Value,
+                            act.Element("Circuito").Element("Nota").Value);
+                        
+                        Actividad actAñadir = new Actividad(
+                            int.Parse(act.Element("Id").Value),
+                            tempAñadir,
+                            double.Parse(act.Element("Distancia").Value),
+                            circAñadir,
+                            act.Element("Nota").Value
+                            );
+                        diaEntrenam.AñadirActividad(actAñadir);
+                    }
+
+                    if (dia.Element("Medida").HasElements)
+                    {
+                        XElement med = dia.Element("Medida");
+                        
+                        Medida medidas = new Medida(
+                            Double.Parse((string) med.Element("Peso")),
+                            Double.Parse((string) med.Element("Circunferencia")),
+                            (string) med.Element("Nota"));
+
+                        DiarioEntrenamientos.Add(diaEntrenam, medidas);
+
+                    }
+                    else
+                    {
+                        DiarioEntrenamientos.Add(diaEntrenam, null);
+                    }
+
+                }
+
+                foreach (var circ in leer.Element("Circuitos").Elements("Circuito"))
+                {
+                    Circuito circAñadir = new Circuito(
+                        int.Parse(circ.Element("Id").Value),
+                        double.Parse(circ.Element("Distancia").Value),
+                        circ.Element("Lugar").Value,
+                        circ.Element("Url").Value,
+                        circ.Element("Nota").Value);
+                    
+                    Circuitos.Add(circAñadir);
+                }
+            }
         }
     }
 }

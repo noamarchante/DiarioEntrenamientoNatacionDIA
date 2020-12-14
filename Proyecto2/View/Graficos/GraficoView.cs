@@ -126,7 +126,7 @@ namespace Proyecto2.View.Graficos
             this.AnhoMedidasDateTimePicker.TabIndex = 15;
             this.AnhoMedidasDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
             this.AnhoMedidasDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
-            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.anhoMedidasDateTimePicker_ValueChanged);
+            this.AnhoMedidasDateTimePicker.ValueChanged += new System.EventHandler(this.AnhoMedidasDateTimePicker_ValueChanged);
 
 
             this.DerechaSuperiorPanel.Controls.Add(PesoCircunferenciaAbdominalChart);
@@ -197,7 +197,7 @@ namespace Proyecto2.View.Graficos
             this.AnhoPesoDateTimePicker.TabIndex = 14;
             this.AnhoPesoDateTimePicker.MaxDate = DateTime.Now.AddYears(10);
             this.AnhoPesoDateTimePicker.MinDate = DateTime.Now.AddYears(-DateTime.Now.Year + 2000);
-            this.AnhoPesoDateTimePicker.ValueChanged += new System.EventHandler(this.AnualDateTimePicker_ValueChanged);
+            this.AnhoPesoDateTimePicker.ValueChanged += new System.EventHandler(this.AnualPesoDateTimePicker_ValueChanged);
 
             //CONFIGURACION GRAFICO 
             this.PesoChart.Dock = DockStyle.Top;

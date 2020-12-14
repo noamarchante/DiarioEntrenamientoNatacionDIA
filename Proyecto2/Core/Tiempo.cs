@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Proyecto2.Core
 {
@@ -27,6 +28,15 @@ namespace Proyecto2.Core
             StringBuilder str = new StringBuilder();
             str.Append("00:").Append(this.Minutos).Append(":").Append(this.Segundos).Append("\n");
             return str.ToString();
+        }
+        
+        public XElement toXML()
+        {
+            XElement toRet = new XElement("Tiempo",
+                new XElement("Minutos",Minutos),
+                new XElement("Segundos", Segundos));
+
+            return toRet;
         }
     }
 }

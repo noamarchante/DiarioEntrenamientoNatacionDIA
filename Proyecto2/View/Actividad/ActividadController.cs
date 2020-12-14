@@ -18,17 +18,18 @@ namespace Proyecto2.View.Actividad
             this.diarioEntrenamientoView = diarioEntrenamiento;
         }
 
+        //EVENTO QUE SE EJECUTA AL INICIAR LA VISTA CARGANDO LOS DATOS LOS DATOS BASE DEL FORMULARIO
         private void ActividadView_Load(object sender, EventArgs e)
         {
-            if (Program.diarioEntrenamiento.circuitos.Count == 0)
+            if (Program.diarioEntrenamiento.Circuitos.Count == 0)
             {
                 this.CircuitoComboBox.Enabled = false;
             }
             else
             {
-                foreach (var circuito in Program.diarioEntrenamiento.circuitos)
+                foreach (var circuito in Program.diarioEntrenamiento.Circuitos)
                 {
-                this.CircuitoComboBox.Items.Add(circuito.Lugar + " - " + circuito.Distancia + " m");
+                this.CircuitoComboBox.Items.Add(circuito.Lugar + " - " + circuito.Distancia + " Km");
                     
                 }
                 this.CircuitoComboBox.SelectedIndex = 0;
@@ -37,10 +38,10 @@ namespace Proyecto2.View.Actividad
             }
         }
 
-        //EL BOTON INSERTAR INSERTA UNA ACTIVIDAD
+        //EVENTO QUE INSERTA UNA ACTIVIDAD AL PULSAR EL BOTON INSERTAR
         private void InsertarActividadButton_Click(object sender, EventArgs e)
         {
-            if (Program.diarioEntrenamiento.circuitos.Count == 0)
+            if (Program.diarioEntrenamiento.Circuitos.Count == 0)
             {
                 this.InsertarButton.Enabled = false;
             }
@@ -50,7 +51,7 @@ namespace Proyecto2.View.Actividad
                 diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
                 if (Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(diaEntrenamiento.Fecha).Key == null)
                 {
-                    diaEntrenamiento.AñadirActividad(new Core.Actividad(diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
+                    diaEntrenamiento.AñadirActividad(new Core.Actividad(diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.Circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
                     diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
                     Program.diarioEntrenamiento.AñadirDiaEntrenamiento(diaEntrenamiento);
                 }
@@ -59,7 +60,7 @@ namespace Proyecto2.View.Actividad
                     var diaEntrenamientoSeleccionado = Program.diarioEntrenamiento.ObtenerDiaEntrenamientoPorFecha(this.diaEntrenamiento.Fecha);
                     Program.diarioEntrenamiento.EliminarDia(diaEntrenamientoSeleccionado.Key);
                     this.diaEntrenamiento = diaEntrenamientoSeleccionado.Key;
-                    this.diaEntrenamiento.AñadirActividad(new Core.Actividad(this.diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
+                    this.diaEntrenamiento.AñadirActividad(new Core.Actividad(this.diaEntrenamiento.actividades.Count, tiempo, (Double)this.DistanciaNumericUpDown.Value, Program.diarioEntrenamiento.Circuitos[this.CircuitoComboBox.SelectedIndex], this.NotaTextBox.Text));
                     this.diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
                     if (diaEntrenamientoSeleccionado.Value != null)
                     {
@@ -77,7 +78,8 @@ namespace Proyecto2.View.Actividad
                 this.Close();
             }
         }
-        //EL BOTON VOLVER CIERRA LA VENTANA DEL FORMULARIO
+
+        //EVENTO QUE CIERRA LA VENTANA AL PULSAR EL BOTON VOLVER
         private void VolverButton_Click(object sender, EventArgs e)
         {
             this.Close();

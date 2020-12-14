@@ -17,7 +17,7 @@ namespace Proyecto2.View.Medidas
             this.diarioEntrenamientoView = diarioEntrenamiento;
         }
 
-        //EL BOTON INSERTAR, INSERTA UNA MEDIDA
+        //EVENTO QUE INSERTA MEDIDA AL PULSAR EL BOTON INSERTAR
         private void InsertarMedidaButton_Click(object sender, EventArgs e)
         {
             diaEntrenamiento.Fecha = this.FechaDateTimePicker.Value;
@@ -43,7 +43,7 @@ namespace Proyecto2.View.Medidas
 
         }
 
-        //EL BOTON VOLVER CIERRA LA VENTANA DEL FORMULARIO
+        //EVENTO QUE CIERRA EL FORMULARIO AL PULSAR EL BOTON VOLVER
         private void VolverButton_Click(object sender, EventArgs e)
         {
             this.Close();

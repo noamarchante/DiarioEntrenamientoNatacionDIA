@@ -20,10 +20,12 @@ namespace Proyecto2
         [STAThread]
         static void Main()
         {
+            diarioEntrenamiento.cargarBaseUsandoXML("DiarioEntrenamiento.xml");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DiarioEntrenamientoView());
             NativeMethods.AllocConsole();
+            diarioEntrenamiento.crearXML("DiarioEntrenamiento.xml");
         }
     }
 }

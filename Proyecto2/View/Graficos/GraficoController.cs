@@ -9,32 +9,32 @@ namespace Proyecto2.View.Graficos
 {
     public partial class GraficoView : Form
     {
-        private string[] meses = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+        private string[] mesesNumeros = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
         public GraficoView()
         {
             Build();
         }
 
+        //EVENTO QUE MUESTRA LOS VALORES DE LA VENTANA GRAFICOS EN EL AÑO ACTUAL CUANDO ESTA SE ABRE
         private void GraficoView_Load(object sender, EventArgs e)
         {
 
             ValoresGraficoMinutoDistancia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoActividadesDateTimePicker.Value));
             ValoresGraficoPesoCircunferencia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
-            PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value));
+            ValoresGraficoPesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value));
         }
 
-            //CAMBIA LOS VALORES DEL GRAFICO DE ACTIVIDAD POR AÑO
-            private void anhoActividadesDateTimePicker_ValueChanged(Object sender, EventArgs e)
+        //EVENTO QUE MODIFICA LOS VALORES DEL GRAFICO MINUTOS-DISTANCIA EN FUNCION DE LA FECHA SELECCIONADA
+        private void anhoActividadesDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
             this.MinutoDistanciaChart.Invalidate();
             ValoresGraficoMinutoDistancia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoActividadesDateTimePicker.Value));
             this.MinutoDistanciaChart.Update();
             this.MinutoDistanciaChart.Refresh();
-
         }
 
-        //ESTABLECE LOS VALORES DEL GRAFICO MINUTOS DISTANCIA
+        //ESTABLECE LOS VALORES A MOSTRAR EN EL GRAFICO MINUTOS-DISTANCIA
         private void ValoresGraficoMinutoDistancia(Dictionary<DiaEntrenamiento, Medida> diarioPorAño)
         {
             Dictionary<DiaEntrenamiento, Medida> diario = diarioPorAño;
@@ -42,9 +42,9 @@ namespace Proyecto2.View.Graficos
             List<double> distanciaValores = new List<double>();
             List<Core.Actividad> actividades = new List<Core.Actividad>();
 
-            for (int i = 0; i < meses.Length; i++)
+            for (int i = 0; i < mesesNumeros.Length; i++)
             {
-                actividades = ActividadesMes(diario, meses[i]);
+                actividades = ActividadesMes(diario, mesesNumeros[i]);
                 minutosValores.Add(MinutosMes(actividades));
                 distanciaValores.Add(DistanciaMes(actividades));
             }
@@ -94,7 +94,7 @@ namespace Proyecto2.View.Graficos
             return minutos;
         }
 
-        //DEVUELVE LA DISTANCIA EN UN MES DE ACTIVIDADES
+        //DEVUELVE LAS DISTANCIAS DEL MES EN ACTIVIDADES
         private double DistanciaMes(List<Core.Actividad> actividades)
         {
             double distancia = 0;
@@ -106,18 +106,16 @@ namespace Proyecto2.View.Graficos
             return distancia;
         }
 
-        //CAMBIA LOS VALORES DEL GRAFICO DE MEDIDAS POR AÑO
-        private void anhoMedidasDateTimePicker_ValueChanged(Object sender, EventArgs e)
+        //EVENTO QUE MODIFICA LOS VALORES DEL GRAFICO PESO-CIRCUNFERENCIA ABDOMINAL EN FUNCION DE LA FECHA SELECCIONADA
+        private void AnhoMedidasDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
-
             this.PesoCircunferenciaAbdominalChart.Invalidate();
             ValoresGraficoPesoCircunferencia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
             this.PesoCircunferenciaAbdominalChart.Update();
             this.PesoCircunferenciaAbdominalChart.Refresh();
-
         }
 
-        //ESTABLECE LOS VALORES DEL GRAFICO PESO CIRCUNFERENCIA ABDOMINAL
+        //ESTABLECE LOS VALORES A MOSTRAR EN EL GRAFICO PESO-CIRCUNFERENCIA ABDOMINAL
         private void ValoresGraficoPesoCircunferencia(Dictionary<DiaEntrenamiento, Medida> diarioPorAño)
         {
             Dictionary<DiaEntrenamiento, Medida> diario = diarioPorAño;
@@ -125,9 +123,9 @@ namespace Proyecto2.View.Graficos
             List<double> circunferenciaValores = new List<double>();
             List<Core.Medida> medidas = new List<Core.Medida>();
 
-            for (int i = 0; i < meses.Length; i++)
+            for (int i = 0; i < mesesNumeros.Length; i++)
             {
-                medidas = MediasMes(diario, meses[i]);
+                medidas = MedidasMes(diario, mesesNumeros[i]);
                 pesoValores.Add(PesoMes(medidas));
                 circunferenciaValores.Add(CircunferenciaMes(medidas));
             }
@@ -141,17 +139,17 @@ namespace Proyecto2.View.Graficos
         }
 
         //DEVUELVE LAS MEDIDAS DE UN MES
-        private List<Core.Medida> MediasMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
+        private List<Core.Medida> MedidasMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
         {
-            List<Core.Medida> medidasmes = new List<Core.Medida>();
+            List<Core.Medida> medidasMes = new List<Core.Medida>();
             foreach (var dia in diario)
             {
                 if (Convert.ToInt32(dia.Key.Fecha.Date.ToString("M tt")) == Convert.ToInt32(mes))
                 {
-                    medidasmes.Add(dia.Value);
+                    medidasMes.Add(dia.Value);
                 }
             }
-            return medidasmes;
+            return medidasMes;
         }
 
         //DEVUELVE EL PESO EN UN MES DE MEDIDAS
@@ -198,26 +196,13 @@ namespace Proyecto2.View.Graficos
             return convertCircunferencia;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //DEVUELVE EL PRIMER PESO DE CADA MES
-        private void AnualDateTimePicker_ValueChanged(Object sender, EventArgs e)
+        //EVENTO QUE MODIFICA LOS VALORES DEL GRAFICO PESO ANUAL EN FUNCION DE LA FECHA SELECCIONADA
+        private void AnualPesoDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
             this.PesoChart.Invalidate();
             this.AnualDataGridView.Rows.Clear();
 
-            PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value.Date));
+            ValoresGraficoPesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value.Date));
 
             this.PesoChart.Update();
             this.PesoChart.Refresh();
@@ -225,35 +210,26 @@ namespace Proyecto2.View.Graficos
             this.AnualDataGridView.Refresh();
 
         }
-        private void PesoAnual(Dictionary<DiaEntrenamiento, Medida> diario)
+
+        //ESTABLECE LOS VALORES A MOSTRAR EN EL GRAFICO PESO ANUAL
+        private void ValoresGraficoPesoAnual(Dictionary<DiaEntrenamiento, Medida> diario)
         {
-            List<double> peso = new List<double>();
-            Dictionary<DateTime, double> mesesguardados = new Dictionary<DateTime, double>();
+            List<double> pesos = new List<double>();
+            Dictionary<DateTime, double> mesesGuardados = new Dictionary<DateTime, double>();
             List<Core.Medida> medidas = new List<Medida>();
-            for (int i = 0; i < meses.Length; i++)
+            for (int i = 0; i < mesesNumeros.Length; i++)
             {
-                medidas = PesoMes(diario, meses[i]);
-                peso.Add(pesoValores(medidas));
+                medidas = MedidasMes(diario, mesesNumeros[i]);
+                pesos.Add(PesoValores(medidas));
             }
-            this.PesoChart.Values3 = peso.ToArray();
+            this.PesoChart.Values3 = pesos.ToArray();
             this.PesoChart.Draw2();
-            this.TablaAnualView_Load(peso);
+            this.TablaAnualDataGridView_Load(pesos);
 
         }
 
-        private List<Core.Medida> PesoMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
-        {
-            List<Core.Medida> medidasmes = new List<Core.Medida>();
-            foreach (var dia in diario)
-            {
-                if (Convert.ToInt32(dia.Key.Fecha.Date.ToString("M tt")) == Convert.ToInt32(mes))
-                {
-                    medidasmes.Add(dia.Value);
-                }
-            }
-            return medidasmes;
-        }
-        private double pesoValores(List<Core.Medida> medidas)
+        //DEVUELVE LA MEDIA DEL PESO EN UN MES DE MEDIDAS
+        private double PesoValores(List<Core.Medida> medidas)
         {
             double peso = 0;
             bool comprobacion = false;
@@ -278,16 +254,15 @@ namespace Proyecto2.View.Graficos
             return peso;
         }
 
-        public void TablaAnualView_Load(List<double> valores)
+        //ESTABLECE LOS VALORES EN LA TABLA DE PESOS ANUALES
+        public void TablaAnualDataGridView_Load(List<double> pesos)
         {
-            //muestra todas las actividades en la tabla
-
-            if (valores.Count != 0)
+            if (pesos.Count != 0)
             {
-                for (int i = 0; i < meses.Count(); i++)
+                for (int i = 0; i < mesesNumeros.Count(); i++)
                 {
-                    String[] insert = new string[] { mesesLetras[i], valores[i].ToString() + " Kg" };
-                    AnualDataGridView.Rows.Add(insert);
+                    String[] valores = new string[] { mesesLetras[i], pesos[i].ToString() + " Kg"};
+                    AnualDataGridView.Rows.Add(valores);
                 }
             }
         }

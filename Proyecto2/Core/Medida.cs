@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Proyecto2.Core
 {
@@ -22,6 +23,15 @@ namespace Proyecto2.Core
             str.Append(this.Peso).Append(this.CircunferenciaAbdominal).Append(this.Notas);
 
             return str.ToString();
+        }
+        
+        public XElement toXML(){
+        
+            XElement toRet = new XElement("Medida",
+                new XElement("Peso",Peso),
+                new XElement("Circunferencia",CircunferenciaAbdominal),
+                new XElement("Nota", Notas));
+            return toRet;
         }
     }
 }

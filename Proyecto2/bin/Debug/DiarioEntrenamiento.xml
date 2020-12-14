@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DiarioEntrenamiento>
+  <Dia>
+    <dia>11</dia>
+    <mes>11</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>10</Minutos>
+          <Segundos>15</Segundos>
+        </Tiempo>
+        <Distancia>1</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>DIFICULTAD: principiante</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Minutos/distancia por debajo de la media</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>17</dia>
+    <mes>11</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>16</Minutos>
+          <Segundos>20</Segundos>
+        </Tiempo>
+        <Distancia>22</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>22</Distancia>
+          <Lugar>Centro deportivo Eiroas</Lugar>
+          <Url>DIFICULTAD: difícil</Url>
+          <Nota>https://www.beone.es</Nota>
+        </Circuito>
+        <Nota>Record en minutos/distancia</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>3</dia>
+    <mes>12</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>30</Minutos>
+          <Segundos>12</Segundos>
+        </Tiempo>
+        <Distancia>85</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Crol</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>4</dia>
+    <mes>12</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>16</Minutos>
+          <Segundos>30</Segundos>
+        </Tiempo>
+        <Distancia>5</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>DIFICULTAD: principiante</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Controlar respiración</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>15</dia>
+    <mes>10</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>34</Minutos>
+          <Segundos>0</Segundos>
+        </Tiempo>
+        <Distancia>4</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Espalda</Nota>
+      </Actividad>
+      <Actividad>
+        <Id>1</Id>
+        <Tiempo>
+          <Minutos>8</Minutos>
+          <Segundos>0</Segundos>
+        </Tiempo>
+        <Distancia>2</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>DIFICULTAD: principiante</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>braza</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>17</dia>
+    <mes>9</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>9</Minutos>
+          <Segundos>12</Segundos>
+        </Tiempo>
+        <Distancia>124</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Mariposa</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida>
+      <Peso>59</Peso>
+      <Circunferencia>30</Circunferencia>
+      <Nota>Peso estándar</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>12</dia>
+    <mes>8</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>3</Minutos>
+          <Segundos>0</Segundos>
+        </Tiempo>
+        <Distancia>6</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>DIFICULTAD: principiante</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Ejercicios de respiración</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>16</dia>
+    <mes>7</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>66</Minutos>
+          <Segundos>40</Segundos>
+        </Tiempo>
+        <Distancia>126</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>22</Distancia>
+          <Lugar>Centro deportivo Eiroas</Lugar>
+          <Url>DIFICULTAD: difícil</Url>
+          <Nota>https://www.beone.es</Nota>
+        </Circuito>
+        <Nota>Esfuerzo</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>12</dia>
+    <mes>6</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>16</Minutos>
+          <Segundos>20</Segundos>
+        </Tiempo>
+        <Distancia>79</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Crol</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida>
+      <Peso>56</Peso>
+      <Circunferencia>70</Circunferencia>
+      <Nota>Peso estándar</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>21</dia>
+    <mes>5</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>8</Minutos>
+          <Segundos>8</Segundos>
+        </Tiempo>
+        <Distancia>888</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Crol</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida>
+      <Peso>69</Peso>
+      <Circunferencia>79</Circunferencia>
+      <Nota>Ligero sobrepeso</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>2</dia>
+    <mes>3</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>3</Minutos>
+          <Segundos>3</Segundos>
+        </Tiempo>
+        <Distancia>2</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>DIFICULTAD: principiante</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Comienzo de entreno</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>19</dia>
+    <mes>2</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>23</Minutos>
+          <Segundos>0</Segundos>
+        </Tiempo>
+        <Distancia>19</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>22</Distancia>
+          <Lugar>Centro deportivo Eiroas</Lugar>
+          <Url>DIFICULTAD: difícil</Url>
+          <Nota>https://www.beone.es</Nota>
+        </Circuito>
+        <Nota>Práctica</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>18</dia>
+    <mes>1</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>9</Minutos>
+          <Segundos>0</Segundos>
+        </Tiempo>
+        <Distancia>52</Distancia>
+        <Circuito>
+          <Id>1</Id>
+          <Distancia>10</Distancia>
+          <Lugar>Complejo deportivo Oira</Lugar>
+          <Url>DIFICULTAD: media</Url>
+          <Nota>http://www.deportesourense.com</Nota>
+        </Circuito>
+        <Nota>Mariposa</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
+  <Dia>
+    <dia>12</dia>
+    <mes>2</mes>
+    <año>2020</año>
+    <Actividades />
+    <Medida>
+      <Peso>74</Peso>
+      <Circunferencia>73</Circunferencia>
+      <Nota>Sobrepeso</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>18</dia>
+    <mes>3</mes>
+    <año>2020</año>
+    <Actividades />
+    <Medida>
+      <Peso>72</Peso>
+      <Circunferencia>73</Circunferencia>
+      <Nota>Ligero sobrepeso</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>23</dia>
+    <mes>4</mes>
+    <año>2020</año>
+    <Actividades />
+    <Medida>
+      <Peso>70</Peso>
+      <Circunferencia>72</Circunferencia>
+      <Nota>Ligero sobrepeso</Nota>
+    </Medida>
+  </Dia>
+  <Circuitos>
+    <Circuito>
+      <Id>2</Id>
+      <Distancia>5</Distancia>
+      <Lugar>Complejo polideportivo de los Remedios</Lugar>
+      <Url>DIFICULTAD: principiante</Url>
+      <Nota>http://www.deportesourense.com</Nota>
+    </Circuito>
+    <Circuito>
+      <Id>1</Id>
+      <Distancia>10</Distancia>
+      <Lugar>Complejo deportivo Oira</Lugar>
+      <Url>DIFICULTAD: media</Url>
+      <Nota>http://www.deportesourense.com</Nota>
+    </Circuito>
+    <Circuito>
+      <Id>2</Id>
+      <Distancia>22</Distancia>
+      <Lugar>Centro deportivo Eiroas</Lugar>
+      <Url>DIFICULTAD: difícil</Url>
+      <Nota>https://www.beone.es</Nota>
+    </Circuito>
+  </Circuitos>
+</DiarioEntrenamiento>

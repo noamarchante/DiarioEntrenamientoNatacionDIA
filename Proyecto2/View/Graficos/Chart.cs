@@ -18,10 +18,10 @@ namespace Proyecto2.View.Graficos
         public Chart(int width, int height)
         {
 
-            this.values = new List<int>();
-            this.values2 = new List<double>();
-            this.values3 = new List<double>();
-            this.values4 = new List<double>();
+            this.values = new List<int>();//GRAFICO MINUTOS-DISTANCIA
+            this.values2 = new List<double>(); //GRAFICO MINUTOS-DISTANCIA
+            this.values3 = new List<double>(); //GRAFICO PESO ANUAL Y GRAFICO PESO-CIRCUNFERENCIA ABDOMINAL
+            this.values4 = new List<double>(); //GRAFICO PESO-CIRCUNFERENCIA ABDOMINAL
             this.Width = width;
             this.Height = height;
             this.FrameWidth = 50;
