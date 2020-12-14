@@ -19,7 +19,7 @@ namespace Proyecto2.View.Graficos
         {
 
             this.values = new List<int>();
-            this.values2 = new List<int>();
+            this.values2 = new List<double>();
             this.values3 = new List<double>();
             this.values4 = new List<double>();
             this.Width = width;
@@ -60,10 +60,10 @@ namespace Proyecto2.View.Graficos
                 new Pen(this.BackColor),
                 new Rectangle(0, 0, this.Width, this.Height));
             this.DrawAxis();
-
             this.DrawData3();
             this.DrawLegends();
         }
+
         public void Draw3()
         {
             this.grf.Clear(Color.White);
@@ -71,7 +71,17 @@ namespace Proyecto2.View.Graficos
                 new Pen(this.BackColor),
                 new Rectangle(0, 0, this.Width, this.Height));
             this.DrawAxis();
+            this.DrawData3();
+            this.DrawLegends();
+        }
 
+        public void Draw4()
+        {
+            this.grf.Clear(Color.White);
+            this.grf.DrawRectangle(
+                new Pen(this.BackColor),
+                new Rectangle(0, 0, this.Width, this.Height));
+            this.DrawAxis();
             this.DrawData3();
             this.DrawData4();
             this.DrawLegends();
@@ -167,9 +177,9 @@ namespace Proyecto2.View.Graficos
         void DrawData2()
         {
             int numValues = this.values2.Count;
-            var p = this.DataOrgPosition2;
+            var p = this.DataOrgPosition;
             int xGap = this.GraphWidth / (numValues + 1);
-            int baseLine = this.DataOrgPosition2.Y;
+            int baseLine = this.DataOrgPosition.Y;
 
 
             this.NormalizeData2();
@@ -180,7 +190,7 @@ namespace Proyecto2.View.Graficos
                                                         tag,
                                                         this.DataFont).Width;
                 var nextPoint = new Point(
-                    p.X + xGap, baseLine - this.normalizedData2[i]
+                    p.X + xGap, baseLine - Convert.ToInt32(this.normalizedData2[i])
                 );
 
                 if (this.Type == ChartType.Bars)
@@ -215,7 +225,7 @@ namespace Proyecto2.View.Graficos
                     tag,
                     this.DataFont).Width;
                 var nextPoint = new Point(
-                    p.X + xGap, baseLine - (int)this.normalizedData3[i]
+                    p.X + xGap, baseLine - Convert.ToInt32(this.normalizedData3[i])
                 );
 
                 if (this.Type == ChartType.Bars)
@@ -235,6 +245,7 @@ namespace Proyecto2.View.Graficos
 
             }
         }
+
         void DrawData4()
         {
 
@@ -253,7 +264,7 @@ namespace Proyecto2.View.Graficos
                     tag,
                     this.DataFont).Width;
                 var nextPoint = new Point(
-                    p.X + xGap, baseLine - (int)this.normalizedData4[i]
+                    p.X + xGap, baseLine - Convert.ToInt32(this.normalizedData4[i])
                 );
 
                 if (this.Type == ChartType.Bars)
@@ -273,7 +284,6 @@ namespace Proyecto2.View.Graficos
 
             }
         }
-
 
         void DrawAxis()
         {
@@ -303,17 +313,32 @@ namespace Proyecto2.View.Graficos
         void NormalizeData()
         {
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
-            int maxValue = this.values.Max();
-            if (maxValue == 0)
+            double maxValue2 = this.values2.Max();
+            double maxValue1 = Convert.ToDouble(this.values.Max());
+            double maxValue;
+
+            if (maxValue1 > maxValue2)
+            {
+                maxValue = maxValue1;
+            }
+            else if (maxValue2 > maxValue1)
+            {
+                maxValue = maxValue2;
+            }
+            else if (maxValue1 == 0 && maxValue2 == 0)
             {
                 maxValue = 1;
+            }
+            else
+            {
+                maxValue = maxValue1;
             }
             this.normalizedData = this.values.ToArray();
 
             for (int i = 0; i < this.normalizedData.Length; ++i)
             {
                 this.normalizedData[i] =
-                                    (this.values[i] * maxHeight) / maxValue;
+                                    Convert.ToInt32(this.values[i] * maxHeight / maxValue);
             }
 
             return;
@@ -323,9 +348,10 @@ namespace Proyecto2.View.Graficos
         {
 
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
-            int maxValue2 = this.values2.Max();
-            int maxValue1 = this.values.Max();
-            int maxValue = 1;
+            double maxValue2 = this.values2.Max();
+            double maxValue1 = Convert.ToDouble(this.values.Max());
+            double maxValue;
+
             if (maxValue1 > maxValue2)
             {
                 maxValue = maxValue1;
@@ -334,20 +360,20 @@ namespace Proyecto2.View.Graficos
             {
                 maxValue = maxValue2;
             }
+            else if (maxValue1 == 0 && maxValue2 == 0)
+            {
+                maxValue = 1;
+            }
             else
             {
                 maxValue = maxValue1;
-            }
-            if (maxValue == 0)
-            {
-                maxValue = 1;
             }
             this.normalizedData2 = this.values2.ToArray();
 
             for (int i = 0; i < this.normalizedData2.Length; ++i)
             {
                 this.normalizedData2[i] =
-                                    (this.values2[i] * maxHeight) / maxValue;
+                    (this.values2[i] * maxHeight) / maxValue;
             }
 
             return;
@@ -355,11 +381,34 @@ namespace Proyecto2.View.Graficos
         void NormalizeData3()
         {
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
-            double maxValue = this.values3.Max();
+            double maxValue2 = this.values3.Max();
+            double maxValue1;
+            if(this.values4 != null && this.values4.Count !=0)
+            {
+                maxValue1 = this.values4.Max();
+            }
+            else
+            {
+               maxValue1 = 0;
+            }
+            
+            double maxValue;
 
-            if (maxValue == 0)
+            if (maxValue1 > maxValue2)
+            {
+                maxValue = maxValue1;
+            }
+            else if (maxValue2 > maxValue1)
+            {
+                maxValue = maxValue2;
+            }
+            else if (maxValue1 == 0 && maxValue2 == 0)
             {
                 maxValue = 1;
+            }
+            else
+            {
+                maxValue = maxValue1;
             }
             this.normalizedData3 = this.values3.ToArray();
 
@@ -371,20 +420,36 @@ namespace Proyecto2.View.Graficos
 
             return;
         }
+
+
         void NormalizeData4()
         {
             int maxHeight = this.DataOrgPosition.Y - this.FrameWidth;
-            double maxValue = this.values4.Max();
+            double maxValue2 = this.values3.Max();
+            double maxValue1 = this.values4.Max();
+            double maxValue;
 
-            if (maxValue == 0)
+            if (maxValue1 > maxValue2)
+            {
+                maxValue = maxValue1;
+            }
+            else if (maxValue2 > maxValue1)
+            {
+                maxValue = maxValue2;
+            }
+            else if (maxValue1 == 0 && maxValue2 == 0)
             {
                 maxValue = 1;
+            }
+            else
+            {
+                maxValue = maxValue1;
             }
             this.normalizedData4 = this.values4.ToArray();
 
             for (int i = 0; i < this.normalizedData4.Length; ++i)
             {
-                this.normalizedData3[i] =
+                this.normalizedData4[i] =
                     (this.values4[i] * maxHeight) / maxValue;
             }
 
@@ -409,7 +474,7 @@ namespace Proyecto2.View.Graficos
             }
         }
 
-        public IEnumerable<int> Values2
+        public IEnumerable<double> Values2
         {
             get
             {
@@ -435,6 +500,7 @@ namespace Proyecto2.View.Graficos
 
             }
         }
+
         public IEnumerable<double> Values4
         {
             get
@@ -448,8 +514,6 @@ namespace Proyecto2.View.Graficos
 
             }
         }
-
-
 
         /// <summary>
         /// Gets the framed origin.
@@ -465,18 +529,6 @@ namespace Proyecto2.View.Graficos
                     this.FramedOrgPosition.X + margin,
                     this.FramedEndPosition.Y - margin);
 
-            }
-        }
-
-        public Point DataOrgPosition2
-        {
-            get
-            {
-                int margin = (int)(this.AxisPen.Width * 2);
-
-                return new Point(
-                    this.FramedOrgPosition.X + margin,
-                    this.FramedEndPosition.Y - margin);
             }
         }
 
@@ -619,11 +671,11 @@ namespace Proyecto2.View.Graficos
 
         Graphics grf;
         List<int> values;
-        List<int> values2;
+        List<double> values2;
         List<double> values3;
         List<double> values4;
         int[] normalizedData;
-        int[] normalizedData2;
+        double[] normalizedData2;
         double[] normalizedData3;
         double[] normalizedData4;
         List<Point> posicionval = new List<Point>();

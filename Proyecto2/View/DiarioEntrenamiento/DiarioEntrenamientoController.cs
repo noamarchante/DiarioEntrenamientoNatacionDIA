@@ -19,7 +19,14 @@ namespace Proyecto2.View.DiarioEntrenamiento
         //MENU AÑADIR ACTIVIDAD MUESTRA FORMULARIO
         private void MenuAnhadirActividadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ActividadView(this).Show();
+            if (Program.diarioEntrenamiento.circuitos.Count == 0)
+            {
+                Help.ShowPopup(this.PanelPanel, "Para añadir una actividad debe haber, por lo menos, un circuito", new Point(this.PanelPanel.Left+200, this.PanelPanel.Top+200));
+            }
+            else
+            {
+                new ActividadView(this).Show();
+            }
         }
 
         private void MenuGraficosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,8 +226,11 @@ namespace Proyecto2.View.DiarioEntrenamiento
                             }
                         }
                     }
-                    if (!comprobacionCircuito)
+                    if (comprobacionCircuito)
                     {
+                        Help.ShowPopup(this.PanelPanel, "Este circuito no se puede eliminar, está asociado a alguna actividad", new Point(this.PanelPanel.Right, this.PanelPanel.Bottom-100));
+                        }
+                        else{
                         Core.Circuito circuitoSeleccionado = null;
                         foreach (var circuito in Program.diarioEntrenamiento.circuitos)
                         {

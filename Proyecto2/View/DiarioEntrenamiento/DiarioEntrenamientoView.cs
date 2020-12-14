@@ -219,7 +219,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.DefaultCellStyle.SelectionBackColor = Color.Transparent;
             TablaActividadDataGridView.BackgroundColor = Color.White;
             TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Transparent;
-            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Black;
+            TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.Transparent;
             TablaActividadDataGridView.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             TablaActividadDataGridView.Name = "tablaActividadDataGridView";
             TablaActividadDataGridView.Dock = DockStyle.Top;
@@ -231,8 +231,10 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaActividadDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             TablaActividadDataGridView.GridColor = Color.Black;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.GhostWhite;
-            TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
+            TablaActividadDataGridView.ForeColor = Color.Transparent;
+            TablaActividadDataGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Transparent;
             TablaActividadDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            TablaActividadDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaActividadDataGridView.RowHeadersVisible = false;
             TablaActividadDataGridView.ReadOnly = true;
             TablaActividadDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -316,6 +318,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaCircuitoDataGridView.Size = new Size(1050, 200);
             TablaCircuitoDataGridView.MaximumSize = TablaCircuitoDataGridView.Size;
             TablaCircuitoDataGridView.MinimumSize = TablaCircuitoDataGridView.Size;
+            TablaCircuitoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaCircuitoDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             TablaCircuitoDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             TablaCircuitoDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
@@ -409,6 +412,7 @@ namespace Proyecto2.View.DiarioEntrenamiento
             TablaMedidasDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             TablaMedidasDataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             TablaMedidasDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            TablaMedidasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             TablaMedidasDataGridView.GridColor = Color.Black;
             TablaMedidasDataGridView.RowHeadersVisible = false;
             TablaMedidasDataGridView.ReadOnly = true;

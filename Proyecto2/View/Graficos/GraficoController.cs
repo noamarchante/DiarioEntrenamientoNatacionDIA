@@ -16,10 +16,17 @@ namespace Proyecto2.View.Graficos
             Build();
         }
 
-        //CAMBIA LOS VALORES DEL GRAFICO DE ACTIVIDAD POR AÑO
-        private void anhoActividadesDateTimePicker_ValueChanged(Object sender, EventArgs e)
+        private void GraficoView_Load(object sender, EventArgs e)
         {
 
+            ValoresGraficoMinutoDistancia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoActividadesDateTimePicker.Value));
+            ValoresGraficoPesoCircunferencia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoMedidasDateTimePicker.Value));
+            PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value));
+        }
+
+            //CAMBIA LOS VALORES DEL GRAFICO DE ACTIVIDAD POR AÑO
+            private void anhoActividadesDateTimePicker_ValueChanged(Object sender, EventArgs e)
+        {
             this.MinutoDistanciaChart.Invalidate();
             ValoresGraficoMinutoDistancia(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoActividadesDateTimePicker.Value));
             this.MinutoDistanciaChart.Update();
@@ -32,7 +39,7 @@ namespace Proyecto2.View.Graficos
         {
             Dictionary<DiaEntrenamiento, Medida> diario = diarioPorAño;
             List<int> minutosValores = new List<int>();
-            List<int> distanciaValores = new List<int>();
+            List<double> distanciaValores = new List<double>();
             List<Core.Actividad> actividades = new List<Core.Actividad>();
 
             for (int i = 0; i < meses.Length; i++)
@@ -88,27 +95,16 @@ namespace Proyecto2.View.Graficos
         }
 
         //DEVUELVE LA DISTANCIA EN UN MES DE ACTIVIDADES
-        private int DistanciaMes(List<Core.Actividad> actividades)
+        private double DistanciaMes(List<Core.Actividad> actividades)
         {
-            int distancia = 0;
+            double distancia = 0;
 
             foreach (var actividad in actividades)
             {
-                distancia += Convert.ToInt32(actividad.Distancia);
+                distancia += actividad.Distancia;
             }
             return distancia;
         }
-
-
-
-
-
-
-
-
-
-
-
 
         //CAMBIA LOS VALORES DEL GRAFICO DE MEDIDAS POR AÑO
         private void anhoMedidasDateTimePicker_ValueChanged(Object sender, EventArgs e)
@@ -140,7 +136,7 @@ namespace Proyecto2.View.Graficos
 
             this.PesoCircunferenciaAbdominalChart.Values4 = circunferenciaValores.ToArray();
 
-            this.PesoCircunferenciaAbdominalChart.Draw3();
+            this.PesoCircunferenciaAbdominalChart.Draw4();
 
         }
 
@@ -218,22 +214,18 @@ namespace Proyecto2.View.Graficos
         //DEVUELVE EL PRIMER PESO DE CADA MES
         private void AnualDateTimePicker_ValueChanged(Object sender, EventArgs e)
         {
-            List<double> valores = PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnualDateTimePicker.Value.Date));
-            this.GraficoPesoAnual.Invalidate();
+            this.PesoChart.Invalidate();
+            this.AnualDataGridView.Rows.Clear();
 
-            this.GraficoPesoAnual.Values3 = valores.ToArray();
-            this.GraficoPesoAnual.Draw2();
-            Console.WriteLine("fecha" + this.AnualDateTimePicker.Value);
-            this.TablaAnual.Rows.Clear();
-            this.TablaAnualView_Load(valores);
-            this.GraficoPesoAnual.Update();
-            this.GraficoPesoAnual.Refresh();
+            PesoAnual(Program.diarioEntrenamiento.ObtenerDiaEntrenamientoDesdeAnho(this.AnhoPesoDateTimePicker.Value.Date));
 
-            this.TablaAnual.Update();
-            this.TablaAnual.Refresh();
+            this.PesoChart.Update();
+            this.PesoChart.Refresh();
+            this.AnualDataGridView.Update();
+            this.AnualDataGridView.Refresh();
 
         }
-        private List<double> PesoAnual(Dictionary<DiaEntrenamiento, Medida> diario)
+        private void PesoAnual(Dictionary<DiaEntrenamiento, Medida> diario)
         {
             List<double> peso = new List<double>();
             Dictionary<DateTime, double> mesesguardados = new Dictionary<DateTime, double>();
@@ -243,8 +235,10 @@ namespace Proyecto2.View.Graficos
                 medidas = PesoMes(diario, meses[i]);
                 peso.Add(pesoValores(medidas));
             }
+            this.PesoChart.Values3 = peso.ToArray();
+            this.PesoChart.Draw2();
+            this.TablaAnualView_Load(peso);
 
-            return peso;
         }
 
         private List<Core.Medida> PesoMes(Dictionary<DiaEntrenamiento, Medida> diario, String mes)
@@ -292,8 +286,8 @@ namespace Proyecto2.View.Graficos
             {
                 for (int i = 0; i < meses.Count(); i++)
                 {
-                    String[] insert = new string[] { mes[i], valores[i].ToString() };
-                    TablaAnual.Rows.Add(insert);
+                    String[] insert = new string[] { mesesLetras[i], valores[i].ToString() };
+                    AnualDataGridView.Rows.Add(insert);
                 }
             }
 
