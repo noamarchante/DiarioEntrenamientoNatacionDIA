@@ -35,6 +35,7 @@ namespace Proyecto2.Core
             return str.ToString();
         }
         
+        //CONVIERTE LOS ATRIBUTOS Id, Distancia, Lugar, Url y Notas A ELEMENTOS XML 
         public XElement toXML()
         {
             XElement toRet = new XElement("Circuito",

@@ -30,7 +30,8 @@ namespace Proyecto2.Core
             str.AppendLine(Notas);
             return str.ToString();
         }
-        
+
+        //CONVIERTE LOS ATRIBUTOS DE Id, Tiempo, Distancia, Circuito y Nota A XML
         public XElement toXML()
         {
             XElement toRet = new XElement("Actividad");

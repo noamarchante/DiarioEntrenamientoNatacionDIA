@@ -16,8 +16,8 @@
           <Id>2</Id>
           <Distancia>5</Distancia>
           <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>DIFICULTAD: principiante</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
         </Circuito>
         <Nota>Minutos/distancia por debajo de la media</Nota>
       </Actividad>
@@ -40,8 +40,8 @@
           <Id>2</Id>
           <Distancia>22</Distancia>
           <Lugar>Centro deportivo Eiroas</Lugar>
-          <Url>DIFICULTAD: difícil</Url>
-          <Nota>https://www.beone.es</Nota>
+          <Url>https://www.beone.es</Url>
+          <Nota>DIFICULTAD: difícil</Nota>
         </Circuito>
         <Nota>Record en minutos/distancia</Nota>
       </Actividad>
@@ -64,8 +64,8 @@
           <Id>1</Id>
           <Distancia>10</Distancia>
           <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: media</Nota>
         </Circuito>
         <Nota>Crol</Nota>
       </Actividad>
@@ -88,8 +88,8 @@
           <Id>2</Id>
           <Distancia>5</Distancia>
           <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>DIFICULTAD: principiante</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
         </Circuito>
         <Nota>Controlar respiración</Nota>
       </Actividad>
@@ -112,8 +112,8 @@
           <Id>1</Id>
           <Distancia>10</Distancia>
           <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: media</Nota>
         </Circuito>
         <Nota>Espalda</Nota>
       </Actividad>
@@ -128,8 +128,8 @@
           <Id>2</Id>
           <Distancia>5</Distancia>
           <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>DIFICULTAD: principiante</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
         </Circuito>
         <Nota>braza</Nota>
       </Actividad>
@@ -152,8 +152,8 @@
           <Id>1</Id>
           <Distancia>10</Distancia>
           <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: media</Nota>
         </Circuito>
         <Nota>Mariposa</Nota>
       </Actividad>
@@ -180,8 +180,8 @@
           <Id>2</Id>
           <Distancia>5</Distancia>
           <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>DIFICULTAD: principiante</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
         </Circuito>
         <Nota>Ejercicios de respiración</Nota>
       </Actividad>
@@ -204,8 +204,8 @@
           <Id>2</Id>
           <Distancia>22</Distancia>
           <Lugar>Centro deportivo Eiroas</Lugar>
-          <Url>DIFICULTAD: difícil</Url>
-          <Nota>https://www.beone.es</Nota>
+          <Url>https://www.beone.es</Url>
+          <Nota>DIFICULTAD: difícil</Nota>
         </Circuito>
         <Nota>Esfuerzo</Nota>
       </Actividad>
@@ -228,8 +228,8 @@
           <Id>1</Id>
           <Distancia>10</Distancia>
           <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: media</Nota>
         </Circuito>
         <Nota>Crol</Nota>
       </Actividad>
@@ -244,24 +244,7 @@
     <dia>21</dia>
     <mes>5</mes>
     <año>2020</año>
-    <Actividades>
-      <Actividad>
-        <Id>0</Id>
-        <Tiempo>
-          <Minutos>8</Minutos>
-          <Segundos>8</Segundos>
-        </Tiempo>
-        <Distancia>888</Distancia>
-        <Circuito>
-          <Id>1</Id>
-          <Distancia>10</Distancia>
-          <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
-        </Circuito>
-        <Nota>Crol</Nota>
-      </Actividad>
-    </Actividades>
+    <Actividades />
     <Medida>
       <Peso>69</Peso>
       <Circunferencia>79</Circunferencia>
@@ -284,8 +267,8 @@
           <Id>2</Id>
           <Distancia>5</Distancia>
           <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>DIFICULTAD: principiante</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
         </Circuito>
         <Nota>Comienzo de entreno</Nota>
       </Actividad>
@@ -308,8 +291,8 @@
           <Id>2</Id>
           <Distancia>22</Distancia>
           <Lugar>Centro deportivo Eiroas</Lugar>
-          <Url>DIFICULTAD: difícil</Url>
-          <Nota>https://www.beone.es</Nota>
+          <Url>https://www.beone.es</Url>
+          <Nota>DIFICULTAD: difícil</Nota>
         </Circuito>
         <Nota>Práctica</Nota>
       </Actividad>
@@ -332,8 +315,8 @@
           <Id>1</Id>
           <Distancia>10</Distancia>
           <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>DIFICULTAD: media</Url>
-          <Nota>http://www.deportesourense.com</Nota>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: media</Nota>
         </Circuito>
         <Nota>Mariposa</Nota>
       </Actividad>
@@ -373,27 +356,51 @@
       <Nota>Ligero sobrepeso</Nota>
     </Medida>
   </Dia>
+  <Dia>
+    <dia>8</dia>
+    <mes>5</mes>
+    <año>2020</año>
+    <Actividades>
+      <Actividad>
+        <Id>0</Id>
+        <Tiempo>
+          <Minutos>31</Minutos>
+          <Segundos>5</Segundos>
+        </Tiempo>
+        <Distancia>15</Distancia>
+        <Circuito>
+          <Id>2</Id>
+          <Distancia>5</Distancia>
+          <Lugar>Complejo polideportivo de los Remedios</Lugar>
+          <Url>http://www.deportesourense.com</Url>
+          <Nota>DIFICULTAD: principiante</Nota>
+        </Circuito>
+        <Nota>Entrenamiento duro</Nota>
+      </Actividad>
+    </Actividades>
+    <Medida />
+  </Dia>
   <Circuitos>
     <Circuito>
       <Id>2</Id>
       <Distancia>5</Distancia>
       <Lugar>Complejo polideportivo de los Remedios</Lugar>
-      <Url>DIFICULTAD: principiante</Url>
-      <Nota>http://www.deportesourense.com</Nota>
+      <Url>http://www.deportesourense.com</Url>
+      <Nota>DIFICULTAD: principiante</Nota>
     </Circuito>
     <Circuito>
       <Id>1</Id>
       <Distancia>10</Distancia>
       <Lugar>Complejo deportivo Oira</Lugar>
-      <Url>DIFICULTAD: media</Url>
-      <Nota>http://www.deportesourense.com</Nota>
+      <Url>http://www.deportesourense.com</Url>
+      <Nota>DIFICULTAD: media</Nota>
     </Circuito>
     <Circuito>
       <Id>2</Id>
       <Distancia>22</Distancia>
       <Lugar>Centro deportivo Eiroas</Lugar>
-      <Url>DIFICULTAD: difícil</Url>
-      <Nota>https://www.beone.es</Nota>
+      <Url>https://www.beone.es</Url>
+      <Nota>DIFICULTAD: difícil</Nota>
     </Circuito>
   </Circuitos>
 </DiarioEntrenamiento>

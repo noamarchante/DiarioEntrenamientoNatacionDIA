@@ -46,3 +46,11 @@ C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamient
 C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
 C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
 C:\Users\migue\Documents\Clases2020\DIA\Entrega final día 15\DiarioEntrenamientoNatacionDIA-master\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
+C:\Users\migue\Documents\GitHub\Proyecto2\bin\Debug\Proyecto2.exe
+C:\Users\migue\Documents\GitHub\Proyecto2\bin\Debug\Proyecto2.pdb
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.csprojAssemblyReference.cache
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.Properties.Resources.resources
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.csproj.GenerateResource.cache
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.csproj.CoreCompileInputs.cache
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.exe
+C:\Users\migue\Documents\GitHub\Proyecto2\obj\Debug\Proyecto2.pdb

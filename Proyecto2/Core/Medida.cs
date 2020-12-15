@@ -25,6 +25,7 @@ namespace Proyecto2.Core
             return str.ToString();
         }
         
+        //CONVIERTE LOS ATRIBUTOS Peso, Circunferencia Y Nota A ELEMENTOS XML
         public XElement toXML(){
         
             XElement toRet = new XElement("Medida",

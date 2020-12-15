@@ -30,6 +30,7 @@ namespace Proyecto2.Core
             return str.ToString();
         }
         
+        //CONVIERTE LOS ATRIBUTOS Minutos Y Segundos A ELEMENTOS XML
         public XElement toXML()
         {
             XElement toRet = new XElement("Tiempo",

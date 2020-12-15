@@ -278,6 +278,9 @@ namespace Proyecto2.Core
             return str.ToString();
         }
         
+        //SE USA AL FINAL DE LA EJECUCIÓN DEL PROGRAMA. VUELCA LOS VALORES EN LAS VARIABLES Y LISTAS DEL PROGRAMA EN UN
+        //XML CUYO PATH SE PASA COMO ARGUMENTO. LLAMA A LOS DISTINTOD MÉTODOS QUE AGREGAN LOS XML DE LAS DISTINTAS 
+        //CLASES DEL PROGRAMA 
         public void crearXML(string nombreArchivo)
         {
             var raiz = new XElement("DiarioEntrenamiento");
@@ -314,6 +317,8 @@ namespace Proyecto2.Core
             
         }
         
+        //SE USA AL INICIAR EL PROGRAMA. CARGA LOS DATOS DEL XML PASADO POR PARÁMETRO Y LOS VUELCA EN EL PROGRAMA PARA
+        //PODER TRABAJAR CON ELLOS DE FORMA NORMAL
         public void cargarBaseUsandoXML(string nombreArchivo)
         {
             if (File.Exists(nombreArchivo))

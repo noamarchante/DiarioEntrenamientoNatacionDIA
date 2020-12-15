@@ -75,6 +75,7 @@ namespace Proyecto2.Core
             return str.ToString();
         }
         
+        //CONVIERTE LOS ELEMENTOS DE Actividades A ELEMENTOS XML
         public XElement toXML()
         {
             XElement toRet = new XElement("Actividades");
