@@ -156,18 +156,20 @@ namespace Proyecto2.View.Graficos
         private double PesoMes(List<Core.Medida> medidas)
         {
             double peso = 0;
+            int numMedidas = 0;
 
             foreach (var medida in medidas)
             {
                 if (medida != null)
                 {
                     peso += medida.Peso;
+                    numMedidas++;
                 }
             }
 
             if (peso > 0)
             {
-                peso = peso / medidas.Count();
+                peso = peso / numMedidas;
             }
 
             return peso;
@@ -177,18 +179,20 @@ namespace Proyecto2.View.Graficos
         private double CircunferenciaMes(List<Core.Medida> medidas)
         {
             double circunferencia = 0;
+            int numMedidas = 0;
 
             foreach (var medida in medidas)
             {
                 if (medida != null)
                 {
                     circunferencia += medida.CircunferenciaAbdominal;
+                    numMedidas++;
                 }
             }
 
             if (circunferencia > 0)
             {
-                circunferencia = circunferencia / medidas.Count();
+                circunferencia = circunferencia / numMedidas;
             }
 
             int convertCircunferencia = Convert.ToInt32(circunferencia);
@@ -233,6 +237,7 @@ namespace Proyecto2.View.Graficos
         {
             double peso = 0;
             bool comprobacion = false;
+            int numMedidas = 0;
 
             foreach (var medida in medidas)
             {
@@ -240,11 +245,12 @@ namespace Proyecto2.View.Graficos
                 {
                     comprobacion = true;
                     peso += medida.Peso;
+                    numMedidas++;
                 }
             }
             if (comprobacion)
             {
-                peso = peso / medidas.Count();
+                peso = peso / numMedidas;
             }
             else
             {

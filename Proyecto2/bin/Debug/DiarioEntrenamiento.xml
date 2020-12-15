@@ -49,54 +49,6 @@
     <Medida />
   </Dia>
   <Dia>
-    <dia>3</dia>
-    <mes>12</mes>
-    <año>2020</año>
-    <Actividades>
-      <Actividad>
-        <Id>0</Id>
-        <Tiempo>
-          <Minutos>30</Minutos>
-          <Segundos>12</Segundos>
-        </Tiempo>
-        <Distancia>85</Distancia>
-        <Circuito>
-          <Id>1</Id>
-          <Distancia>10</Distancia>
-          <Lugar>Complejo deportivo Oira</Lugar>
-          <Url>http://www.deportesourense.com</Url>
-          <Nota>DIFICULTAD: media</Nota>
-        </Circuito>
-        <Nota>Crol</Nota>
-      </Actividad>
-    </Actividades>
-    <Medida />
-  </Dia>
-  <Dia>
-    <dia>4</dia>
-    <mes>12</mes>
-    <año>2020</año>
-    <Actividades>
-      <Actividad>
-        <Id>0</Id>
-        <Tiempo>
-          <Minutos>16</Minutos>
-          <Segundos>30</Segundos>
-        </Tiempo>
-        <Distancia>5</Distancia>
-        <Circuito>
-          <Id>2</Id>
-          <Distancia>5</Distancia>
-          <Lugar>Complejo polideportivo de los Remedios</Lugar>
-          <Url>http://www.deportesourense.com</Url>
-          <Nota>DIFICULTAD: principiante</Nota>
-        </Circuito>
-        <Nota>Controlar respiración</Nota>
-      </Actividad>
-    </Actividades>
-    <Medida />
-  </Dia>
-  <Dia>
     <dia>15</dia>
     <mes>10</mes>
     <año>2020</año>
@@ -379,6 +331,28 @@
       </Actividad>
     </Actividades>
     <Medida />
+  </Dia>
+  <Dia>
+    <dia>29</dia>
+    <mes>4</mes>
+    <año>2020</año>
+    <Actividades />
+    <Medida>
+      <Peso>30</Peso>
+      <Circunferencia>10</Circunferencia>
+      <Nota>www</Nota>
+    </Medida>
+  </Dia>
+  <Dia>
+    <dia>15</dia>
+    <mes>12</mes>
+    <año>2020</año>
+    <Actividades />
+    <Medida>
+      <Peso>0</Peso>
+      <Circunferencia>0</Circunferencia>
+      <Nota></Nota>
+    </Medida>
   </Dia>
   <Circuitos>
     <Circuito>
